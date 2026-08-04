@@ -3,11 +3,11 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { routeLinks, useSiteContent } from '../context/siteContent';
 
 const DEFAULT_HERO_SLIDES = [
-  '/hero/2.png',
-  '/hero/4.png',
-  '/hero/7.png',
-  '/hero/1.png',
-  '/hero/8.png',
+  { desktop: '/hero/2.png', mobile: '/hero/2-mobile.png' },
+  { desktop: '/hero/4.png', mobile: '/hero/4-mobile.png' },
+  { desktop: '/hero/7.png', mobile: '/hero/7-mobile.png' },
+  { desktop: '/hero/1.png', mobile: '/hero/1-mobile.png' },
+  { desktop: '/hero/8.png', mobile: '/hero/8-mobile.png' },
 ];
 
 export default function HeroSlideshowModular() {
@@ -51,15 +51,23 @@ export default function HeroSlideshowModular() {
     <section className="hero-slideshow-section" aria-label="Pitts Modern School Hero Slideshow">
       {/* Background Slideshow Layer */}
       <div className="hero-slides-wrapper">
-        {heroSlides.map((slideImg, index) => (
-          <div
-            key={slideImg}
-            className={`hero-slide-bg ${index === currentSlide ? 'active' : ''}`}
-            style={{
-              backgroundImage: `linear-gradient(90deg, rgba(5, 18, 38, 0.45) 0%, rgba(5, 18, 38, 0.2) 28%, transparent 38%), url('${slideImg}')`,
-            }}
-          />
-        ))}
+        {heroSlides.map((slideObj, index) => {
+          const desktopImg = typeof slideObj === 'string' ? slideObj : (slideObj.desktop || slideObj.image || '/hero/2.png');
+          const mobileImg = typeof slideObj === 'object' && slideObj.mobile
+            ? slideObj.mobile
+            : desktopImg.replace(/(\.png|\.jpg|\.jpeg|\.webp)$/i, '-mobile$1');
+
+          return (
+            <div
+              key={index}
+              className={`hero-slide-bg ${index === currentSlide ? 'active' : ''}`}
+              style={{
+                '--hero-bg-desktop': `url('${desktopImg}')`,
+                '--hero-bg-mobile': `url('${mobileImg}')`,
+              }}
+            />
+          );
+        })}
       </div>
 
       {/* Foreground Content */}
