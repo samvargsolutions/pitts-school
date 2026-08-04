@@ -19,7 +19,7 @@ export const defaultSiteContent = {
       { text: 'Recruitment Of Teachers - Click here for Eligibility Criteria and Application Form', href: routeLinks.faculty },
       { text: 'Online Registration for LKG & UKG, BAL-VATIKA is ongoing', href: routeLinks.news },
       { text: 'Star Of Academic Week & E-Magazine : Cynosure now published', href: routeLinks.newsletters },
-      { text: 'Celebrating 50 Years of Excellence in Education', href: routeLinks.story },
+      { text: 'Celebrating 50 Years of Excellence in Education', href: routeLinks.about },
     ],
     quickActions: [
       { title: 'Online Registration LKG & UKG, BAL-VATIKA', href: routeLinks.news },
@@ -101,7 +101,7 @@ export const defaultSiteContent = {
     ],
   },
   footer: {
-    primaryLinks: [['Home', routeLinks.home], ['About Us', routeLinks.about], ['Our Story', routeLinks.story], ['Our Management', routeLinks.management], ["Principal's Desk", routeLinks.principal], ['Infrastructure', routeLinks.infrastructure], ['Faculty & Staff', routeLinks.faculty], ['News and Events', routeLinks.events]],
+    primaryLinks: [['Home', routeLinks.home], ['About Us', routeLinks.about], ['Our Management', routeLinks.management], ["Principal's Desk", routeLinks.principal], ['Infrastructure', routeLinks.infrastructure], ['Faculty & Staff', routeLinks.faculty], ['News and Events', routeLinks.events]],
     secondaryLinks: [['Result', routeLinks.results], ['Admission Test Result', routeLinks.admissionResults], ['Sports', routeLinks.sports], ['Co-curricular Activities', routeLinks.cultural], ['Gallery', routeLinks.gallery], ['Newsletters', routeLinks.newsletters], ['School Rules', routeLinks.rules], ['Contact Us', routeLinks.contact]],
   },
   contentLibrary: {

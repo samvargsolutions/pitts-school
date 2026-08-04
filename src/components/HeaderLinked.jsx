@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Award, BookMarked, BookOpen, Briefcase, ChevronRight, CreditCard, Facebook, FileText, GraduationCap, Instagram, Lock, Mail, MapPin, Phone, Search, Sparkles, UserCheck, UserPlus, Volume2, X, Youtube } from 'lucide-react';
 import { routeLinks, useSiteContent } from '../context/siteContent';
 
@@ -17,7 +17,7 @@ export default function HeaderLinked() {
     { title: 'Vacancy', href: routeLinks.faculty, icon: <Briefcase size={18} /> },
   ];
   const mainNavLinks = [
-    ['Home', routeLinks.home], ['About Us', routeLinks.about], ['Our Story', routeLinks.story], ['Our Management', routeLinks.management],
+    ['Home', routeLinks.home], ['About Us', routeLinks.about], ['Our Management', routeLinks.management],
     ['Infrastructure', routeLinks.infrastructure], ['News & Notices', routeLinks.news], ['Upcoming Events', routeLinks.events], ['Newsletters & Cynosure', routeLinks.newsletters],
     ['School Rules', routeLinks.rules], ['Holiday Assignments', routeLinks.news], ['Faculty & Staff Directory', routeLinks.faculty], ['Result', routeLinks.results],
     ['Sports', routeLinks.sports], ['Co-curricular Activity', routeLinks.cultural], ['Mandatory Disclosure', routeLinks.disclosure], ['Gallery', routeLinks.gallery],

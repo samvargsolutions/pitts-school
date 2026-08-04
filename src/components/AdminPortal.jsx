@@ -26,10 +26,9 @@ const modules = [
 ];
 
 const internalLinkOptions = [
-  ['Home', routeLinks.home],
-  ['About Us', routeLinks.about],
-  ['Our Story', routeLinks.story],
-  ['Management', routeLinks.management],
+  ['Home & Hero', routeLinks.home],
+  ['About Pitts', routeLinks.about],
+  ['Our Management', routeLinks.management],
   ["Principal's Desk", routeLinks.principal],
   ['Infrastructure', routeLinks.infrastructure],
   ['News & Notices', routeLinks.news],
