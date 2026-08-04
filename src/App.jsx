@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Header from './components/HeaderLinked';
 import HeroSlideshow from './components/HeroSlideshowModular';
 import AboutPitts from './components/AboutPitts';
@@ -26,7 +26,6 @@ import ManagementSection from './components/ManagementSection';
 import AdmissionPopup from './components/AdmissionPopupModular';
 import { CulturalCoCurricularPage, SportsActivityPage } from './components/StudentLifeShowcase';
 import AdminPortal from './components/AdminPortal';
-import { Agentation } from "agentation";
 
 export default function App() {
   const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
@@ -215,8 +214,6 @@ export default function App() {
         <Footer />
         {/* === MOVABLE SECTION END: Footer === */}
       </div>
-      {/* Vite uses import.meta.env.DEV instead of process.env.NODE_ENV */}
-      {import.meta.env.DEV && <Agentation />}
     </>
   );
 }

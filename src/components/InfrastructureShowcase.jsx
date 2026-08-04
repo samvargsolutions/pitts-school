@@ -178,26 +178,59 @@ export default function InfrastructureShowcase() {
                 const isActive = index === activeIndex;
 
                 return (
-                  <button
-                    key={facility.id}
-                    type="button"
-                    className={`infra-facility-button ${isActive ? 'is-active' : ''}`}
-                    onClick={() => selectFacility(index)}
-                    aria-current={isActive ? 'true' : undefined}
-                  >
-                    <span className="infra-facility-number">{facility.number}</span>
-                    <span className="infra-facility-copy">
-                      <span>{facility.title}</span>
-                      <small>{facility.label}</small>
-                    </span>
-                    <ArrowRight size={17} aria-hidden="true" />
-                  </button>
+                  <React.Fragment key={facility.id}>
+                    <button
+                      type="button"
+                      className={`infra-facility-button ${isActive ? 'is-active' : ''}`}
+                      onClick={() => selectFacility(index)}
+                      aria-current={isActive ? 'true' : undefined}
+                    >
+                      <span className="infra-facility-number">{facility.number}</span>
+                      <span className="infra-facility-copy">
+                        <span>{facility.title}</span>
+                        <small>{facility.label}</small>
+                      </span>
+                      <ArrowRight size={17} aria-hidden="true" />
+                    </button>
+
+                    {/* MOBILE ONLY: Inline details (Accordion style) */}
+                    {isActive && (
+                      <div className="infra-feature infra-feature-mobile">
+                        <div className="infra-feature-copy">
+                          <span className="infra-feature-label">{activeFacility.label}</span>
+                          <h2>{activeFacility.title}</h2>
+                          <p>{activeFacility.description}</p>
+                          <button type="button" className="infra-gallery-trigger" onClick={() => setIsGalleryOpen(true)}>
+                            Quick gallery
+                            <ArrowRight size={16} aria-hidden="true" />
+                          </button>
+                        </div>
+
+                        <div className="infra-media-stage">
+                          <img className="infra-card-motif" src={activeFacility.motif} alt="" />
+                          <button
+                            type="button"
+                            className="infra-main-card"
+                            onClick={() => setIsGalleryOpen(true)}
+                            aria-label={`Open ${activeFacility.title} gallery`}
+                          >
+                            <img src={activeImage.src} alt={activeImage.caption} />
+                            <span className="infra-main-caption">
+                              <small>{activeFacility.number}</small>
+                              {activeImage.caption}
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </React.Fragment>
                 );
               })}
             </div>
           </aside>
 
-          <div className="infra-feature">
+          {/* DESKTOP ONLY: Side panel details */}
+          <div className="infra-feature infra-feature-desktop">
             <div className="infra-feature-copy">
               <span className="infra-feature-label">{activeFacility.label}</span>
               <h2>{activeFacility.title}</h2>

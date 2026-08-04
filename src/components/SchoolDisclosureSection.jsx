@@ -145,30 +145,32 @@ export default function SchoolDisclosureSection() {
             <span className="sec-letter">A</span>
             <span className="sec-title-underline">GENERAL INFORMATION</span>
           </div>
-          <table className="cbse-table">
-            <thead>
-              <tr>
-                <th style={{ width: '65px' }} className="center-text">
-                  <span className="th-underline">SL NO</span>
-                </th>
-                <th style={{ width: '42%' }} className="center-text">
-                  <span className="th-underline">INFORMATION</span>
-                </th>
-                <th className="center-text">
-                  <span className="th-underline">DETAILS</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {GENERAL_INFO.map((row, index) => (
-                <tr key={index}>
-                  <td className="center-text">{row.sl}</td>
-                  <td className="center-text">{row.info}</td>
-                  <td className="center-text details-text">{row.details}</td>
+          <div className="table-responsive-wrapper">
+            <table className="cbse-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '65px' }} className="center-text">
+                    <span className="th-underline">SL NO</span>
+                  </th>
+                  <th style={{ width: '42%' }} className="center-text">
+                    <span className="th-underline">INFORMATION</span>
+                  </th>
+                  <th className="center-text">
+                    <span className="th-underline">DETAILS</span>
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {GENERAL_INFO.map((row, index) => (
+                  <tr key={index}>
+                    <td className="center-text">{row.sl}</td>
+                    <td className="center-text">{row.info}</td>
+                    <td className="center-text details-text">{row.details}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {/* SECTION B: DOCUMENTS AND INFORMATION */}
@@ -177,53 +179,55 @@ export default function SchoolDisclosureSection() {
             <span className="sec-letter">B</span>
             <span className="sec-title-underline">DOCUMENTS AND INFORMATION</span>
           </div>
-          <table className="cbse-table">
-            <thead>
-              <tr>
-                <th style={{ width: '65px' }} className="center-text">
-                  <span className="th-underline">SL<br />NO</span>
-                </th>
-                <th style={{ width: '46%' }} className="center-text">
-                  <span className="th-underline">DOCUMENTS/INFORMATION</span>
-                </th>
-                <th style={{ width: '32%' }} className="center-text">
-                  <span className="th-underline">UPLOADED DOCUMENTS</span>
-                </th>
-                <th style={{ width: '100px' }} className="center-text"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {DOCUMENTS_INFO.map((row) => (
-                <tr key={row.sl}>
-                  <td className="center-text">{row.sl}</td>
-                  <td className="center-text doc-name-cell">{row.doc}</td>
-                  <td className="center-text uploaded-doc-cell">
-                    {row.note ? (
-                      <div className="cbse-note-text">{row.note}</div>
-                    ) : (
-                      <div className="cbse-doc-line"></div>
-                    )}
-                  </td>
-                  <td className="center-text action-btn-cell">
-                    <a
-                      href={row.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cbse-blue-btn"
-                      onClick={(e) => {
-                        if (row.isImage) {
-                          e.preventDefault();
-                          setSelectedImageModal(row.url);
-                        }
-                      }}
-                    >
-                      VIEW
-                    </a>
-                  </td>
+          <div className="table-responsive-wrapper">
+            <table className="cbse-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '65px' }} className="center-text">
+                    <span className="th-underline">SL<br />NO</span>
+                  </th>
+                  <th style={{ width: '46%' }} className="center-text">
+                    <span className="th-underline">DOCUMENTS/INFORMATION</span>
+                  </th>
+                  <th style={{ width: '32%' }} className="center-text">
+                    <span className="th-underline">UPLOADED DOCUMENTS</span>
+                  </th>
+                  <th style={{ width: '100px' }} className="center-text"></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {DOCUMENTS_INFO.map((row) => (
+                  <tr key={row.sl}>
+                    <td className="center-text">{row.sl}</td>
+                    <td className="center-text doc-name-cell">{row.doc}</td>
+                    <td className="center-text uploaded-doc-cell">
+                      {row.note ? (
+                        <div className="cbse-note-text">{row.note}</div>
+                      ) : (
+                        <div className="cbse-doc-line"></div>
+                      )}
+                    </td>
+                    <td className="center-text action-btn-cell">
+                      <a
+                        href={row.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cbse-blue-btn"
+                        onClick={(e) => {
+                          if (row.isImage) {
+                            e.preventDefault();
+                            setSelectedImageModal(row.url);
+                          }
+                        }}
+                      >
+                        VIEW
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {/* SECTION C: RESULT AND ACADEMICS */}
@@ -232,49 +236,51 @@ export default function SchoolDisclosureSection() {
             <span className="sec-letter">C</span>
             <span className="sec-title-underline">RESULT AND ACADEMICS</span>
           </div>
-          <table className="cbse-table">
-            <thead>
-              <tr>
-                <th style={{ width: '65px' }} className="center-text">
-                  <span className="th-underline">SL<br />NO</span>
-                </th>
-                <th style={{ width: '46%' }} className="center-text">
-                  <span className="th-underline">DOCUMENTS/INFORMATION</span>
-                </th>
-                <th style={{ width: '32%' }} className="center-text">
-                  <span className="th-underline">UPLOADED DOCUMENTS</span>
-                </th>
-                <th style={{ width: '100px' }} className="center-text"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {RESULT_ACADEMICS.map((row) => (
-                <tr key={row.sl}>
-                  <td className="center-text">{row.sl}</td>
-                  <td className="center-text doc-name-cell">{row.doc}</td>
-                  <td className="center-text uploaded-doc-cell">
-                    <div className="cbse-doc-line"></div>
-                  </td>
-                  <td className="center-text action-btn-cell">
-                    <a
-                      href={row.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cbse-blue-btn"
-                      onClick={(e) => {
-                        if (row.isImage) {
-                          e.preventDefault();
-                          setSelectedImageModal(row.url);
-                        }
-                      }}
-                    >
-                      VIEW
-                    </a>
-                  </td>
+          <div className="table-responsive-wrapper">
+            <table className="cbse-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '65px' }} className="center-text">
+                    <span className="th-underline">SL<br />NO</span>
+                  </th>
+                  <th style={{ width: '46%' }} className="center-text">
+                    <span className="th-underline">DOCUMENTS/INFORMATION</span>
+                  </th>
+                  <th style={{ width: '32%' }} className="center-text">
+                    <span className="th-underline">UPLOADED DOCUMENTS</span>
+                  </th>
+                  <th style={{ width: '100px' }} className="center-text"></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {RESULT_ACADEMICS.map((row) => (
+                  <tr key={row.sl}>
+                    <td className="center-text">{row.sl}</td>
+                    <td className="center-text doc-name-cell">{row.doc}</td>
+                    <td className="center-text uploaded-doc-cell">
+                      <div className="cbse-doc-line"></div>
+                    </td>
+                    <td className="center-text action-btn-cell">
+                      <a
+                        href={row.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cbse-blue-btn"
+                        onClick={(e) => {
+                          if (row.isImage) {
+                            e.preventDefault();
+                            setSelectedImageModal(row.url);
+                          }
+                        }}
+                      >
+                        VIEW
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {/* SECTION D: STAFF (TEACHING) */}
@@ -283,30 +289,32 @@ export default function SchoolDisclosureSection() {
             <span className="sec-letter">D</span>
             <span className="sec-title-underline">STAFF(TEACHING)</span>
           </div>
-          <table className="cbse-table">
-            <thead>
-              <tr>
-                <th style={{ width: '65px' }} className="center-text">
-                  <span className="th-underline">SL NO</span>
-                </th>
-                <th style={{ width: '42%' }} className="center-text">
-                  <span className="th-underline">INFORMATION</span>
-                </th>
-                <th className="center-text">
-                  <span className="th-underline">DETAILS</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {STAFF_TEACHING.map((row, index) => (
-                <tr key={index}>
-                  <td className="center-text">{row.sl}</td>
-                  <td className="center-text">{row.info}</td>
-                  <td className="center-text details-text">{row.details}</td>
+          <div className="table-responsive-wrapper">
+            <table className="cbse-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '65px' }} className="center-text">
+                    <span className="th-underline">SL NO</span>
+                  </th>
+                  <th style={{ width: '42%' }} className="center-text">
+                    <span className="th-underline">INFORMATION</span>
+                  </th>
+                  <th className="center-text">
+                    <span className="th-underline">DETAILS</span>
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {STAFF_TEACHING.map((row, index) => (
+                  <tr key={index}>
+                    <td className="center-text">{row.sl}</td>
+                    <td className="center-text">{row.info}</td>
+                    <td className="center-text details-text">{row.details}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {/* SECTION E: SCHOOL INFRASTRUCTURE */}
@@ -315,54 +323,56 @@ export default function SchoolDisclosureSection() {
             <span className="sec-letter">E</span>
             <span className="sec-title-underline">SCHOOL INFRASTRUCTURE</span>
           </div>
-          <table className="cbse-table">
-            <thead>
-              <tr>
-                <th style={{ width: '65px' }} className="center-text">
-                  <span className="th-underline">SL NO</span>
-                </th>
-                <th style={{ width: '55%' }} className="center-text">
-                  <span className="th-underline">INFORMATION</span>
-                </th>
-                <th colSpan={2} className="center-text">
-                  <span className="th-underline">DETAILS</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {SCHOOL_INFRASTRUCTURE.map((row, index) => (
-                <tr key={index}>
-                  <td className="center-text">{row.sl}</td>
-                  <td className="center-text">{row.info}</td>
-                  {row.count ? (
-                    <>
-                      <td className="center-text" style={{ width: '80px', borderRight: '1px solid #d2deeb' }}>
-                        {row.count}
-                      </td>
-                      <td className="center-text" style={{ width: '100px' }}>
-                        {row.details}
-                      </td>
-                    </>
-                  ) : (
-                    <td className="center-text details-text" colSpan={2}>
-                      {row.isLink ? (
-                        <a
-                          href={row.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="cbse-blue-btn"
-                        >
-                          VIEW
-                        </a>
-                      ) : (
-                        row.details
-                      )}
-                    </td>
-                  )}
+          <div className="table-responsive-wrapper">
+            <table className="cbse-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '65px' }} className="center-text">
+                    <span className="th-underline">SL NO</span>
+                  </th>
+                  <th style={{ width: '55%' }} className="center-text">
+                    <span className="th-underline">INFORMATION</span>
+                  </th>
+                  <th colSpan={2} className="center-text">
+                    <span className="th-underline">DETAILS</span>
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {SCHOOL_INFRASTRUCTURE.map((row, index) => (
+                  <tr key={index}>
+                    <td className="center-text">{row.sl}</td>
+                    <td className="center-text">{row.info}</td>
+                    {row.count ? (
+                      <>
+                        <td className="center-text" style={{ width: '80px', borderRight: '1px solid #d2deeb' }}>
+                          {row.count}
+                        </td>
+                        <td className="center-text" style={{ width: '100px' }}>
+                          {row.details}
+                        </td>
+                      </>
+                    ) : (
+                      <td className="center-text details-text" colSpan={2}>
+                        {row.isLink ? (
+                          <a
+                            href={row.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="cbse-blue-btn"
+                          >
+                            VIEW
+                          </a>
+                        ) : (
+                          row.details
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
       </div>
