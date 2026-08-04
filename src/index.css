@@ -5951,9 +5951,32 @@ button {
   }
   .infra-feature-mobile {
     display: flex !important;
+    flex-direction: column;
+    padding: 1.5rem;
     border-radius: 0 0 16px 16px;
     margin-bottom: 1rem;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  }
+  .infra-feature-mobile .infra-feature-copy h2 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+  .infra-feature-mobile .infra-feature-copy p {
+    font-size: 0.95rem;
+    margin-top: 0.8rem;
+  }
+  .infra-feature-mobile .infra-media-stage {
+    min-height: auto;
+    margin-top: 1.5rem;
+  }
+  .infra-feature-mobile .infra-main-card {
+    min-height: 240px;
+    height: 240px;
+    border-radius: 16px;
+  }
+  .infra-feature-mobile .infra-main-card::before,
+  .infra-feature-mobile .infra-main-card::after {
+    inset: 12px;
+    border-radius: 12px;
   }
   .infra-facility-button.is-active {
     border-radius: 16px 16px 0 0 !important;
@@ -15294,7 +15317,7 @@ button {
   .latest-highlights-section { padding: 1.25rem 0.75rem 3rem; }
   .whats-new-header h2 { font-size: clamp(1.85rem, 8vw, 2.75rem); }
   .latest-highlights-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-  .latest-image-deck { width: min(76vw, 310px); margin-left: 1.5rem; }
+  .latest-image-deck { width: min(80vw, 310px); margin: 0 auto 1.5rem; transform: translateX(14px); }
   .latest-headline-link { font-size: 0.88rem; min-height: 3.5rem; }
 
   /* ── RESULTS PROUD ─── */
