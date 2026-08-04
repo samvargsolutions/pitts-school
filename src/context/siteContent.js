@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { fetchSiteContentFromSupabase, isSupabaseConfigured, saveSiteContentToSupabase, subscribeToSupabaseRealtime } from '../lib/supabase';
 
-export const SITE_CONTENT_KEY = 'pittsModernSchool.siteContent.v1';
+export const SITE_CONTENT_KEY = 'pittsModernSchool.siteContent.v2';
 export const SITE_CONTENT_EVENT = 'pitts-site-content-updated';
 
 export const routeLinks = {
@@ -30,9 +31,14 @@ export const defaultSiteContent = {
     ],
   },
   hero: {
-    title: 'Nurturing Minds.', subtitle: 'Shaping Futures.',
-    body: 'Pitts Modern School, Gomia is committed to academic excellence, character building, and holistic development in a culture of values and innovation.',
-    primaryLabel: 'Explore Our School', primaryHref: routeLinks.about, secondaryLabel: 'Admissions Open', secondaryMeta: '2025-26', secondaryHref: routeLinks.admissions,
+    title: 'An Entrance to',
+    subtitle: 'Opportunity.',
+    body: 'Pitts Modern School, Gomia, Jharkhand',
+    primaryLabel: 'Discover Pitts',
+    primaryHref: routeLinks.about,
+    secondaryLabel: 'Admissions',
+    secondaryHref: routeLinks.admissions,
+    bgImage: '/hero/2.png',
   },
   popup: {
     enabled: true,
@@ -188,18 +194,37 @@ export async function fetchCloudContent() {
   if (typeof window === 'undefined' || isSyncingCloud) return null;
   try {
     isSyncingCloud = true;
+
+    if (isSupabaseConfigured) {
+      const supabaseContent = await fetchSiteContentFromSupabase();
+      if (supabaseContent && typeof supabaseContent === 'object') {
+        const merged = mergeContent(defaultSiteContent, supabaseContent);
+        try {
+          window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
+        } catch (e) {
+          // Quota safe fallback
+        }
+        window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
+        return merged;
+      }
+    }
+
     const response = await fetch(CLOUD_SYNC_ENDPOINT, { cache: 'no-store' });
     if (!response.ok) return null;
     const data = await response.json();
     const cloudContent = data?.data?.content;
     if (cloudContent && typeof cloudContent === 'object') {
       const merged = mergeContent(defaultSiteContent, cloudContent);
-      window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
+      try {
+        window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
+      } catch (e) {
+        // Quota safe fallback
+      }
       window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
       return merged;
     }
   } catch (error) {
-    // Graceful fallback to LocalStorage if offline
+    // Graceful fallback
   } finally {
     isSyncingCloud = false;
   }
@@ -220,10 +245,19 @@ export function getSiteContent() {
 export function saveSiteContent(content) {
   if (typeof window === 'undefined') return;
   const merged = mergeContent(defaultSiteContent, content);
-  window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
+  
+  try {
+    window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
+  } catch (e) {
+    console.warn('LocalStorage full, relying on cloud storage', e);
+  }
+
   window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
 
-  // Push updates asynchronously to Cloud Storage for cross-device synchronization
+  if (isSupabaseConfigured) {
+    saveSiteContentToSupabase(merged);
+  }
+
   fetch(CLOUD_SYNC_ENDPOINT, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -280,6 +314,17 @@ export function useSiteContent() {
     // Initial background cloud sync
     fetchCloudContent();
 
+    // Subscribe to Supabase Realtime for instant live updates across devices
+    const unsubscribeRealtime = subscribeToSupabaseRealtime((newContent) => {
+      const merged = mergeContent(defaultSiteContent, newContent);
+      try {
+        window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
+      } catch (e) {
+        // Quota safe
+      }
+      window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
+    });
+
     // Periodic cloud poll every 10 seconds for cross-device updates
     const pollInterval = setInterval(() => {
       fetchCloudContent();
@@ -288,6 +333,7 @@ export function useSiteContent() {
     return () => {
       window.removeEventListener('storage', sync);
       window.removeEventListener(SITE_CONTENT_EVENT, sync);
+      unsubscribeRealtime();
       clearInterval(pollInterval);
     };
   }, []);

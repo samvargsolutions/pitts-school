@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { Download, Eye, Image as ImageIcon, Link2, Lock, LogOut, Menu, Plus, RotateCcw, Save, ShieldCheck, Trash2, Upload, User, X } from 'lucide-react';
 import { defaultSiteContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent, useSiteContent } from '../context/siteContent';
+import { isSupabaseConfigured, uploadImageToSupabase } from '../lib/supabase';
 
 const ADMIN_SESSION_KEY = 'pittsModernSchool.adminSession';
 const ADMIN_CONFIGURED_USER = import.meta.env.VITE_ADMIN_USER || 'pittsadmin';
 const ADMIN_CONFIGURED_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'pittspasswordmodularadmin2';
 
 const modules = [
-  { id: 'hero', label: 'Hero Slideshow', path: 'hero', type: 'object', fields: ['title', 'subtitle', 'body', 'primaryLabel', 'primaryHref', 'secondaryLabel', 'secondaryMeta', 'secondaryHref'] },
   { id: 'popup', label: 'Popup Announcement', path: 'popup', type: 'object', fields: ['enabled', 'title', 'subtitle', 'body', 'image', 'ctaLabel', 'ctaHref'] },
   { id: 'announcements', label: 'Announcement Bar', path: 'header.announcements', type: 'array', fields: ['text', 'href'] },
   { id: 'quickActions', label: 'Quick Actions', path: 'header.quickActions', type: 'array', fields: ['title', 'href'] },
@@ -147,8 +147,14 @@ async function prepareUploadedFile(file) {
       window.alert('This image is too large. Please choose an image under 12 MB.');
       return '';
     }
+
+    if (isSupabaseConfigured) {
+      const publicUrl = await uploadImageToSupabase(file);
+      if (publicUrl) return publicUrl;
+    }
+
     const originalDataUrl = await fileToDataUrl(file);
-    return compressImageToWebp(originalDataUrl);
+    return compressImageToWebp(originalDataUrl, { maxSide: 1000, targetBytes: 80 * 1024 });
   }
 
   if (file.size > DOCUMENT_UPLOAD_LIMIT) {
@@ -485,10 +491,9 @@ export default function AdminPortal() {
       const cleanedContent = cleanInvalidLinkUploads(content);
       const optimizedContent = await optimizeContentForStorage(cleanedContent);
       saveSiteContent(optimizedContent);
-      const savedContent = getSiteContent();
-      setContent(savedContent);
       setSaveState('saved');
-      setSavedLabel(`Saved & synced cloud at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (${describeBytes(getStorageBytes(savedContent))})`);
+      const syncNotice = isSupabaseConfigured ? 'Synced to Supabase' : 'Synced to Cloud';
+      setSavedLabel(`Saved & ${syncNotice} at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`);
     } catch (error) {
       console.error('Could not save admin changes.', error);
       setSaveState('error');

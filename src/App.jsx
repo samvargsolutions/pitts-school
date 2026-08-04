@@ -1,4 +1,5 @@
 import React from 'react';
+import { Agentation } from 'agentation';
 import Header from './components/HeaderLinked';
 import HeroSlideshow from './components/HeroSlideshowModular';
 import AboutPitts from './components/AboutPitts';
@@ -213,6 +214,8 @@ export default function App() {
         {/* === MOVABLE SECTION START: Footer === */}
         <Footer />
         {/* === MOVABLE SECTION END: Footer === */}
+
+        {import.meta.env.DEV && <Agentation />}
       </div>
     </>
   );
