@@ -104,7 +104,7 @@ export default function Header() {
 
   // 4-Column White Card items from image.png
   const subCards = [
-    { title: "Principal's Desk", icon: <FileText size={18} /> },
+    { title: "Principal's Desk", href: '/principal', icon: <FileText size={18} /> },
     { title: 'Star of Week', icon: <Award size={18} /> },
     { title: 'Student TC', icon: <UserCheck size={18} /> },
     { title: 'Vacancy', icon: <Briefcase size={18} /> }
@@ -112,17 +112,22 @@ export default function Header() {
 
   // MAIN NAVIGATION links from image.png
   const mainNavLinks = [
-    { title: 'Home', active: true },
-    { title: 'About Us' },
-    { title: 'School Rules' },
+    { title: 'Home', href: '/', active: window.location.pathname === '/' || window.location.pathname === '' },
+    { title: 'About Us', href: '/about-us', active: window.location.pathname === '/about-us' },
+    { title: 'Our Management', href: '/management', active: window.location.pathname === '/management' || window.location.pathname === '/our-management' },
+    { title: 'Infrastructure', href: '/infrastructure', active: window.location.pathname === '/infrastructure' },
+    { title: 'News & Notices', href: '/news-and-notices', active: window.location.pathname === '/news-and-notices' },
+    { title: 'Upcoming Events', href: '/events', active: window.location.pathname === '/events' },
+    { title: 'Newsletters & Cynosure', href: '/newsletters', active: window.location.pathname === '/newsletters' },
+    { title: 'School Rules', href: '/rule1', active: window.location.pathname === '/rule1' || window.location.pathname === '/rule2' || window.location.pathname === '/school-rules' },
     { title: 'Holiday Assignments' },
-    { title: 'Events' },
-    { title: 'Faculty/Staff' },
-    { title: 'Result' },
+    { title: 'Faculty & Staff Directory', href: '/faculty', active: window.location.pathname === '/faculty' },
+    { title: 'Result', href: '/CBSEresult', active: window.location.pathname === '/CBSEresult' || window.location.pathname === '/cbse-result' },
     { title: 'Info Link' },
-    { title: 'Activity' },
-    { title: 'Gallery' },
-    { title: 'Contact' }
+    { title: 'Activity', href: '/culturalcoculturalactivity', active: window.location.pathname === '/culturalcoculturalactivity' || window.location.pathname === '/activity' },
+    { title: 'Mandatory Disclosure', href: '/school-disclosure', active: window.location.pathname === '/school-disclosure' || window.location.pathname === '/mandatory-public-disclosure' },
+    { title: 'Gallery', href: '/gallery', active: window.location.pathname === '/gallery' },
+    { title: 'Contact', href: '/contact', active: window.location.pathname === '/contact' || window.location.pathname === '/contact-us' }
   ];
 
   return (
@@ -161,33 +166,48 @@ export default function Header() {
           {/* Right side: Flat social icons + vertical line + Red Online Pay + Outline ERP Login */}
           <div className="top-banner-right">
             {/* Social Icons in straight horizontal line */}
-            <div className="flex flex-row items-center justify-center gap-3 mr-1.5 flex-nowrap shrink-0">
+            <div
+              className="flex flex-row items-center justify-center flex-nowrap shrink-0"
+              style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '15px', marginRight: '8px' }}
+            >
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-icon-flat text-[#1877f2]"
+                className="social-icon-flat"
                 title="Facebook"
               >
-                <Facebook size={16} />
+                <img
+                  src="/image/Facebook_logo.webp"
+                  alt="Facebook"
+                  style={{ width: '17px', height: '17px', objectFit: 'contain', display: 'block' }}
+                />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-icon-flat text-[#ff0000]"
+                className="social-icon-flat"
                 title="YouTube"
               >
-                <Youtube size={16} />
+                <img
+                  src="/image/YouTube_logo.webp"
+                  alt="YouTube"
+                  style={{ width: '17px', height: '17px', objectFit: 'contain', display: 'block' }}
+                />
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-icon-flat text-[#e1306c]"
+                className="social-icon-flat"
                 title="Instagram"
               >
-                <Instagram size={16} />
+                <img
+                  src="/image/Instagram_logo.webp"
+                  alt="Instagram"
+                  style={{ width: '17px', height: '17px', objectFit: 'contain', display: 'block' }}
+                />
               </a>
             </div>
 
@@ -218,13 +238,22 @@ export default function Header() {
       <div className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="main-header-inner">
           {/* Logo with full school text graphic */}
-          <a href="#" className="logo-container">
+          <a href="/" className="logo-container">
             <img
               src="/image/logohorizontal.png"
               alt="Pitts Modern School I.E.P.L Gomia Dist Bokaro"
               className="logo-img"
             />
           </a>
+
+          {/* Middle 50/59 Years Anniversary Logo */}
+          <div className="header-middle-badge">
+            <img
+              src="/image/59yearslogo.png"
+              alt="Celebrating 50 Years of Excellence in Education"
+              className="header-59-img"
+            />
+          </div>
 
           {/* Right search icon and hamburger MENU button exactly like Doon School */}
           <div className="header-right-actions">
@@ -356,7 +385,7 @@ export default function Header() {
               {subCards.map((item, idx) => (
                 <a
                   key={idx}
-                  href="#"
+                  href={item.href || '#'}
                   onClick={() => setIsMenuOpen(false)}
                   className="shortcut-link"
                 >
@@ -379,7 +408,7 @@ export default function Header() {
               {mainNavLinks.map((link, idx) => (
                 <a
                   key={idx}
-                  href="#"
+                  href={link.href || '#'}
                   onClick={() => setIsMenuOpen(false)}
                   className={`main-navigation-link menu-animate-item ${link.active ? 'active' : ''}`}
                 >

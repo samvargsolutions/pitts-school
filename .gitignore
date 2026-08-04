@@ -28,5 +28,18 @@ readme.txt
 
 menu
 
+
 refrence
 
+# Vite
+.vite
+.vite/
+
+# Environment
+.env
+.env.*
+
+# Reference Files & Mockups
+read.txt
+image.png
+menu.png
