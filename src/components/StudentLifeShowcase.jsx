@@ -21,7 +21,7 @@ const culturalActivities = [
     id: 3,
     title: 'Mothers and Children Unite for a Greener Tomorrow at PITTS Modern School, Gomia',
     meta: 'Ek Ped Maa Ke Naam / 10 July 2026',
-    image: '/image/IMG_2285.webp',
+    image: '/image/img_2285.webp',
     text: 'PITTS Modern School, Gomia organised the Ek Ped Maa Ke Naam Parent–Child Sapling Plantation Programme on 10.07.2026 for the students of Bal Vatika and LKG under the Government of India nationwide Ek Ped Maa Ke Naam campaign. The programme commenced with a warm welcome for the parents of Bal Vatika and LKG students.'
   },
   {
@@ -63,14 +63,14 @@ const culturalActivities = [
     id: 9,
     title: '“When Culture Dances, Heritage Comes Alive” – PITTS Modern School, Gomia Celebrates the Spirit of Jharkhand through Solo Dance Competition',
     meta: 'Beats of Jharkhand / 23 June 2026',
-    image: '/image/IMG_2190.webp',
+    image: '/image/img_2190.webp',
     text: 'The Assembly Ground of PITTS Modern School, Gomia came alive with rhythm, colour, and cultural vibrancy as the school successfully organized a Solo Dance Competition for students of Classes III to V on the theme “Beats of Jharkhand.”'
   },
   {
     id: 10,
     title: 'Rhythms of Talent and Grace: PITTS Modern School, Gomia Organizes Enthralling Solo Dance Competition',
     meta: 'Solo Dance / 23 June 2026',
-    image: '/image/IMG_2203.webp',
+    image: '/image/img_2203.webp',
     text: 'PITTS Modern School, Gomia successfully organized a vibrant Solo Dance Competition for the students of Classes I and II at the Junior Assembly Ground on 23rd June 2026. The event provided a wonderful platform for the students to showcase their dancing skills, confidence, and creativity.'
   },
   {
@@ -224,7 +224,7 @@ const culturalActivities = [
     id: 32,
     title: 'Pitts Modern School Organizes Mothers Day Card-Making Activity for Students of Classes LKG to IV',
     meta: 'Mother’s Day Card-Making / 08 May 2025',
-    image: '/image/Pu13.webp',
+    image: '/image/pu13.webp',
     text: 'Pitts Modern School, Gomia, organized a Mothers Day Card-Making Activity for the students of Classes LKG to IV on May 8, 2025, to mark the celebration of Mother’s Day. Young learners expressed their love and gratitude for their mothers through handmade cards.'
   },
   {
@@ -315,7 +315,7 @@ const culturalActivities = [
     id: 45,
     title: 'PMS Innovators Expo 2025: A Grand Celebration of Creativity and Innovation',
     meta: 'Innovators Expo 2025 / 26 February 2025',
-    image: '/image/Pu11.webp',
+    image: '/image/pu11.webp',
     text: 'Pitts Modern School, Gomia, organized its much-anticipated school exhibition, PMS Innovators Expo 2025, on February 26, 2025, providing students from LKG to IX and XI a grand platform to showcase creative models and scientific inquiry.'
   },
   {
@@ -343,21 +343,21 @@ const culturalActivities = [
     id: 49,
     title: 'The 76th Republic Day Celebration Marked by Splendour and Patriotism at Pitts Modern School, Gomia',
     meta: '76th Republic Day / 26 January 2025',
-    image: '/image/IMG_2081.webp',
+    image: '/image/img_2081.webp',
     text: 'The 76th Republic Day was celebrated with great enthusiasm at Pitts Modern School, Gomia, on January 26, 2025, featuring the unfurling of the National Flag by Chief Guest Mr. Adarsh Madhup, patriotic performances, and prize distribution.'
   },
   {
     id: 50,
     title: 'Pitts Modern School, Gomia, organized the Tilak and Ashirvachan Ceremony on 30th January 2025',
     meta: 'Tilak & Ashirvachan Ceremony / 30 January 2025',
-    image: '/image/IMG_2128.webp',
+    image: '/image/img_2128.webp',
     text: 'Pitts Modern School, Gomia, organized the Tilak and Ashirvachan Ceremony on 30th January 2025 to bless and encourage Class X students as they prepare for their board examinations.'
   },
   {
     id: 51,
     title: 'Pitts Modern School, Gomia Celebrates Christmas with Joy, Music, and Festive Surprises',
     meta: 'Christmas Celebration / 24 December 2024',
-    image: '/image/IMG_2137.webp',
+    image: '/image/img_2137.webp',
     text: 'Pitts Modern School, Gomia, organized a grand Christmas celebration during the morning assembly on December 24, 2024, featuring festive carols, joyful performances, and messages of peace and goodwill.'
   }
 ];
@@ -410,7 +410,7 @@ const sportsActivities = [
     id: 7,
     title: 'Little Champions in Action - Annual Sports Day 2025',
     meta: 'Pre-Primary Sports Day 2025',
-    image: '/image/IMG_3328.webp',
+    image: '/image/img_3328.webp',
     text: 'Pitts Modern School, Gomia, organised its Annual Sports Day for the Pre-Primary Wing (LKG to Class II), celebrating the spirit of sportsmanship, enthusiasm, and joyful participation among the tiny tots with age-appropriate engaging races.'
   },
   {
@@ -438,7 +438,7 @@ const sportsActivities = [
     id: 11,
     title: 'Celebrating Champions: Pitts Modern School Honours Inter-House Sports Winners on 01.12.25',
     meta: 'Cricket & Volleyball Felicitations / 01 December 2025',
-    image: '/image/IMG_3479.webp',
+    image: '/image/img_3479.webp',
     text: 'Pitts Modern School, Gomia felicitated the winners of the Inter-House Junior Boys Cricket and Senior Boys Volleyball competitions held recently on the school campus, celebrating sportsmanship, teamwork, and dedication.'
   },
   {
@@ -459,14 +459,14 @@ const sportsActivities = [
     id: 14,
     title: 'Inter-House Boys Basketball Tournament Showcases Passion and Team Spirit at Pitts Modern School, Gomia on 07.11.25',
     meta: 'Inter-House Basketball / 07 November 2025',
-    image: '/image/IMG_2203.webp',
+    image: '/image/img_2203.webp',
     text: 'An Inter-House Boys Basketball Tournament was organized by Pitts Modern School, Gomia, for the students of Classes IX and XI on November 7, 2025 (Friday), showcasing energy, teamwork, and intense coordination.'
   },
   {
     id: 15,
     title: 'Inter-House Boys Cricket Tournament Ignites Team Spirit at Pitts Modern School , Gomia',
     meta: 'Inter-House Cricket / 03 November 2025',
-    image: '/image/IMG_3479.webp',
+    image: '/image/img_3479.webp',
     text: 'An Inter-House Boys Cricket Tournament was organized by Pitts Modern School, Gomia, for the students of Classes VI to VIII on November 3, 2025 (Monday), offering a spectacular display of skill and House pride.'
   },
   {
@@ -564,7 +564,7 @@ const sportsActivities = [
     id: 29,
     title: 'Pitts Modern School, Gomia, organized the Annual Athletic Meet for the Primary Section on February 8, 2025',
     meta: 'Primary Section Athletic Meet / 08 Feb 2025',
-    image: '/image/IMG_3328.webp',
+    image: '/image/img_3328.webp',
     text: 'Students from Classes III, IV, and V participated enthusiastically in 100m races, balancing races, and kangaroo races during the Primary Annual Athletic Meet.'
   },
   {

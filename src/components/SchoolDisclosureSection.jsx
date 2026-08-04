@@ -18,7 +18,7 @@ const DOCUMENTS_INFO = [
     sl: 1,
     doc: 'COPIES OF AFFILIATION/UPGRADATION LETTER AND RECENT EXTENSION OF AFFILIATION,IF ANY',
     note: '',
-    url: '/disclosuredocs/Affiliation certificate_Anx.pdf'
+    url: '/disclosuredocs/affiliation certificate_Anx.pdf'
   },
   {
     sl: 2,
@@ -37,19 +37,19 @@ const DOCUMENTS_INFO = [
     sl: 4,
     doc: "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT ,2009 AND IT'S RENEWAL IF APPLICABLE",
     note: '',
-    url: '/disclosuredocs/RECOGNITION CERTIFICATE.pdf'
+    url: '/disclosuredocs/recognition CERTIFICATE.pdf'
   },
   {
     sl: 5,
     doc: 'COPIES OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE',
     note: '',
-    url: '/disclosuredocs/BUILDING SAFETY.pdf'
+    url: '/disclosuredocs/building SAFETY.pdf'
   },
   {
     sl: 6,
     doc: 'COPIES OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY',
     note: '',
-    url: '/disclosuredocs/FIRE SAFETY.pdf'
+    url: '/disclosuredocs/fire SAFETY.pdf'
   },
   {
     sl: 7,
@@ -61,7 +61,7 @@ const DOCUMENTS_INFO = [
     sl: 8,
     doc: 'COPIES OF VALID WATER,HEALTH AND SANITATION CERTIFICATES',
     note: '',
-    url: '/disclosuredocs/Drinking water.pdf'
+    url: '/disclosuredocs/drinking water.pdf'
   },
   {
     sl: 9,
@@ -81,7 +81,7 @@ const RESULT_ACADEMICS = [
   {
     sl: 1,
     doc: 'FEE STRUCTURE OF THE SCHOOL',
-    url: '/disclosuredocs/Fee Structure_2026-27.pdf'
+    url: '/disclosuredocs/fee Structure_2026-27.pdf'
   },
   {
     sl: 2,
@@ -91,12 +91,12 @@ const RESULT_ACADEMICS = [
   {
     sl: 3,
     doc: 'LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)',
-    url: '/disclosuredocs/SMC 2026-27.pdf'
+    url: '/disclosuredocs/smc 2026-27.pdf'
   },
   {
     sl: 4,
     doc: 'LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS',
-    url: '/disclosuredocs/PTA 2026-27.pdf'
+    url: '/disclosuredocs/pta 2026-27.pdf'
   },
   {
     sl: 5,

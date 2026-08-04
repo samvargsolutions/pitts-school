@@ -40,7 +40,7 @@ const upcomingEventsData = [
       '/image/inv1.webp',
       '/image/inv2.webp',
       '/image/inv3.webp',
-      '/image/IMG_2137.webp'
+      '/image/img_2137.webp'
     ]
   },
   {
@@ -50,7 +50,7 @@ const upcomingEventsData = [
     dateMonth: 'AUG',
     dateYear: '2026',
     category: 'Academic & Science',
-    image: '/image/IMG_2137.webp',
+    image: '/image/img_2137.webp',
     excerpt:
       'Over 120 innovative working models, AI automation projects, and environmental solutions developed by Middle and Senior school students.',
     tags: ['Grade 6 – 12', 'Science Club'],
@@ -59,9 +59,9 @@ const upcomingEventsData = [
     motifColor: '#ffc72c',
     motifType: 2,
     galleryImages: [
-      '/image/IMG_2137.webp',
-      '/image/IMG_2190.webp',
-      '/image/IMG_2203.webp',
+      '/image/img_2137.webp',
+      '/image/img_2190.webp',
+      '/image/img_2203.webp',
       '/image/inv1.webp'
     ]
   },
@@ -84,7 +84,7 @@ const upcomingEventsData = [
       '/image/inv2.webp',
       '/image/inv3.webp',
       '/image/inv1.webp',
-      '/image/IMG_2203.webp'
+      '/image/img_2203.webp'
     ]
   },
   {
@@ -105,8 +105,8 @@ const upcomingEventsData = [
     galleryImages: [
       '/image/inv3.webp',
       '/image/inv1.webp',
-      '/image/IMG_2137.webp',
-      '/image/IMG_2190.webp'
+      '/image/img_2137.webp',
+      '/image/img_2190.webp'
     ]
   },
   {
@@ -116,7 +116,7 @@ const upcomingEventsData = [
     dateMonth: 'OCT',
     dateYear: '2026',
     category: 'Academic Counseling',
-    image: '/image/IMG_2190.webp',
+    image: '/image/img_2190.webp',
     excerpt:
       'One-on-one academic performance review for Class X & XII candidates with subject experts and career counselors.',
     tags: ['Parents Mandatory', 'Class X & XII'],
@@ -125,8 +125,8 @@ const upcomingEventsData = [
     motifColor: '#ffc72c',
     motifType: 1,
     galleryImages: [
-      '/image/IMG_2190.webp',
-      '/image/IMG_2203.webp',
+      '/image/img_2190.webp',
+      '/image/img_2203.webp',
       '/image/inv2.webp',
       '/image/inv1.webp'
     ]
@@ -211,10 +211,10 @@ const calendarEventDetailsMap = {
 
 const fallbackEventImages = [
   '/image/inv1.webp',
-  '/image/IMG_2137.webp',
+  '/image/img_2137.webp',
   '/image/inv2.webp',
   '/image/inv3.webp',
-  '/image/IMG_2190.webp'
+  '/image/img_2190.webp'
 ];
 
 const eventPalette = [

@@ -43,7 +43,7 @@ const defaultClassXIIToppers = [
     id: 'cxii-1',
     name: 'ANUSHKA GUPTA',
     score: '97.8%',
-    image: '/image/IMG_2137.webp',
+    image: '/image/img_2137.webp',
     bgColor: '#0B427E',
     motifType: 1,
     className: 'Class XII'
@@ -52,7 +52,7 @@ const defaultClassXIIToppers = [
     id: 'cxii-2',
     name: 'Satyam Kumar',
     score: '95%',
-    image: '/image/IMG_2190.webp',
+    image: '/image/img_2190.webp',
     bgColor: '#009951',
     motifType: 2,
     className: 'Class XII'
@@ -61,7 +61,7 @@ const defaultClassXIIToppers = [
     id: 'cxii-3',
     name: 'Aman Kumar Pramanik',
     score: '93.6%',
-    image: '/image/IMG_2203.webp',
+    image: '/image/img_2203.webp',
     bgColor: '#930018',
     motifType: 3,
     className: 'Class XII'

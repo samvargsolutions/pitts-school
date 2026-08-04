@@ -12,11 +12,11 @@ const facilities = [
     motif: '/icons-illustrations/green-leafs.webp',
     images: [
       {
-        src: '/image/Pu13.webp',
+        src: '/image/pu13.webp',
         caption: 'Specimen study and observation area'
       },
       {
-        src: '/image/IMG_2285.webp',
+        src: '/image/img_2285.webp',
         caption: 'Hands-on nature and life-science learning'
       },
       {
@@ -35,11 +35,11 @@ const facilities = [
     motif: '/icons-illustrations/bluegate.webp',
     images: [
       {
-        src: '/image/Pu11.webp',
+        src: '/image/pu11.webp',
         caption: 'Digital displays and interactive learning'
       },
       {
-        src: '/image/IMG_2190.webp',
+        src: '/image/img_2190.webp',
         caption: 'Technology-supported classroom activities'
       },
       {

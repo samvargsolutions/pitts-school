@@ -24,8 +24,8 @@ const GALLERY_ITEMS = [
   { id: 17, src: '/image/aam84.webp',  cat: 'academics', label: 'Annual Academic Meet' },
 
   /* ── CO-CURRICULAR ACTIVITIES ── */
-  { id: 18, src: '/image/CCA12.webp',  cat: 'cca', label: 'Co-Curricular Activities' },
-  { id: 19, src: '/image/CCA6.webp',   cat: 'cca', label: 'Co-Curricular Activities' },
+  { id: 18, src: '/image/cca12.webp',  cat: 'cca', label: 'Co-Curricular Activities' },
+  { id: 19, src: '/image/cca6.webp',   cat: 'cca', label: 'Co-Curricular Activities' },
   { id: 20, src: '/image/cca13.webp',  cat: 'cca', label: 'Co-Curricular Activities' },
   { id: 21, src: '/image/cca14.webp',  cat: 'cca', label: 'Co-Curricular Activities' },
   { id: 22, src: '/image/cca17.webp',  cat: 'cca', label: 'Co-Curricular Activities' },
@@ -78,18 +78,18 @@ const GALLERY_ITEMS = [
   { id: 63, src: '/image/hrd110.webp', cat: 'events', label: 'School Programme' },
 
   /* ── STUDENTS & CAMPUS LIFE ── */
-  { id: 64, src: '/image/IMG_2081.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 65, src: '/image/IMG_2128.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 66, src: '/image/IMG_2137.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 67, src: '/image/IMG_2190.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 68, src: '/image/IMG_2203.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 69, src: '/image/IMG_2285.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 70, src: '/image/IMG_3328.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 71, src: '/image/IMG_3479.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 72, src: '/image/IMG_5322.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 73, src: '/image/IMG_5327.webp', cat: 'campus', label: 'Campus Life' },
-  { id: 74, src: '/image/Pu11.webp',     cat: 'campus', label: 'Campus Life' },
-  { id: 75, src: '/image/Pu13.webp',     cat: 'campus', label: 'Campus Life' },
+  { id: 64, src: '/image/img_2081.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 65, src: '/image/img_2128.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 66, src: '/image/img_2137.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 67, src: '/image/img_2190.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 68, src: '/image/img_2203.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 69, src: '/image/img_2285.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 70, src: '/image/img_3328.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 71, src: '/image/img_3479.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 72, src: '/image/img_5322.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 73, src: '/image/img_5327.webp', cat: 'campus', label: 'Campus Life' },
+  { id: 74, src: '/image/pu11.webp',     cat: 'campus', label: 'Campus Life' },
+  { id: 75, src: '/image/pu13.webp',     cat: 'campus', label: 'Campus Life' },
   { id: 76, src: '/image/pat3.webp',     cat: 'campus', label: 'Campus Life' },
   { id: 77, src: '/image/pat5.webp',     cat: 'campus', label: 'Campus Life' },
   { id: 78, src: '/image/pat6.webp',     cat: 'campus', label: 'Campus Life' },
@@ -172,7 +172,7 @@ const VIDEO_ITEMS = [
     cat: 'campus',
     categoryLabel: 'CAMPUS TOUR',
     duration: '03:50',
-    thumbnail: '/image/IMG_2081.webp',
+    thumbnail: '/image/img_2081.webp',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
   }
 ];

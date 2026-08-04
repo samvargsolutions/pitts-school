@@ -48,7 +48,7 @@ const newslettersData = [
     id: 'news-mag-4',
     title: 'Jharkhand Haqeeqat : JEE Main Top Ranks Achieved by PMS Students',
     date: 'Press Coverage • 18.04.2026',
-    coverImage: '/image/IMG_2137.webp',
+    coverImage: '/image/img_2137.webp',
     summary:
       'Jharkhand Haqeeqat report celebrating Pitts Modern School students securing 3rd district rank in JEE engineering examination.',
     bgColor: '#ffb800',

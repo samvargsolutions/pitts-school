@@ -25,7 +25,7 @@ const sampleNewsData = [
     date: 'JUL 31, 2026',
     dateRaw: '2026-07-31',
     category: 'Academic Recognition',
-    image: '/image/IMG_2137.webp',
+    image: '/image/img_2137.webp',
     excerpt:
       'Three Pitts Modern School students earned top honors at the Regional Science & Innovation Summit, joining over 600 scholars from across the country for a week of debate and project showcase.',
     tags: ['Senior Secondary', 'Science Club'],
@@ -70,7 +70,7 @@ const sampleNewsData = [
     date: 'JUL 05, 2026',
     dateRaw: '2026-07-05',
     category: 'CBSE Board Notices',
-    image: '/image/IMG_2190.webp',
+    image: '/image/img_2190.webp',
     excerpt:
       'Pitts Modern School Gomia is proud to recognize 145 students who achieved distinction marks in the National CBSE Board Examination program.',
     tags: ['High School', 'Senior Secondary', 'CBSE Honors'],
@@ -85,7 +85,7 @@ const sampleNewsData = [
     date: 'JUN 30, 2026',
     dateRaw: '2026-06-30',
     category: 'Faculty & Staff',
-    image: '/image/IMG_2203.webp',
+    image: '/image/img_2203.webp',
     excerpt:
       'The Gomia School Society is pleased to announce senior leadership additions to lead academic innovation and student counseling.',
     tags: ['Administration', 'Gomia Campus'],
@@ -246,7 +246,7 @@ function mapAdminNews(item, index) {
     date: item.date || 'Pitts Modern School',
     dateRaw: item.dateRaw || '',
     category: item.category || 'Campus News',
-    image: normalizeAssetUrl(item.image, '/image/IMG_2137.webp'),
+    image: normalizeAssetUrl(item.image, '/image/img_2137.webp'),
     excerpt: item.excerpt || item.text || 'Latest update from Pitts Modern School, Gomia.',
     tags: Array.isArray(item.tags) ? item.tags : ['Pitts Modern School'],
     href: normalizeLinkUrl(item.href, '/news-and-notices'),

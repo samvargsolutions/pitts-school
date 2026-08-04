@@ -39,9 +39,9 @@ export default function HeaderLinked() {
           </div>
           <div className="top-banner-right">
             <div className="flex flex-row items-center justify-center flex-nowrap shrink-0" style={{ gap: '15px', marginRight: '8px' }}>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon-flat" title="Facebook"><img src="/image/Facebook_logo.webp" alt="Facebook" style={{ width: '17px', height: '17px', objectFit: 'contain' }} /></a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-icon-flat" title="YouTube"><img src="/image/YouTube_logo.webp" alt="YouTube" style={{ width: '17px', height: '17px', objectFit: 'contain' }} /></a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon-flat" title="Instagram"><img src="/image/Instagram_logo.webp" alt="Instagram" style={{ width: '17px', height: '17px', objectFit: 'contain' }} /></a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon-flat" title="Facebook"><img src="/image/facebook_logo.webp" alt="Facebook" style={{ width: '17px', height: '17px', objectFit: 'contain' }} /></a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-icon-flat" title="YouTube"><img src="/image/youtube_logo.webp" alt="YouTube" style={{ width: '17px', height: '17px', objectFit: 'contain' }} /></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon-flat" title="Instagram"><img src="/image/instagram_logo.webp" alt="Instagram" style={{ width: '17px', height: '17px', objectFit: 'contain' }} /></a>
             </div>
             <div className="banner-divider shrink-0"></div>
             <a href={routeLinks.payments} className="top-pill-red-btn"><CreditCard size={13} /><span>Online Pay</span></a>

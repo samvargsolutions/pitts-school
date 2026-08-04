@@ -242,7 +242,7 @@ export default function AboutUsSection() {
 
           <div className="about-gallery-grid">
             <div className="about-gallery-item">
-              <img src="/image/IMG_2137.webp" alt="Academic Excellence in classrooms" />
+              <img src="/image/img_2137.webp" alt="Academic Excellence in classrooms" />
               <div className="about-gallery-overlay">
                 <span>Classroom Excellence</span>
                 <p>Nurturing 2,200+ bright minds across English Medium CBSE standards</p>
@@ -250,7 +250,7 @@ export default function AboutUsSection() {
             </div>
 
             <div className="about-gallery-item">
-              <img src="/image/IMG_2190.webp" alt="Campus life and sports infrastructure" />
+              <img src="/image/img_2190.webp" alt="Campus life and sports infrastructure" />
               <div className="about-gallery-overlay">
                 <span>Campus Infrastructure</span>
                 <p>Spacious learning environments and green playgrounds in Gomia</p>
@@ -258,7 +258,7 @@ export default function AboutUsSection() {
             </div>
 
             <div className="about-gallery-item">
-              <img src="/image/IMG_2203.webp" alt="Student achievements and assemblies" />
+              <img src="/image/img_2203.webp" alt="Student achievements and assemblies" />
               <div className="about-gallery-overlay">
                 <span>Cultural &amp; Ethical Growth</span>
                 <p>Developing well-rounded global leaders with strong moral roots</p>
@@ -266,7 +266,7 @@ export default function AboutUsSection() {
             </div>
 
             <div className="about-gallery-item">
-              <img src="/image/IMG_2285.webp" alt="Pitts Modern School community" />
+              <img src="/image/img_2285.webp" alt="Pitts Modern School community" />
               <div className="about-gallery-overlay">
                 <span>Our Enduring Legacy</span>
                 <p>Continuing the vision of Sir Cyril Pitts from 1967 into the future</p>

@@ -178,7 +178,7 @@ export default function Header() {
                 title="Facebook"
               >
                 <img
-                  src="/image/Facebook_logo.webp"
+                  src="/image/facebook_logo.webp"
                   alt="Facebook"
                   style={{ width: '17px', height: '17px', objectFit: 'contain', display: 'block' }}
                 />
@@ -191,7 +191,7 @@ export default function Header() {
                 title="YouTube"
               >
                 <img
-                  src="/image/YouTube_logo.webp"
+                  src="/image/youtube_logo.webp"
                   alt="YouTube"
                   style={{ width: '17px', height: '17px', objectFit: 'contain', display: 'block' }}
                 />
@@ -204,7 +204,7 @@ export default function Header() {
                 title="Instagram"
               >
                 <img
-                  src="/image/Instagram_logo.webp"
+                  src="/image/instagram_logo.webp"
                   alt="Instagram"
                   style={{ width: '17px', height: '17px', objectFit: 'contain', display: 'block' }}
                 />
