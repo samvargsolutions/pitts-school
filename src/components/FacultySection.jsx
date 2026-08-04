@@ -47,7 +47,7 @@ const facultyMasterData = [
     wing: 'senior',
     experience: '28+ Years',
     email: 'principal@pittsmorns.edu.in',
-    image: '/image/inv1.jpg',
+    image: '/image/inv1.webp',
     isLeadership: true,
     motifType: 1
   },
@@ -61,7 +61,7 @@ const facultyMasterData = [
     wing: 'senior',
     experience: '16+ Years',
     email: 'dinesh.k@pitts.edu.in',
-    image: '/image/inv2.jpg',
+    image: '/image/inv2.webp',
     isLeadership: false,
     motifType: 2
   },
@@ -75,7 +75,7 @@ const facultyMasterData = [
     wing: 'senior',
     experience: '14+ Years',
     email: 'ajay.k@pitts.edu.in',
-    image: '/image/inv3.jpg',
+    image: '/image/inv3.webp',
     isLeadership: false,
     motifType: 3
   },
@@ -89,7 +89,7 @@ const facultyMasterData = [
     wing: 'senior',
     experience: '20+ Years',
     email: 'sunita.m@pitts.edu.in',
-    image: '/image/IMG_2137.jpg',
+    image: '/image/IMG_2137.webp',
     isLeadership: false,
     motifType: 4
   },
@@ -103,7 +103,7 @@ const facultyMasterData = [
     wing: 'senior',
     experience: '18+ Years',
     email: 'rajesh.s@pitts.edu.in',
-    image: '/image/IMG_2190.jpg',
+    image: '/image/IMG_2190.webp',
     isLeadership: false,
     motifType: 1
   },
@@ -117,7 +117,7 @@ const facultyMasterData = [
     wing: 'senior',
     experience: '15+ Years',
     email: 'anjali.s@pitts.edu.in',
-    image: '/image/IMG_2203.jpg',
+    image: '/image/IMG_2203.webp',
     isLeadership: false,
     motifType: 2
   },
@@ -131,7 +131,7 @@ const facultyMasterData = [
     wing: 'senior',
     experience: '17+ Years',
     email: 'alok.v@pitts.edu.in',
-    image: '/image/inv1.jpg',
+    image: '/image/inv1.webp',
     isLeadership: false,
     motifType: 3
   },
@@ -145,7 +145,7 @@ const facultyMasterData = [
     wing: 'senior',
     experience: '19+ Years',
     email: 'meena.k@pitts.edu.in',
-    image: '/image/inv2.jpg',
+    image: '/image/inv2.webp',
     isLeadership: false,
     motifType: 4
   },
@@ -161,7 +161,7 @@ const facultyMasterData = [
     wing: 'primary',
     experience: '22+ Years',
     email: 'primary.hm@pitts.edu.in',
-    image: '/image/inv2.jpg',
+    image: '/image/inv2.webp',
     isLeadership: true,
     motifType: 1
   },
@@ -175,7 +175,7 @@ const facultyMasterData = [
     wing: 'primary',
     experience: '15+ Years',
     email: 'vandana.s@pitts.edu.in',
-    image: '/image/inv3.jpg',
+    image: '/image/inv3.webp',
     isLeadership: false,
     motifType: 2
   },
@@ -189,7 +189,7 @@ const facultyMasterData = [
     wing: 'primary',
     experience: '10+ Years',
     email: 'kk.mishra@pitts.edu.in',
-    image: '/image/IMG_2137.jpg',
+    image: '/image/IMG_2137.webp',
     isLeadership: false,
     motifType: 3
   },
@@ -203,7 +203,7 @@ const facultyMasterData = [
     wing: 'primary',
     experience: '8+ Years',
     email: 'rekha.s@pitts.edu.in',
-    image: '/image/IMG_2190.jpg',
+    image: '/image/IMG_2190.webp',
     isLeadership: false,
     motifType: 4
   },
@@ -217,7 +217,7 @@ const facultyMasterData = [
     wing: 'primary',
     experience: '9+ Years',
     email: 'pradeep.k@pitts.edu.in',
-    image: '/image/inv1.jpg',
+    image: '/image/inv1.webp',
     isLeadership: false,
     motifType: 1
   },
@@ -233,7 +233,7 @@ const facultyMasterData = [
     wing: 'admin',
     experience: '24+ Years',
     email: 'bursar@pitts.edu.in',
-    image: '/image/inv1.jpg',
+    image: '/image/inv1.webp',
     isLeadership: true,
     motifType: 1
   },
@@ -247,7 +247,7 @@ const facultyMasterData = [
     wing: 'admin',
     experience: '12+ Years',
     email: 'admissions@pitts.edu.in',
-    image: '/image/inv2.jpg',
+    image: '/image/inv2.webp',
     isLeadership: false,
     motifType: 2
   },
@@ -261,7 +261,7 @@ const facultyMasterData = [
     wing: 'admin',
     experience: '14+ Years',
     email: 'it.admin@pitts.edu.in',
-    image: '/image/inv3.jpg',
+    image: '/image/inv3.webp',
     isLeadership: false,
     motifType: 3
   },
@@ -275,7 +275,7 @@ const facultyMasterData = [
     wing: 'admin',
     experience: '18+ Years',
     email: 'admin.exec@pitts.edu.in',
-    image: '/image/IMG_2203.jpg',
+    image: '/image/IMG_2203.webp',
     isLeadership: false,
     motifType: 4
   }
@@ -360,7 +360,7 @@ export default function FacultySection() {
     wing: m.wing || 'senior',
     experience: m.experience || '',
     email: m.email || '',
-    image: m.image || '/image/inv1.jpg',
+    image: m.image || '/image/inv1.webp',
     isLeadership: m.isLeadership || false,
     motifType: m.motifType || ((idx % 4) + 1),
     subjectTag: m.subjectTag || deriveSubjectTag(m.post || m.role || ''),

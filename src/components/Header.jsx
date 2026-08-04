@@ -92,7 +92,7 @@ export default function Header() {
     }
   }, [isMenuOpen]);
 
-  // QUICK ACTIONS pill cards from image.png
+  // QUICK ACTIONS pill cards from image.webp
   const quickActions = [
     { title: 'Online Registration LKG & UKG, BAL-VATIKA', icon: <UserPlus size={13} /> },
     { title: 'Online Registration STD-I TO STD-V', icon: <UserCheck size={13} /> },
@@ -102,7 +102,7 @@ export default function Header() {
     { title: 'E-Diary', icon: <BookMarked size={13} /> }
   ];
 
-  // 4-Column White Card items from image.png
+  // 4-Column White Card items from image.webp
   const subCards = [
     { title: "Principal's Desk", href: '/principal', icon: <FileText size={18} /> },
     { title: 'Star of Week', icon: <Award size={18} /> },
@@ -110,7 +110,7 @@ export default function Header() {
     { title: 'Vacancy', icon: <Briefcase size={18} /> }
   ];
 
-  // MAIN NAVIGATION links from image.png
+  // MAIN NAVIGATION links from image.webp
   const mainNavLinks = [
     { title: 'Home', href: '/', active: window.location.pathname === '/' || window.location.pathname === '' },
     { title: 'About Us', href: '/about-us', active: window.location.pathname === '/about-us' },
@@ -240,7 +240,7 @@ export default function Header() {
           {/* Logo with full school text graphic */}
           <a href="/" className="logo-container">
             <img
-              src="/image/logohorizontal.png"
+              src="/image/logohorizontal.webp"
               alt="Pitts Modern School I.E.P.L Gomia Dist Bokaro"
               className="logo-img"
             />
@@ -249,7 +249,7 @@ export default function Header() {
           {/* Middle 50/59 Years Anniversary Logo */}
           <div className="header-middle-badge">
             <img
-              src="/image/59yearslogo.png"
+              src="/image/59yearslogo.webp"
               alt="Celebrating 50 Years of Excellence in Education"
               className="header-59-img"
             />
@@ -318,7 +318,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* 4. RIGHT SLIDE-OUT MENU DRAWER (matching menu.png) */}
+      {/* 4. RIGHT SLIDE-OUT MENU DRAWER (matching menu.webp) */}
       <div
         ref={backdropRef}
         className="menu-drawer-backdrop"
@@ -336,7 +336,7 @@ export default function Header() {
         <div className="side-menu-body">
           {/* Subtle Watermark Emblem in bottom right */}
           <img
-            src="/image/logo.png"
+            src="/image/logo.webp"
             alt=""
             className="side-menu-watermark"
           />

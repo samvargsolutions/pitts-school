@@ -77,11 +77,11 @@ export default function PrincipalDeskSection() {
           </div>
         </div>
 
-        {/* RIGHT PANEL: PRINCIPAL PHOTO FROM /image/principal.jpg */}
+        {/* RIGHT PANEL: PRINCIPAL PHOTO FROM /image/principal.webp */}
         <div className="principal-right-media">
           <div className="principal-photo-wrapper">
             <img
-              src="/image/principal.jpg"
+              src="/image/principal.webp"
               alt="Mr. Brij Mohan Lal Das - Principal, Pitts Modern School"
               className="principal-hero-photo"
             />

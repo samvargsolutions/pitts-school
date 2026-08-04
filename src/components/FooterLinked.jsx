@@ -13,7 +13,7 @@ export default function FooterLinked() {
       <div className="site-footer-inner">
         <section className="site-footer-brand" aria-labelledby="site-footer-title">
           <a className="site-footer-logo-link" href={routeLinks.home} aria-label="Pitts Modern School home">
-            <img src="/image/logo.png" alt="Pitts Modern School Logo" />
+            <img src="/image/logo.webp" alt="Pitts Modern School Logo" />
             <span id="site-footer-title">Pitts Modern School<small>I.E.P.L Gomia</small></span>
           </a>
           <p>Opened by Sir Cyril Pitts, Pitts Modern School continues its purpose of opportunity, service and English-medium education in Gomia.</p>

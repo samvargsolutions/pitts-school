@@ -24,12 +24,12 @@ const secondaryLinks = [
 export default function Footer() {
   return (
     <footer className="site-footer" aria-labelledby="site-footer-title">
-      <img className="site-footer-motif site-footer-motif-red" src="/icons-illustrations/red.png" alt="" aria-hidden="true" />
-      <img className="site-footer-motif site-footer-motif-green" src="/icons-illustrations/green-leafs.png" alt="" aria-hidden="true" />
+      <img className="site-footer-motif site-footer-motif-red" src="/icons-illustrations/red.webp" alt="" aria-hidden="true" />
+      <img className="site-footer-motif site-footer-motif-green" src="/icons-illustrations/green-leafs.webp" alt="" aria-hidden="true" />
       <div className="site-footer-inner">
         <section className="site-footer-brand" aria-labelledby="site-footer-title">
           <a className="site-footer-logo-link" href="/" aria-label="Pitts Modern School home">
-            <img src="/image/logo.png" alt="" />
+            <img src="/image/logo.webp" alt="" />
             <span id="site-footer-title">
               Pitts Modern School
               <small>I.E.P.L Gomia</small>

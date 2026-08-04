@@ -25,7 +25,7 @@ const sampleNewsData = [
     date: 'JUL 31, 2026',
     dateRaw: '2026-07-31',
     category: 'Academic Recognition',
-    image: '/image/IMG_2137.jpg',
+    image: '/image/IMG_2137.webp',
     excerpt:
       'Three Pitts Modern School students earned top honors at the Regional Science & Innovation Summit, joining over 600 scholars from across the country for a week of debate and project showcase.',
     tags: ['Senior Secondary', 'Science Club'],
@@ -40,7 +40,7 @@ const sampleNewsData = [
     date: 'JUL 21, 2026',
     dateRaw: '2026-07-21',
     category: 'Faculty & Staff',
-    image: '/image/inv2.jpg',
+    image: '/image/inv2.webp',
     excerpt:
       'Pitts Modern School is proud to congratulate the 100 winners of the annual Teacher Attendance & Scholarly Incentive Program during the campus ceremony.',
     tags: ['All Schools', 'Excellence Award'],
@@ -55,7 +55,7 @@ const sampleNewsData = [
     date: 'JUL 15, 2026',
     dateRaw: '2026-07-15',
     category: 'Music & Arts',
-    image: '/image/inv3.jpg',
+    image: '/image/inv3.webp',
     excerpt:
       'The CBSE Cultural Board once again recognized PMS Gomia as one of the region’s Best Communities for Performing Arts & Music Education.',
     tags: ['Cultural Wing', 'All Schools'],
@@ -70,7 +70,7 @@ const sampleNewsData = [
     date: 'JUL 05, 2026',
     dateRaw: '2026-07-05',
     category: 'CBSE Board Notices',
-    image: '/image/IMG_2190.jpg',
+    image: '/image/IMG_2190.webp',
     excerpt:
       'Pitts Modern School Gomia is proud to recognize 145 students who achieved distinction marks in the National CBSE Board Examination program.',
     tags: ['High School', 'Senior Secondary', 'CBSE Honors'],
@@ -85,7 +85,7 @@ const sampleNewsData = [
     date: 'JUN 30, 2026',
     dateRaw: '2026-06-30',
     category: 'Faculty & Staff',
-    image: '/image/IMG_2203.jpg',
+    image: '/image/IMG_2203.webp',
     excerpt:
       'The Gomia School Society is pleased to announce senior leadership additions to lead academic innovation and student counseling.',
     tags: ['Administration', 'Gomia Campus'],
@@ -100,7 +100,7 @@ const sampleNewsData = [
     date: 'JUN 20, 2026',
     dateRaw: '2026-06-20',
     category: 'Events & Sports',
-    image: '/image/inv1.jpg',
+    image: '/image/inv1.webp',
     excerpt:
       'Preparations begin for the 2026 Inter-House Athletics Meet featuring track events, football tournaments, and gymnastics exhibitions.',
     tags: ['Sports Club', 'All Houses'],
@@ -246,7 +246,7 @@ function mapAdminNews(item, index) {
     date: item.date || 'Pitts Modern School',
     dateRaw: item.dateRaw || '',
     category: item.category || 'Campus News',
-    image: normalizeAssetUrl(item.image, '/image/IMG_2137.jpg'),
+    image: normalizeAssetUrl(item.image, '/image/IMG_2137.webp'),
     excerpt: item.excerpt || item.text || 'Latest update from Pitts Modern School, Gomia.',
     tags: Array.isArray(item.tags) ? item.tags : ['Pitts Modern School'],
     href: normalizeLinkUrl(item.href, '/news-and-notices'),

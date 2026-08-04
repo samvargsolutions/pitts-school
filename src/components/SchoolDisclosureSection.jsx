@@ -24,7 +24,7 @@ const DOCUMENTS_INFO = [
     sl: 2,
     doc: 'COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL CERTIFICATE,AS APPLICABLE',
     note: '',
-    url: '/disclosuredocs/society.png',
+    url: '/disclosuredocs/society.webp',
     isImage: true
   },
   {
@@ -101,7 +101,7 @@ const RESULT_ACADEMICS = [
   {
     sl: 5,
     doc: 'LAST THREE YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY',
-    url: '/disclosuredocs/result.png',
+    url: '/disclosuredocs/result.webp',
     isImage: true
   }
 ];

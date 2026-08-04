@@ -32,7 +32,7 @@ export default function LogoPreloader() {
           <div className="logo-preloader-ring-outer" />
           <div className="logo-preloader-ring-inner" />
           <img
-            src="/image/logo.png"
+            src="/image/logo.webp"
             alt="Pitts Modern School Crest"
             className="logo-preloader-img"
           />

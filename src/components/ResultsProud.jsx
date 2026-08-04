@@ -6,7 +6,7 @@ const toppers = [
     name: 'Ananya Sharma',
     score: '99.4%',
     className: 'Class XII',
-    image: '/image/656729874_122278628264192910_5575061535742040043_n.jpg',
+    image: '/image/656729874_122278628264192910_5575061535742040043_n.webp',
     position: '64% center',
     tone: 'blue',
   },
@@ -15,7 +15,7 @@ const toppers = [
     name: 'Vivaan Singh',
     score: '98.8%',
     className: 'Class X',
-    image: '/image/655235611_122278627622192910_6813982125465658890_n.jpg',
+    image: '/image/655235611_122278627622192910_6813982125465658890_n.webp',
     position: '52% center',
     tone: 'ice',
   },
@@ -24,7 +24,7 @@ const toppers = [
     name: 'Mehak Agarwal',
     score: '98.2%',
     className: 'Class XII',
-    image: '/image/657648950_122278627682192910_3316470583572254992_n.jpg',
+    image: '/image/657648950_122278627682192910_3316470583572254992_n.webp',
     position: '48% center',
     tone: 'pink',
   },
@@ -33,7 +33,7 @@ const toppers = [
     name: 'Arjun Malhotra',
     score: '97.6%',
     className: 'Class X',
-    image: '/image/658210448_122279766908192910_6930958453647393658_n.jpg',
+    image: '/image/658210448_122279766908192910_6930958453647393658_n.webp',
     position: '50% center',
     tone: 'green',
   },
@@ -42,61 +42,61 @@ const toppers = [
 const slideshowItems = [
   {
     id: 's1',
-    image: '/image/654420916_122278450718192910_7739475501613658151_n.jpg',
+    image: '/image/654420916_122278450718192910_7739475501613658151_n.webp',
     tag: 'Felicitation',
     caption: 'Annual Result Felicitation Ceremony',
   },
   {
     id: 's2',
-    image: '/image/654809425_122278443140192910_4758609915848770575_n.jpg',
+    image: '/image/654809425_122278443140192910_4758609915848770575_n.webp',
     tag: 'Board Toppers',
     caption: 'Celebrating Class XII Merit Holders',
   },
   {
     id: 's3',
-    image: '/image/656180855_122278451030192910_256945773651336968_n.jpg',
+    image: '/image/656180855_122278451030192910_256945773651336968_n.webp',
     tag: 'Excellence',
     caption: 'Class X Distinction Achievers',
   },
   {
     id: 's4',
-    image: '/image/656589747_122278442828192910_339878633218178783_n.jpg',
+    image: '/image/656589747_122278442828192910_339878633218178783_n.webp',
     tag: 'Landmark',
     caption: 'Setting New Academic Benchmarks',
   },
   {
     id: 's5',
-    image: '/image/656639203_122278442822192910_4058562250816193334_n.jpg',
+    image: '/image/656639203_122278442822192910_4058562250816193334_n.webp',
     tag: 'Honors',
     caption: 'Honoring Outstanding Student Profiles',
   },
   {
     id: 's6',
-    image: '/image/656971062_122278628552192910_1597290954513749109_n.jpg',
+    image: '/image/656971062_122278628552192910_1597290954513749109_n.webp',
     tag: 'Community',
     caption: 'Parents & Teachers Shared Pride',
   },
   {
     id: 's7',
-    image: '/image/657051011_122278442678192910_4830634205277214454_n.jpg',
+    image: '/image/657051011_122278442678192910_4830634205277214454_n.webp',
     tag: 'Achievement',
     caption: 'Annual Trophy & Medal Presentation',
   },
   {
     id: 's8',
-    image: '/image/658952886_122279886296192910_3270116905043812727_n.jpg',
+    image: '/image/658952886_122279886296192910_3270116905043812727_n.webp',
     tag: 'Distinction',
     caption: 'Top Performers in Olympiads & Boards',
   },
   {
     id: 's9',
-    image: '/image/659006919_122279767274192910_5002367941972036508_n.jpg',
+    image: '/image/659006919_122279767274192910_5002367941972036508_n.webp',
     tag: 'Inspiration',
     caption: 'Future Leaders on Recognition Day',
   },
   {
     id: 's10',
-    image: '/image/662488026_122279886146192910_3383945004717888381_n.jpg',
+    image: '/image/662488026_122279886146192910_3383945004717888381_n.webp',
     tag: 'Legacy',
     caption: 'Continuing Our Legacy of 100% Results',
   },
@@ -105,9 +105,9 @@ const slideshowItems = [
 export default function ResultsProud() {
   return (
     <section className="results-proud-section" aria-labelledby="results-proud-title">
-      <img className="results-motif results-motif-pink" src="/icons-illustrations/red-drop.png" alt="" aria-hidden="true" />
-      <img className="results-motif results-motif-green" src="/icons-illustrations/green-leafs.png" alt="" aria-hidden="true" />
-      <img className="results-motif results-motif-bluegate" src="/icons-illustrations/bluegate.png" alt="" aria-hidden="true" />
+      <img className="results-motif results-motif-pink" src="/icons-illustrations/red-drop.webp" alt="" aria-hidden="true" />
+      <img className="results-motif results-motif-green" src="/icons-illustrations/green-leafs.webp" alt="" aria-hidden="true" />
+      <img className="results-motif results-motif-bluegate" src="/icons-illustrations/bluegate.webp" alt="" aria-hidden="true" />
 
       <div className="results-proud-inner">
         <div className="results-proud-top">

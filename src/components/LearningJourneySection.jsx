@@ -10,13 +10,13 @@ const visionPillars = [
     badge: '100% BOARD SUCCESS HERITAGE',
     description:
       'Offering CBSE curriculum from Kindergarten through Class XII in English Medium, equipping over 2,200 students with critical inquiry, scientific temperament, and consistent top-ranking board achievements.',
-    image: '/image/IMG_2137.jpg',
+    image: '/image/IMG_2137.webp',
     bgColor: '#009951', // Emerald Green
     textColor: '#0B427E',
     arrowColor: '#0B427E',
     motifColor: '#ffc72c', // Warm Yellow
     motifSecondary: '#ffffff',
-    illustration: '/icons-illustrations/yellow-stairs.png',
+    illustration: '/icons-illustrations/yellow-stairs.webp',
     link: '/infrastructure',
     motifType: 1
   },
@@ -27,13 +27,13 @@ const visionPillars = [
     badge: 'VALUE-BASED HOLISTIC LEARNING',
     description:
       'We believe education extends beyond textbooks. We nurture integrity, empathy, civic responsibility, and ethical leadership so our alumni excel as global citizens.',
-    image: '/image/inv2.jpg',
+    image: '/image/inv2.webp',
     bgColor: '#00a859', // Rich Emerald Green
     textColor: '#0B427E',
     arrowColor: '#0B427E',
     motifColor: '#ffc72c', // Warm Yellow
     motifSecondary: '#0B427E',
-    illustration: '/icons-illustrations/bluegate.png',
+    illustration: '/icons-illustrations/bluegate.webp',
     link: '/infrastructure',
     motifType: 2 // 2x2 Diagonal Grid Motif (Exact match to reference screenshot)
   },
@@ -44,13 +44,13 @@ const visionPillars = [
     badge: 'SELF-FINANCED AUTONOMOUS TRUST',
     description:
       'As an autonomous, self-financed institution under Gomia School Society, we reinvest directly into cutting-edge laboratories, sports infrastructure, and inclusive campus growth.',
-    image: '/image/IMG_2190.jpg',
+    image: '/image/IMG_2190.webp',
     bgColor: '#ffb800', // Warm Yellow / Gold
     textColor: '#0B427E',
     arrowColor: '#0B427E',
     motifColor: '#0B427E', // Deep Navy
     motifSecondary: '#930018',
-    illustration: '/icons-illustrations/trippletriangle.png',
+    illustration: '/icons-illustrations/trippletriangle.webp',
     link: '/infrastructure',
     motifType: 3
   },
@@ -61,13 +61,13 @@ const visionPillars = [
     badge: 'SPORTS • SCHOLARSHIP • ARTS',
     description:
       'Balancing competitive spirit with collaborative teamwork through integrated teaching, counseling, research, and national-level sports tournaments.',
-    image: '/image/inv3.jpg',
+    image: '/image/inv3.webp',
     bgColor: '#075cff', // Electric Cobalt Blue
     textColor: '#ffffff',
     arrowColor: '#ffffff',
     motifColor: '#ffc72c', // Warm Yellow
     motifSecondary: '#ffffff',
-    illustration: '/icons-illustrations/red-drop.png',
+    illustration: '/icons-illustrations/red-drop.webp',
     link: '/infrastructure',
     motifType: 4
   },
@@ -78,13 +78,13 @@ const visionPillars = [
     badge: 'FOSTERING INDIVIDUAL UNIQUENESS',
     description:
       'Celebrating diversity, equality, and social integration across our township while fostering the distinct potential, dignity, and individual creativity of every student.',
-    image: '/image/IMG_2203.jpg',
+    image: '/image/IMG_2203.webp',
     bgColor: '#e03616', // Burnt Crimson / Red
     textColor: '#ffffff',
     arrowColor: '#ffffff',
     motifColor: '#ffc72c', // Warm Yellow
     motifSecondary: '#ffffff',
-    illustration: '/icons-illustrations/triangle.png',
+    illustration: '/icons-illustrations/triangle.webp',
     link: '/infrastructure',
     motifType: 1
   }

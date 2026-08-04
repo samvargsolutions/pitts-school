@@ -4,31 +4,31 @@ import { normalizeAssetUrl, normalizeLinkUrl, routeLinks, useSiteContent } from 
 const highlights = [
   {
     title: 'Registration-cum-Final Admission for classes XI (2026-27) is now open',
-    image: '/image/655235611_122278627622192910_6813982125465658890_n.jpg',
+    image: '/image/655235611_122278627622192910_6813982125465658890_n.webp',
     href: '/news/admission-classes-xi-2026-27',
     imagePosition: 'center',
   },
   {
     title: 'Students shine through culture, creativity and confident stage performances',
-    image: '/image/dc13.jpg',
+    image: '/image/dc13.webp',
     href: '/news/culture-creativity-stage-performances',
     imagePosition: 'center 28%',
   },
   {
     title: 'Hands-on learning activities help children build healthy daily habits',
-    image: '/image/459679975_122182238516192910_2352708045737928534_n.jpg',
+    image: '/image/459679975_122182238516192910_2352708045737928534_n.webp',
     href: '/news/hands-on-learning-healthy-habits',
     imagePosition: 'center',
   },
   {
     title: 'Sports week celebrates teamwork, house spirit and growing confidence',
-    image: '/image/basketball2.jpg',
+    image: '/image/basketball2.webp',
     href: '/news/sports-week-teamwork-confidence',
     imagePosition: 'center',
   },
   {
     title: 'Grandparents Day brings families, stories and joyful memories together',
-    image: '/image/657051011_122278442678192910_4830634205277214454_n.jpg',
+    image: '/image/657051011_122278442678192910_4830634205277214454_n.webp',
     href: '/news/grandparents-day-joyful-memories',
     imagePosition: 'center',
   },
@@ -88,17 +88,17 @@ const noticeItems = [
 const newsletterItems = [
   {
     title: 'SSE result 2026 : Our school toppers',
-    image: '/image/655235611_122278627622192910_6813982125465658890_n.jpg',
+    image: '/image/655235611_122278627622192910_6813982125465658890_n.webp',
     href: '/newsletter/sse-result-2026',
   },
   {
     title: 'Cultural performances bring colour and confidence to campus',
-    image: '/image/dc13.jpg',
+    image: '/image/dc13.webp',
     href: '/newsletter/cultural-performances',
   },
   {
     title: 'Students celebrate service, creativity and school spirit',
-    image: '/image/657051011_122278442678192910_4830634205277214454_n.jpg',
+    image: '/image/657051011_122278442678192910_4830634205277214454_n.webp',
     href: '/newsletter/school-spirit',
   },
 ];
@@ -130,9 +130,9 @@ export default function LatestHighlights() {
       className="latest-highlights-section"
       aria-labelledby="whats-new-title"
     >
-      <img className="latest-motif latest-motif-gate" src="/icons-illustrations/bluegate.png" alt="" aria-hidden="true" />
-      <img className="latest-motif latest-motif-drop" src="/icons-illustrations/red-drop.png" alt="" aria-hidden="true" />
-      <img className="latest-motif latest-motif-red" src="/icons-illustrations/red.png" alt="" aria-hidden="true" />
+      <img className="latest-motif latest-motif-gate" src="/icons-illustrations/bluegate.webp" alt="" aria-hidden="true" />
+      <img className="latest-motif latest-motif-drop" src="/icons-illustrations/red-drop.webp" alt="" aria-hidden="true" />
+      <img className="latest-motif latest-motif-red" src="/icons-illustrations/red.webp" alt="" aria-hidden="true" />
 
       <div className="whats-happening-shell">
         <header className="whats-new-header">
@@ -175,7 +175,7 @@ export default function LatestHighlights() {
                   }}
                 >
                   <img
-                    src={normalizeAssetUrl(item.image, '/image/655235611_122278627622192910_6813982125465658890_n.jpg')}
+                    src={normalizeAssetUrl(item.image, '/image/655235611_122278627622192910_6813982125465658890_n.webp')}
                     alt=""
                     style={{ objectPosition: item.imagePosition }}
                   />
@@ -187,7 +187,7 @@ export default function LatestHighlights() {
 
         <div className="latest-content">
           <header className="latest-heading">
-            <img src="/image/logo.png" alt="" className="latest-heading-emblem" />
+            <img src="/image/logo.webp" alt="" className="latest-heading-emblem" />
             <div>
               <p>THE LATEST</p>
               <h2 id="latest-highlights-title">HIGHLIGHTS</h2>
@@ -236,9 +236,9 @@ export default function LatestHighlights() {
 
       <div className="latest-support-grid" aria-label="Pitts Modern School updates">
         <article className="latest-support-card latest-events-card">
-          <img className="latest-card-graphic latest-card-graphic-events" src="/icons-illustrations/purple.png" alt="" aria-hidden="true" />
+          <img className="latest-card-graphic latest-card-graphic-events" src="/icons-illustrations/purple.webp" alt="" aria-hidden="true" />
           <div className="latest-card-head">
-            <img className="latest-card-icon latest-card-icon-events" src="/icons-illustrations/triangle.png" alt="" aria-hidden="true" />
+            <img className="latest-card-icon latest-card-icon-events" src="/icons-illustrations/triangle.webp" alt="" aria-hidden="true" />
             <h3>Upcoming Events</h3>
             <a href={routeLinks.events}>View Calendar</a>
           </div>
@@ -262,9 +262,9 @@ export default function LatestHighlights() {
         </article>
 
         <article className="latest-support-card latest-notice-card">
-          <img className="latest-card-graphic latest-card-graphic-notice" src="/icons-illustrations/red.png" alt="" aria-hidden="true" />
+          <img className="latest-card-graphic latest-card-graphic-notice" src="/icons-illustrations/red.webp" alt="" aria-hidden="true" />
           <div className="latest-card-head">
-            <img className="latest-card-icon latest-card-icon-notice" src="/icons-illustrations/yellow-stairs.png" alt="" aria-hidden="true" />
+            <img className="latest-card-icon latest-card-icon-notice" src="/icons-illustrations/yellow-stairs.webp" alt="" aria-hidden="true" />
             <h3>Notice Board</h3>
             <a href={routeLinks.notices}>View All Notices</a>
           </div>
@@ -287,9 +287,9 @@ export default function LatestHighlights() {
         </article>
 
         <article className="latest-support-card latest-newsletter-card">
-          <img className="latest-card-graphic latest-card-graphic-newsletter" src="/icons-illustrations/red-drop.png" alt="" aria-hidden="true" />
+          <img className="latest-card-graphic latest-card-graphic-newsletter" src="/icons-illustrations/red-drop.webp" alt="" aria-hidden="true" />
           <div className="latest-card-head">
-            <img className="latest-card-icon latest-card-icon-newsletter" src="/icons-illustrations/bluegate.png" alt="" aria-hidden="true" />
+            <img className="latest-card-icon latest-card-icon-newsletter" src="/icons-illustrations/bluegate.webp" alt="" aria-hidden="true" />
             <h3>Pitts Newsletter</h3>
             <a href={routeLinks.newsletters}>View Archive</a>
           </div>
@@ -304,7 +304,7 @@ export default function LatestHighlights() {
                   tabIndex={index >= newsletterItems.length ? -1 : undefined}
                 >
                   <span className="latest-newsletter-cover">
-                    <img src={normalizeAssetUrl(item.image, '/image/655235611_122278627622192910_6813982125465658890_n.jpg')} alt="" />
+                    <img src={normalizeAssetUrl(item.image, '/image/655235611_122278627622192910_6813982125465658890_n.webp')} alt="" />
                   </span>
                   <strong>{item.title}</strong>
                   <span>View Newsletter</span>
@@ -313,7 +313,7 @@ export default function LatestHighlights() {
             </div>
           </div>
           <a className="latest-subscribe-strip" href={routeLinks.newsletters}>
-            <img src="/icons-illustrations/green-leafs.png" alt="" aria-hidden="true" />
+            <img src="/icons-illustrations/green-leafs.webp" alt="" aria-hidden="true" />
             <span>Achievements, milestones and stories featuring Pitts.</span>
           </a>
         </article>

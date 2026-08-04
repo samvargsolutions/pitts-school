@@ -12,7 +12,7 @@ const newslettersData = [
     id: 'news-mag-1',
     title: 'Class 10 CBSE Result : School Toppers (Dainik Jagran)',
     date: 'Press Coverage • 16.04.2026',
-    coverImage: '/image/inv1.jpg',
+    coverImage: '/image/inv1.webp',
     summary:
       'Dainik Jagran feature on Pitts Modern School students scoring 97.8% distinction in CBSE Class 10 Board Examinations.',
     bgColor: '#0B427E',
@@ -24,7 +24,7 @@ const newslettersData = [
     id: 'news-mag-2',
     title: 'SSE Result 2026 : Our School Toppers (Prabhat Khabar)',
     date: 'Press Coverage • 15.04.2026',
-    coverImage: '/image/inv2.jpg',
+    coverImage: '/image/inv2.webp',
     summary:
       'Prabhat Khabar press report honoring Ananya & Riddhi for achieving top regional ranks in CBSE Senior Secondary exams.',
     bgColor: '#009951',
@@ -36,7 +36,7 @@ const newslettersData = [
     id: 'news-mag-3',
     title: 'Elocution & Declamation Competition Winners (Hindustan)',
     date: 'Press Coverage • 23.04.2026',
-    coverImage: '/image/inv3.jpg',
+    coverImage: '/image/inv3.webp',
     summary:
       'Hindustan Dainik feature on PMS students Vinayak and Siddhi winning 2nd prize at regional inter-school debate summit.',
     bgColor: '#930018',
@@ -48,7 +48,7 @@ const newslettersData = [
     id: 'news-mag-4',
     title: 'Jharkhand Haqeeqat : JEE Main Top Ranks Achieved by PMS Students',
     date: 'Press Coverage • 18.04.2026',
-    coverImage: '/image/IMG_2137.jpg',
+    coverImage: '/image/IMG_2137.webp',
     summary:
       'Jharkhand Haqeeqat report celebrating Pitts Modern School students securing 3rd district rank in JEE engineering examination.',
     bgColor: '#ffb800',
@@ -103,7 +103,7 @@ export default function NewslettersSection() {
     id: item.id || `news-mag-${index + 1}`,
     title: item.title || 'School newsletter',
     date: item.date || 'Pitts Modern School',
-    coverImage: normalizeAssetUrl(item.coverImage || item.image, '/image/inv1.jpg'),
+    coverImage: normalizeAssetUrl(item.coverImage || item.image, '/image/inv1.webp'),
     summary: item.summary || item.text || 'Stories of success, service, and the spirit of Pitts.',
     href: normalizeLinkUrl(item.href, '/newsletters'),
     bgColor: item.bgColor || ['#0B427E', '#009951', '#930018', '#ffb800'][index % 4],

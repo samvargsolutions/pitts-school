@@ -38,14 +38,14 @@ export const defaultSiteContent = {
     primaryHref: routeLinks.about,
     secondaryLabel: 'Admissions',
     secondaryHref: routeLinks.admissions,
-    bgImage: '/hero/2.png',
+    bgImage: '/hero/2.webp',
   },
   popup: {
     enabled: true,
     title: 'Important Updates',
     subtitle: 'Admissions, registration and school notices',
     body: 'Please review the latest important updates from Pitts Modern School. Use the links below for details, applications and downloads.',
-    image: '/image/admission_popup.png',
+    image: '/image/admission_popup.webp',
     ctaLabel: 'APPLY ONLINE NOW',
     ctaHref: routeLinks.admissions,
     linksEnabled: true,
@@ -58,16 +58,16 @@ export const defaultSiteContent = {
     ],
   },
   latestHighlights: [
-    { title: 'Registration-cum-Final Admission for classes XI (2026-27) is now open', image: '/image/655235611_122278627622192910_6813982125465658890_n.jpg', href: routeLinks.admissions, imagePosition: 'center' },
-    { title: 'Students shine through culture, creativity and confident stage performances', image: '/image/dc13.jpg', href: routeLinks.cultural, imagePosition: 'center 28%' },
-    { title: 'Hands-on learning activities help children build healthy daily habits', image: '/image/459679975_122182238516192910_2352708045737928534_n.jpg', href: routeLinks.infrastructure, imagePosition: 'center' },
-    { title: 'Sports week celebrates teamwork, house spirit and growing confidence', image: '/image/basketball2.jpg', href: routeLinks.sports, imagePosition: 'center' },
-    { title: 'Grandparents Day brings families, stories and joyful memories together', image: '/image/657051011_122278442678192910_4830634205277214454_n.jpg', href: routeLinks.events, imagePosition: 'center' },
+    { title: 'Registration-cum-Final Admission for classes XI (2026-27) is now open', image: '/image/655235611_122278627622192910_6813982125465658890_n.webp', href: routeLinks.admissions, imagePosition: 'center' },
+    { title: 'Students shine through culture, creativity and confident stage performances', image: '/image/dc13.webp', href: routeLinks.cultural, imagePosition: 'center 28%' },
+    { title: 'Hands-on learning activities help children build healthy daily habits', image: '/image/459679975_122182238516192910_2352708045737928534_n.webp', href: routeLinks.infrastructure, imagePosition: 'center' },
+    { title: 'Sports week celebrates teamwork, house spirit and growing confidence', image: '/image/basketball2.webp', href: routeLinks.sports, imagePosition: 'center' },
+    { title: 'Grandparents Day brings families, stories and joyful memories together', image: '/image/657051011_122278442678192910_4830634205277214454_n.webp', href: routeLinks.events, imagePosition: 'center' },
   ],
   upcomingEvents: [
-    { month: 'Jun', day: '16', weekday: 'Mon', title: 'Orientation for New Students & Parents', type: 'Admission', time: '09:30 AM - 12:00 PM', image: '/image/657051011_122278442678192910_4830634205277214454_n.jpg', excerpt: 'New families meet teachers, explore the campus rhythm, and begin the academic year with confidence.', href: routeLinks.events },
-    { month: 'Jun', day: '20', weekday: 'Fri', title: 'Inter-House Swimming Championship 2026', type: 'Sports', time: '09:00 AM - 01:00 PM', image: '/image/basketball2.jpg', excerpt: 'House teams compete with energy, discipline and school spirit across a full morning of sport.', href: routeLinks.sports },
-    { month: 'Jun', day: '26', weekday: 'Thu', title: 'Scholarship Test for Classes VI-IX', type: 'Academics', time: '10:00 AM - 01:00 PM', image: '/image/IMG_2137.jpg', excerpt: 'Students demonstrate academic readiness through a focused scholarship assessment.', href: routeLinks.events },
+    { month: 'Jun', day: '16', weekday: 'Mon', title: 'Orientation for New Students & Parents', type: 'Admission', time: '09:30 AM - 12:00 PM', image: '/image/657051011_122278442678192910_4830634205277214454_n.webp', excerpt: 'New families meet teachers, explore the campus rhythm, and begin the academic year with confidence.', href: routeLinks.events },
+    { month: 'Jun', day: '20', weekday: 'Fri', title: 'Inter-House Swimming Championship 2026', type: 'Sports', time: '09:00 AM - 01:00 PM', image: '/image/basketball2.webp', excerpt: 'House teams compete with energy, discipline and school spirit across a full morning of sport.', href: routeLinks.sports },
+    { month: 'Jun', day: '26', weekday: 'Thu', title: 'Scholarship Test for Classes VI-IX', type: 'Academics', time: '10:00 AM - 01:00 PM', image: '/image/IMG_2137.webp', excerpt: 'Students demonstrate academic readiness through a focused scholarship assessment.', href: routeLinks.events },
   ],
   notices: [
     { day: '16', month: 'Jun', label: 'Admission', title: 'Registration-cum-Final Admission for Class XI Session 2026-27', href: routeLinks.admissions },
@@ -75,10 +75,10 @@ export const defaultSiteContent = {
     { day: '09', month: 'Apr', label: 'Academics', title: 'Book list for the Session 2026-2027', href: routeLinks.news },
   ],
   newsletters: [
-    { title: 'Class 10 CBSE Result : School Toppers (Dainik Jagran)', date: 'Press Coverage • 16.04.2026', summary: 'Dainik Jagran feature on Pitts Modern School students scoring 97.8% distinction in CBSE Class 10 Board Examinations.', image: '/image/inv1.jpg', href: routeLinks.newsletters },
-    { title: 'SSE Result 2026 : Our School Toppers (Prabhat Khabar)', date: 'Press Coverage • 15.04.2026', summary: 'Prabhat Khabar press report honoring Ananya & Riddhi for achieving top regional ranks in CBSE Senior Secondary exams.', image: '/image/inv2.jpg', href: routeLinks.newsletters },
-    { title: 'Elocution & Declamation Competition Winners (Hindustan)', date: 'Press Coverage • 23.04.2026', summary: 'Hindustan Dainik feature on PMS students Vinayak and Siddhi winning 2nd prize at regional inter-school debate summit.', image: '/image/inv3.jpg', href: routeLinks.newsletters },
-    { title: 'Jharkhand Haqeeqat : JEE Main Top Ranks Achieved by PMS Students', date: 'Press Coverage • 18.04.2026', summary: 'Jharkhand Haqeeqat report celebrating Pitts Modern School students securing 3rd district rank in JEE engineering examination.', image: '/image/IMG_2137.jpg', href: routeLinks.newsletters },
+    { title: 'Class 10 CBSE Result : School Toppers (Dainik Jagran)', date: 'Press Coverage • 16.04.2026', summary: 'Dainik Jagran feature on Pitts Modern School students scoring 97.8% distinction in CBSE Class 10 Board Examinations.', image: '/image/inv1.webp', href: routeLinks.newsletters },
+    { title: 'SSE Result 2026 : Our School Toppers (Prabhat Khabar)', date: 'Press Coverage • 15.04.2026', summary: 'Prabhat Khabar press report honoring Ananya & Riddhi for achieving top regional ranks in CBSE Senior Secondary exams.', image: '/image/inv2.webp', href: routeLinks.newsletters },
+    { title: 'Elocution & Declamation Competition Winners (Hindustan)', date: 'Press Coverage • 23.04.2026', summary: 'Hindustan Dainik feature on PMS students Vinayak and Siddhi winning 2nd prize at regional inter-school debate summit.', image: '/image/inv3.webp', href: routeLinks.newsletters },
+    { title: 'Jharkhand Haqeeqat : JEE Main Top Ranks Achieved by PMS Students', date: 'Press Coverage • 18.04.2026', summary: 'Jharkhand Haqeeqat report celebrating Pitts Modern School students securing 3rd district rank in JEE engineering examination.', image: '/image/IMG_2137.webp', href: routeLinks.newsletters },
   ],
   results: {
     year: '2025-26', bulletinHref: routeLinks.results,
@@ -87,17 +87,17 @@ export const defaultSiteContent = {
       { name: 'Class XII' }
     ],
     toppers: [
-      { rank: '01', name: 'Ananya Sharma', score: '99.4%', className: 'Class XII', image: '/image/656729874_122278628264192910_5575061535742040043_n.jpg', position: '64% center', tone: 'blue' },
-      { rank: '02', name: 'Vivaan Singh', score: '98.8%', className: 'Class X', image: '/image/655235611_122278627622192910_6813982125465658890_n.jpg', position: '52% center', tone: 'ice' },
-      { rank: '03', name: 'Mehak Agarwal', score: '98.2%', className: 'Class XII', image: '/image/657648950_122278627682192910_3316470583572254992_n.jpg', position: '48% center', tone: 'pink' },
-      { rank: '04', name: 'Arjun Malhotra', score: '97.6%', className: 'Class X', image: '/image/658210448_122279766908192910_6930958453647393658_n.jpg', position: '50% center', tone: 'green' },
+      { rank: '01', name: 'Ananya Sharma', score: '99.4%', className: 'Class XII', image: '/image/656729874_122278628264192910_5575061535742040043_n.webp', position: '64% center', tone: 'blue' },
+      { rank: '02', name: 'Vivaan Singh', score: '98.8%', className: 'Class X', image: '/image/655235611_122278627622192910_6813982125465658890_n.webp', position: '52% center', tone: 'ice' },
+      { rank: '03', name: 'Mehak Agarwal', score: '98.2%', className: 'Class XII', image: '/image/657648950_122278627682192910_3316470583572254992_n.webp', position: '48% center', tone: 'pink' },
+      { rank: '04', name: 'Arjun Malhotra', score: '97.6%', className: 'Class X', image: '/image/658210448_122279766908192910_6930958453647393658_n.webp', position: '50% center', tone: 'green' },
     ],
     landmarkSlides: [
-      { image: '/image/654420916_122278450718192910_7739475501613658151_n.jpg', tag: 'Felicitation', caption: 'Annual Result Felicitation Ceremony' },
-      { image: '/image/654809425_122278443140192910_4758609915848770575_n.jpg', tag: 'Board Toppers', caption: 'Celebrating Class XII Merit Holders' },
-      { image: '/image/656180855_122278451030192910_256945773651336968_n.jpg', tag: 'Excellence', caption: 'Class X Distinction Achievers' },
-      { image: '/image/656589747_122278442828192910_339878633218178783_n.jpg', tag: 'Landmark', caption: 'Setting New Academic Benchmarks' },
-      { image: '/image/656639203_122278442822192910_4058562250816193334_n.jpg', tag: 'Honors', caption: 'Honoring Outstanding Student Profiles' },
+      { image: '/image/654420916_122278450718192910_7739475501613658151_n.webp', tag: 'Felicitation', caption: 'Annual Result Felicitation Ceremony' },
+      { image: '/image/654809425_122278443140192910_4758609915848770575_n.webp', tag: 'Board Toppers', caption: 'Celebrating Class XII Merit Holders' },
+      { image: '/image/656180855_122278451030192910_256945773651336968_n.webp', tag: 'Excellence', caption: 'Class X Distinction Achievers' },
+      { image: '/image/656589747_122278442828192910_339878633218178783_n.webp', tag: 'Landmark', caption: 'Setting New Academic Benchmarks' },
+      { image: '/image/656639203_122278442822192910_4058562250816193334_n.webp', tag: 'Honors', caption: 'Honoring Outstanding Student Profiles' },
     ],
   },
   footer: {
@@ -107,60 +107,60 @@ export const defaultSiteContent = {
   contentLibrary: {
     faculty: [
       // ── SENIOR WING FACULTY ──
-      { name: 'Mr. Brij Mohan Lal Das',     post: 'PRINCIPAL',                             qualification: 'B.Sc (Chemistry), DSE, PGDCA, M.Sc (Comp.Sc), B.Ed', department: 'Leadership & Chemistry',           wing: 'senior',  experience: '28+ Years', email: 'principal@pittsmorns.edu.in',  image: '/image/inv1.jpg' },
-      { name: 'Mr. Dinesh Kumar',             post: 'PGT (Computer)',                         qualification: 'MCA',                                                   department: 'Computer Science',                 wing: 'senior',  experience: '16+ Years', email: 'dinesh.k@pitts.edu.in',        image: '/image/inv2.jpg' },
-      { name: 'Mr. Ajay Kumar',               post: 'PGT (Computer)',                         qualification: 'M.Sc, PGDCA',                                           department: 'Computer Science',                 wing: 'senior',  experience: '14+ Years', email: 'ajay.k@pitts.edu.in',          image: '/image/inv3.jpg' },
-      { name: 'Mrs. Sunita Mukherjee',        post: 'PGT (English) & HOD',                   qualification: 'M.A. (English Lit), B.Ed',                              department: 'Department of English',            wing: 'senior',  experience: '20+ Years', email: 'sunita.m@pitts.edu.in',        image: '/image/IMG_2137.jpg' },
-      { name: 'Dr. Rajesh Sharma',            post: 'PGT (Physics)',                          qualification: 'M.Sc (Physics), Ph.D, B.Ed',                            department: 'Department of Physics',            wing: 'senior',  experience: '18+ Years', email: 'rajesh.s@pitts.edu.in',        image: '/image/IMG_2190.jpg' },
-      { name: 'Mrs. Anjali Sinha',            post: 'PGT (Chemistry)',                        qualification: 'M.Sc (Chemistry), B.Ed',                                department: 'Department of Chemistry',          wing: 'senior',  experience: '15+ Years', email: 'anjali.s@pitts.edu.in',        image: '/image/IMG_2203.jpg' },
-      { name: 'Mr. Alok Nath Verma',          post: 'PGT (Mathematics)',                      qualification: 'M.Sc (Maths), B.Ed',                                    department: 'Department of Mathematics',        wing: 'senior',  experience: '17+ Years', email: 'alok.v@pitts.edu.in',          image: '/image/inv1.jpg' },
-      { name: 'Mrs. Meena Kumari',            post: 'TGT (Hindi & Sanskrit)',                 qualification: 'M.A. (Hindi), Shastri, B.Ed',                           department: 'Hindi & Sanskrit Wing',            wing: 'senior',  experience: '19+ Years', email: 'meena.k@pitts.edu.in',         image: '/image/inv2.jpg' },
+      { name: 'Mr. Brij Mohan Lal Das',     post: 'PRINCIPAL',                             qualification: 'B.Sc (Chemistry), DSE, PGDCA, M.Sc (Comp.Sc), B.Ed', department: 'Leadership & Chemistry',           wing: 'senior',  experience: '28+ Years', email: 'principal@pittsmorns.edu.in',  image: '/image/inv1.webp' },
+      { name: 'Mr. Dinesh Kumar',             post: 'PGT (Computer)',                         qualification: 'MCA',                                                   department: 'Computer Science',                 wing: 'senior',  experience: '16+ Years', email: 'dinesh.k@pitts.edu.in',        image: '/image/inv2.webp' },
+      { name: 'Mr. Ajay Kumar',               post: 'PGT (Computer)',                         qualification: 'M.Sc, PGDCA',                                           department: 'Computer Science',                 wing: 'senior',  experience: '14+ Years', email: 'ajay.k@pitts.edu.in',          image: '/image/inv3.webp' },
+      { name: 'Mrs. Sunita Mukherjee',        post: 'PGT (English) & HOD',                   qualification: 'M.A. (English Lit), B.Ed',                              department: 'Department of English',            wing: 'senior',  experience: '20+ Years', email: 'sunita.m@pitts.edu.in',        image: '/image/IMG_2137.webp' },
+      { name: 'Dr. Rajesh Sharma',            post: 'PGT (Physics)',                          qualification: 'M.Sc (Physics), Ph.D, B.Ed',                            department: 'Department of Physics',            wing: 'senior',  experience: '18+ Years', email: 'rajesh.s@pitts.edu.in',        image: '/image/IMG_2190.webp' },
+      { name: 'Mrs. Anjali Sinha',            post: 'PGT (Chemistry)',                        qualification: 'M.Sc (Chemistry), B.Ed',                                department: 'Department of Chemistry',          wing: 'senior',  experience: '15+ Years', email: 'anjali.s@pitts.edu.in',        image: '/image/IMG_2203.webp' },
+      { name: 'Mr. Alok Nath Verma',          post: 'PGT (Mathematics)',                      qualification: 'M.Sc (Maths), B.Ed',                                    department: 'Department of Mathematics',        wing: 'senior',  experience: '17+ Years', email: 'alok.v@pitts.edu.in',          image: '/image/inv1.webp' },
+      { name: 'Mrs. Meena Kumari',            post: 'TGT (Hindi & Sanskrit)',                 qualification: 'M.A. (Hindi), Shastri, B.Ed',                           department: 'Hindi & Sanskrit Wing',            wing: 'senior',  experience: '19+ Years', email: 'meena.k@pitts.edu.in',         image: '/image/inv2.webp' },
       // ── PRIMARY WING FACULTY ──
-      { name: 'Mrs. Subhashini Das',          post: 'Headmistress (Primary Wing)',            qualification: 'M.A. (Psychology), B.Ed',                               department: 'Primary Academic Leadership',      wing: 'primary', experience: '22+ Years', email: 'primary.hm@pitts.edu.in',      image: '/image/inv2.jpg' },
-      { name: 'Mrs. Vandana Srivastava',      post: 'Senior PRT Coordinator',                qualification: 'B.Sc (Botany), B.Ed',                                   department: 'Primary Environmental Studies',    wing: 'primary', experience: '15+ Years', email: 'vandana.s@pitts.edu.in',       image: '/image/inv3.jpg' },
-      { name: 'Mr. K. K. Mishra',             post: 'PRT Mathematics Educator',              qualification: 'B.Sc (Maths), D.El.Ed',                                 department: 'Primary Mathematics Wing',         wing: 'primary', experience: '10+ Years', email: 'kk.mishra@pitts.edu.in',       image: '/image/IMG_2137.jpg' },
-      { name: 'Mrs. Rekha Sharma',            post: 'PRT English & Art Faculty',             qualification: 'B.A. (English), Fine Arts Dip.',                        department: 'Primary Languages & Art',          wing: 'primary', experience: '8+ Years',  email: 'rekha.s@pitts.edu.in',         image: '/image/IMG_2190.jpg' },
-      { name: 'Mr. Pradeep Kumar',            post: 'PRT General Science Teacher',           qualification: 'B.Sc, D.El.Ed',                                         department: 'Primary Science Wing',             wing: 'primary', experience: '9+ Years',  email: 'pradeep.k@pitts.edu.in',       image: '/image/inv1.jpg' },
+      { name: 'Mrs. Subhashini Das',          post: 'Headmistress (Primary Wing)',            qualification: 'M.A. (Psychology), B.Ed',                               department: 'Primary Academic Leadership',      wing: 'primary', experience: '22+ Years', email: 'primary.hm@pitts.edu.in',      image: '/image/inv2.webp' },
+      { name: 'Mrs. Vandana Srivastava',      post: 'Senior PRT Coordinator',                qualification: 'B.Sc (Botany), B.Ed',                                   department: 'Primary Environmental Studies',    wing: 'primary', experience: '15+ Years', email: 'vandana.s@pitts.edu.in',       image: '/image/inv3.webp' },
+      { name: 'Mr. K. K. Mishra',             post: 'PRT Mathematics Educator',              qualification: 'B.Sc (Maths), D.El.Ed',                                 department: 'Primary Mathematics Wing',         wing: 'primary', experience: '10+ Years', email: 'kk.mishra@pitts.edu.in',       image: '/image/IMG_2137.webp' },
+      { name: 'Mrs. Rekha Sharma',            post: 'PRT English & Art Faculty',             qualification: 'B.A. (English), Fine Arts Dip.',                        department: 'Primary Languages & Art',          wing: 'primary', experience: '8+ Years',  email: 'rekha.s@pitts.edu.in',         image: '/image/IMG_2190.webp' },
+      { name: 'Mr. Pradeep Kumar',            post: 'PRT General Science Teacher',           qualification: 'B.Sc, D.El.Ed',                                         department: 'Primary Science Wing',             wing: 'primary', experience: '9+ Years',  email: 'pradeep.k@pitts.edu.in',       image: '/image/inv1.webp' },
       // ── ADMINISTRATIVE STAFF ──
-      { name: 'Mr. A. K. Banerjee',           post: 'Senior Bursar & Finance Officer',       qualification: 'M.Com, ICWA (Inter)',                                   department: 'Accounts & Bursar Office',         wing: 'admin',   experience: '24+ Years', email: 'bursar@pitts.edu.in',          image: '/image/inv1.jpg' },
-      { name: 'Mrs. Rashmi Ranjan',           post: 'Admissions & Student Relations Manager',qualification: 'MBA (HR), B.A.',                                        department: 'Admissions & Public Relations',    wing: 'admin',   experience: '12+ Years', email: 'admissions@pitts.edu.in',      image: '/image/inv2.jpg' },
-      { name: 'Mr. S. N. Das',               post: 'System Administrator & IT Operations Head', qualification: 'B.Tech (Information Tech), CCNA',                   department: 'IT Operations & Digital Campus',   wing: 'admin',   experience: '14+ Years', email: 'it.admin@pitts.edu.in',        image: '/image/inv3.jpg' },
-      { name: 'Mr. Ramesh Chandra Sen',       post: 'Senior Administrative Executive',       qualification: 'B.A. (Hons), PGDHM',                                   department: 'General Campus Administration',    wing: 'admin',   experience: '18+ Years', email: 'admin.exec@pitts.edu.in',      image: '/image/IMG_2203.jpg' },
+      { name: 'Mr. A. K. Banerjee',           post: 'Senior Bursar & Finance Officer',       qualification: 'M.Com, ICWA (Inter)',                                   department: 'Accounts & Bursar Office',         wing: 'admin',   experience: '24+ Years', email: 'bursar@pitts.edu.in',          image: '/image/inv1.webp' },
+      { name: 'Mrs. Rashmi Ranjan',           post: 'Admissions & Student Relations Manager',qualification: 'MBA (HR), B.A.',                                        department: 'Admissions & Public Relations',    wing: 'admin',   experience: '12+ Years', email: 'admissions@pitts.edu.in',      image: '/image/inv2.webp' },
+      { name: 'Mr. S. N. Das',               post: 'System Administrator & IT Operations Head', qualification: 'B.Tech (Information Tech), CCNA',                   department: 'IT Operations & Digital Campus',   wing: 'admin',   experience: '14+ Years', email: 'it.admin@pitts.edu.in',        image: '/image/inv3.webp' },
+      { name: 'Mr. Ramesh Chandra Sen',       post: 'Senior Administrative Executive',       qualification: 'B.A. (Hons), PGDHM',                                   department: 'General Campus Administration',    wing: 'admin',   experience: '18+ Years', email: 'admin.exec@pitts.edu.in',      image: '/image/IMG_2203.webp' },
     ],
     staff: [],
     sports: [
-      { title: 'Basketball Championship 2024', date: '2024', image: '/image/basketball2.jpg', text: 'Annual inter-house basketball championship showcasing team spirit and athletic excellence.', href: '/sports' },
-      { title: 'Sports Meet & Athletics',       date: '2024', image: '/image/sp1.jpg',         text: 'School annual sports meet with track & field events, relay races and gymnastics.', href: '/sports' },
-      { title: 'Drill & Combat Display',        date: '2024', image: '/image/dc2.jpg',          text: 'Precision drill and combat display by students demonstrating discipline and fitness.', href: '/sports' },
-      { title: 'Swimming Championship',         date: '2024', image: '/image/sp8.jpg',          text: 'Inter-house swimming championship bringing together the school\'s best swimmers.', href: '/sports' },
+      { title: 'Basketball Championship 2024', date: '2024', image: '/image/basketball2.webp', text: 'Annual inter-house basketball championship showcasing team spirit and athletic excellence.', href: '/sports' },
+      { title: 'Sports Meet & Athletics',       date: '2024', image: '/image/sp1.webp',         text: 'School annual sports meet with track & field events, relay races and gymnastics.', href: '/sports' },
+      { title: 'Drill & Combat Display',        date: '2024', image: '/image/dc2.webp',          text: 'Precision drill and combat display by students demonstrating discipline and fitness.', href: '/sports' },
+      { title: 'Swimming Championship',         date: '2024', image: '/image/sp8.webp',          text: 'Inter-house swimming championship bringing together the school\'s best swimmers.', href: '/sports' },
     ],
     culturalActivities: [
-      { title: 'Annual Academic Meet 2024',       date: '2024', image: '/image/aam1.jpg',   text: 'Celebrating academic achievement with awards, performances and recognition of student excellence.', href: '/CulturalCoCulturalActivity' },
-      { title: 'Co-Curricular Activities Fest',   date: '2024', image: '/image/CCA12.jpg',  text: 'A celebration of music, dance, drama and art showcasing the school\'s cultural vibrancy.', href: '/CulturalCoCulturalActivity' },
-      { title: 'Investiture Ceremony',            date: '2024', image: '/image/inv1.jpg',   text: 'Annual investiture ceremony honoring student council members and house captains.', href: '/CulturalCoCulturalActivity' },
-      { title: 'School Programme & Farewell',     date: '2024', image: '/image/hrd2.jpg',   text: 'Farewell programme celebrating the outgoing batch with performances, memories and gratitude.', href: '/CulturalCoCulturalActivity' },
+      { title: 'Annual Academic Meet 2024',       date: '2024', image: '/image/aam1.webp',   text: 'Celebrating academic achievement with awards, performances and recognition of student excellence.', href: '/CulturalCoCulturalActivity' },
+      { title: 'Co-Curricular Activities Fest',   date: '2024', image: '/image/CCA12.webp',  text: 'A celebration of music, dance, drama and art showcasing the school\'s cultural vibrancy.', href: '/CulturalCoCulturalActivity' },
+      { title: 'Investiture Ceremony',            date: '2024', image: '/image/inv1.webp',   text: 'Annual investiture ceremony honoring student council members and house captains.', href: '/CulturalCoCulturalActivity' },
+      { title: 'School Programme & Farewell',     date: '2024', image: '/image/hrd2.webp',   text: 'Farewell programme celebrating the outgoing batch with performances, memories and gratitude.', href: '/CulturalCoCulturalActivity' },
     ],
     gallery: [
-      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam1.jpg',   caption: 'Annual Academic Meet 2024' },
-      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam32.jpg',  caption: 'Annual Academic Meet — Award Ceremony' },
-      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam33.jpg',  caption: 'Annual Academic Meet — Cultural Show' },
-      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam36.jpg',  caption: 'Annual Academic Meet — Highlights' },
-      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam44.jpg',  caption: 'Annual Academic Meet — Student Excellence' },
-      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/CCA12.jpg',   caption: 'Co-Curricular Activities Festival' },
-      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/CCA6.jpg',    caption: 'Cultural Performance on Stage' },
-      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca13.jpg',   caption: 'Creative Showcase' },
-      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca14.jpg',   caption: 'CCA Competition 2024' },
-      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca17.jpg',   caption: 'CCA Highlights' },
-      { title: 'Basketball Championship',   category: 'sports', image: '/image/basketball2.jpg', caption: 'Inter-House Basketball Championship' },
-      { title: 'Sports Meet',               category: 'sports', image: '/image/sp1.jpg',         caption: 'Annual Sports Meet 2024' },
-      { title: 'Sports Meet',               category: 'sports', image: '/image/sp8.jpg',          caption: 'Swimming Championship' },
-      { title: 'Drill & Combat',            category: 'sports', image: '/image/dc11.jpg',          caption: 'Combat Display 2024' },
-      { title: 'Drill & Combat',            category: 'sports', image: '/image/dc12.jpg',          caption: 'Drill Precision Showcase' },
-      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv1.jpg',          caption: 'Investiture Ceremony 2024' },
-      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv2.jpg',          caption: 'Badge Pinning Ceremony' },
-      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv3.jpg',          caption: 'Student Council Investiture' },
-      { title: 'School Programme',          category: 'events', image: '/image/hrd2.jpg',           caption: 'School Annual Programme' },
-      { title: 'School Programme',          category: 'events', image: '/image/hrd6.jpg',           caption: 'School Farewell Programme' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam1.webp',   caption: 'Annual Academic Meet 2024' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam32.webp',  caption: 'Annual Academic Meet — Award Ceremony' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam33.webp',  caption: 'Annual Academic Meet — Cultural Show' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam36.webp',  caption: 'Annual Academic Meet — Highlights' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam44.webp',  caption: 'Annual Academic Meet — Student Excellence' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/CCA12.webp',   caption: 'Co-Curricular Activities Festival' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/CCA6.webp',    caption: 'Cultural Performance on Stage' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca13.webp',   caption: 'Creative Showcase' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca14.webp',   caption: 'CCA Competition 2024' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca17.webp',   caption: 'CCA Highlights' },
+      { title: 'Basketball Championship',   category: 'sports', image: '/image/basketball2.webp', caption: 'Inter-House Basketball Championship' },
+      { title: 'Sports Meet',               category: 'sports', image: '/image/sp1.webp',         caption: 'Annual Sports Meet 2024' },
+      { title: 'Sports Meet',               category: 'sports', image: '/image/sp8.webp',          caption: 'Swimming Championship' },
+      { title: 'Drill & Combat',            category: 'sports', image: '/image/dc11.webp',          caption: 'Combat Display 2024' },
+      { title: 'Drill & Combat',            category: 'sports', image: '/image/dc12.webp',          caption: 'Drill Precision Showcase' },
+      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv1.webp',          caption: 'Investiture Ceremony 2024' },
+      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv2.webp',          caption: 'Badge Pinning Ceremony' },
+      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv3.webp',          caption: 'Student Council Investiture' },
+      { title: 'School Programme',          category: 'events', image: '/image/hrd2.webp',           caption: 'School Annual Programme' },
+      { title: 'School Programme',          category: 'events', image: '/image/hrd6.webp',           caption: 'School Farewell Programme' },
     ],
   },
 };
@@ -169,26 +169,24 @@ function mergeContent(defaults, saved, path) {
   if (!saved || typeof saved !== 'object') return defaults;
   if (Array.isArray(defaults)) {
     if (!Array.isArray(saved)) return defaults;
-    // If the saved array is empty but defaults have data (e.g. first-run contentLibrary),
-    // fall back to defaults so pre-seeded data is always visible.
     if (saved.length === 0 && defaults.length > 0) return defaults;
     return saved;
   }
-  return Object.keys(defaults).reduce((acc, key) => {
+  const merged = { ...saved };
+  Object.keys(defaults).forEach((key) => {
     const defaultValue = defaults[key];
     const savedValue = saved[key];
-    if (key === 'image' && (!savedValue || savedValue === '/image/admission_popup.pn')) {
-      acc[key] = defaultValue || '/image/admission_popup.png';
-    } else {
-      acc[key] = defaultValue && typeof defaultValue === 'object' && !Array.isArray(defaultValue)
-        ? mergeContent(defaultValue, savedValue, key)
-        : (savedValue === undefined ? defaultValue : savedValue);
+    if (key === 'image' && (!savedValue || savedValue === '/image/admission_popup.webp')) {
+      merged[key] = defaultValue || '/image/admission_popup.webp';
+    } else if (defaultValue && typeof defaultValue === 'object' && !Array.isArray(defaultValue)) {
+      merged[key] = mergeContent(defaultValue, savedValue, key);
+    } else if (savedValue === undefined) {
+      merged[key] = defaultValue;
     }
-    return acc;
-  }, {});
+  });
+  return merged;
 }
 
-const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fcc2c22897052';
 let isSyncingCloud = false;
 
 export async function fetchCloudContent() {
@@ -209,21 +207,6 @@ export async function fetchCloudContent() {
         return merged;
       }
     }
-
-    const response = await fetch(CLOUD_SYNC_ENDPOINT, { cache: 'no-store' });
-    if (!response.ok) return null;
-    const data = await response.json();
-    const cloudContent = data?.data?.content;
-    if (cloudContent && typeof cloudContent === 'object') {
-      const merged = mergeContent(defaultSiteContent, cloudContent);
-      try {
-        window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
-      } catch (e) {
-        // Quota safe fallback
-      }
-      window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
-      return merged;
-    }
   } catch (error) {
     // Graceful fallback
   } finally {
@@ -243,7 +226,7 @@ export function getSiteContent() {
   }
 }
 
-export function saveSiteContent(content) {
+export async function saveSiteContent(content) {
   if (typeof window === 'undefined') return;
   const merged = mergeContent(defaultSiteContent, content);
   
@@ -256,26 +239,17 @@ export function saveSiteContent(content) {
   window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
 
   if (isSupabaseConfigured) {
-    saveSiteContentToSupabase(merged);
+    await saveSiteContentToSupabase(merged);
   }
-
-  fetch(CLOUD_SYNC_ENDPOINT, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: 'pitts_site_content_v1', data: { content: merged, updatedAt: Date.now() } }),
-  }).catch((err) => console.warn('Cloud sync push error:', err));
 }
 
 export function resetSiteContent() {
   if (typeof window === 'undefined') return defaultSiteContent;
   window.localStorage.removeItem(SITE_CONTENT_KEY);
   window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: defaultSiteContent }));
-  // Also reset cloud content
-  fetch(CLOUD_SYNC_ENDPOINT, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: 'pitts_site_content_v1', data: { content: defaultSiteContent, updatedAt: Date.now() } }),
-  }).catch(() => {});
+  if (isSupabaseConfigured) {
+    saveSiteContentToSupabase(defaultSiteContent);
+  }
   return defaultSiteContent;
 }
 
@@ -286,7 +260,7 @@ function repairPercentEncoding(value) {
 export function normalizeAssetUrl(value, fallback = '') {
   if (!value || typeof value !== 'string') return fallback;
   let trimmed = repairPercentEncoding(value.trim().replace(/\\/g, '/'));
-  if (trimmed.endsWith('.pn')) trimmed = `${trimmed}g`;
+  if (trimmed.endsWith('.webp')) trimmed = `${trimmed}g`;
   if (/^(data:|blob:|https?:\/\/)/i.test(trimmed)) return trimmed;
   if (trimmed.startsWith('/')) return trimmed;
 

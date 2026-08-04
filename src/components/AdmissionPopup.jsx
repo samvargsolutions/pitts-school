@@ -51,7 +51,7 @@ export default function AdmissionPopup() {
         {/* IMAGE BANNER */}
         <div className="popup-image-container">
           <img 
-            src="/image/admission_popup.png" 
+            src="/image/admission_popup.webp" 
             alt="Pitts Modern School Admissions 2026-2027" 
             className="popup-hero-img" 
           />

@@ -8,13 +8,13 @@ export default function AboutUsSection() {
       <section className="about-us-history-section" aria-labelledby="about-history-heading">
         <img
           className="about-motif about-motif-purple"
-          src="/icons-illustrations/purple.png"
+          src="/icons-illustrations/purple.webp"
           alt=""
           aria-hidden="true"
         />
         <img
           className="about-motif about-motif-triangle"
-          src="/icons-illustrations/triangle.png"
+          src="/icons-illustrations/triangle.webp"
           alt=""
           aria-hidden="true"
         />
@@ -74,13 +74,13 @@ export default function AboutUsSection() {
           <div className="about-history-media">
             <div className="about-media-frame">
               <img
-                src="/image/inv1.jpg"
+                src="/image/inv1.webp"
                 alt="Pitts Modern School Campus Heritage"
                 className="about-main-img"
               />
               <div className="about-media-badge-card">
                 <img
-                  src="/image/59yearslogo.png"
+                  src="/image/59yearslogo.webp"
                   alt="50+ Years Anniversary Emblem"
                   className="about-badge-emblem"
                 />
@@ -110,7 +110,7 @@ export default function AboutUsSection() {
       <section className="about-us-society-section" aria-labelledby="about-society-heading">
         <img
           className="about-motif about-motif-red"
-          src="/icons-illustrations/red.png"
+          src="/icons-illustrations/red.webp"
           alt=""
           aria-hidden="true"
         />
@@ -242,7 +242,7 @@ export default function AboutUsSection() {
 
           <div className="about-gallery-grid">
             <div className="about-gallery-item">
-              <img src="/image/IMG_2137.jpg" alt="Academic Excellence in classrooms" />
+              <img src="/image/IMG_2137.webp" alt="Academic Excellence in classrooms" />
               <div className="about-gallery-overlay">
                 <span>Classroom Excellence</span>
                 <p>Nurturing 2,200+ bright minds across English Medium CBSE standards</p>
@@ -250,7 +250,7 @@ export default function AboutUsSection() {
             </div>
 
             <div className="about-gallery-item">
-              <img src="/image/IMG_2190.jpg" alt="Campus life and sports infrastructure" />
+              <img src="/image/IMG_2190.webp" alt="Campus life and sports infrastructure" />
               <div className="about-gallery-overlay">
                 <span>Campus Infrastructure</span>
                 <p>Spacious learning environments and green playgrounds in Gomia</p>
@@ -258,7 +258,7 @@ export default function AboutUsSection() {
             </div>
 
             <div className="about-gallery-item">
-              <img src="/image/IMG_2203.jpg" alt="Student achievements and assemblies" />
+              <img src="/image/IMG_2203.webp" alt="Student achievements and assemblies" />
               <div className="about-gallery-overlay">
                 <span>Cultural &amp; Ethical Growth</span>
                 <p>Developing well-rounded global leaders with strong moral roots</p>
@@ -266,7 +266,7 @@ export default function AboutUsSection() {
             </div>
 
             <div className="about-gallery-item">
-              <img src="/image/IMG_2285.jpg" alt="Pitts Modern School community" />
+              <img src="/image/IMG_2285.webp" alt="Pitts Modern School community" />
               <div className="about-gallery-overlay">
                 <span>Our Enduring Legacy</span>
                 <p>Continuing the vision of Sir Cyril Pitts from 1967 into the future</p>

@@ -7,10 +7,10 @@ export default function AboutPitts() {
       <div className="about-pitts-inner">
         <div className="about-pitts-media">
           <figure className="about-pitts-main-photo">
-            <img src="/image/inv1.jpg" alt="Pitts Modern School students and faculty" />
+            <img src="/image/inv1.webp" alt="Pitts Modern School students and faculty" />
           </figure>
           <figure className="about-pitts-inset-photo">
-            <img src="/image/655235611_122278627622192910_6813982125465658890_n.jpg" alt="Pitts Modern School leadership meeting" />
+            <img src="/image/655235611_122278627622192910_6813982125465658890_n.webp" alt="Pitts Modern School leadership meeting" />
           </figure>
         </div>
 

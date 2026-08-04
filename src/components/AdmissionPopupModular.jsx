@@ -25,8 +25,8 @@ export default function AdmissionPopupModular() {
   if (!isOpen || !popup.enabled) return null;
 
   const popupLinks = popup.linksEnabled !== false && Array.isArray(popup.links) ? popup.links : [];
-  const rawImage = popup.image && popup.image !== 'none' && popup.image !== 'false' ? popup.image : '/image/admission_popup.png';
-  const heroImage = normalizeAssetUrl(rawImage) || '/image/admission_popup.png';
+  const rawImage = popup.image && popup.image !== 'none' && popup.image !== 'false' ? popup.image : '/image/admission_popup.webp';
+  const heroImage = normalizeAssetUrl(rawImage) || '/image/admission_popup.webp';
 
   return (
     <div className="popup-modal-overlay" onClick={() => setIsOpen(false)}>
@@ -44,7 +44,7 @@ export default function AdmissionPopupModular() {
               alt={popup.title || 'Pitts Modern School Announcement'}
               className="popup-hero-img"
               onError={(event) => {
-                event.currentTarget.src = '/image/admission_popup.png';
+                event.currentTarget.src = '/image/admission_popup.webp';
               }}
             />
           </div>

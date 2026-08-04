@@ -13,7 +13,7 @@ const defaultClassXToppers = [
     id: 'cx-1',
     name: 'ANANYA',
     score: '97.8%',
-    image: '/image/inv1.jpg',
+    image: '/image/inv1.webp',
     bgColor: '#0B427E',
     motifType: 1,
     className: 'Class X'
@@ -22,7 +22,7 @@ const defaultClassXToppers = [
     id: 'cx-2',
     name: 'RIDDHI JAISWAL',
     score: '97.8%',
-    image: '/image/inv2.jpg',
+    image: '/image/inv2.webp',
     bgColor: '#009951',
     motifType: 2,
     className: 'Class X'
@@ -31,7 +31,7 @@ const defaultClassXToppers = [
     id: 'cx-3',
     name: 'BHAVYA JAIN',
     score: '96.6%',
-    image: '/image/inv3.jpg',
+    image: '/image/inv3.webp',
     bgColor: '#075cff',
     motifType: 3,
     className: 'Class X'
@@ -43,7 +43,7 @@ const defaultClassXIIToppers = [
     id: 'cxii-1',
     name: 'ANUSHKA GUPTA',
     score: '97.8%',
-    image: '/image/IMG_2137.jpg',
+    image: '/image/IMG_2137.webp',
     bgColor: '#0B427E',
     motifType: 1,
     className: 'Class XII'
@@ -52,7 +52,7 @@ const defaultClassXIIToppers = [
     id: 'cxii-2',
     name: 'Satyam Kumar',
     score: '95%',
-    image: '/image/IMG_2190.jpg',
+    image: '/image/IMG_2190.webp',
     bgColor: '#009951',
     motifType: 2,
     className: 'Class XII'
@@ -61,7 +61,7 @@ const defaultClassXIIToppers = [
     id: 'cxii-3',
     name: 'Aman Kumar Pramanik',
     score: '93.6%',
-    image: '/image/IMG_2203.jpg',
+    image: '/image/IMG_2203.webp',
     bgColor: '#930018',
     motifType: 3,
     className: 'Class XII'

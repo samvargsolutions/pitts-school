@@ -1,6 +1,6 @@
 import React from 'react';
 
-const heroSticker = '/image/hero_sticker.png';
+const heroSticker = '/image/hero_sticker.webp';
 
 export default function HeroSlideshow() {
   return (

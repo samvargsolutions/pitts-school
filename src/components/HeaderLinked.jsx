@@ -52,8 +52,8 @@ export default function HeaderLinked() {
 
       <div className="main-header">
         <div className="main-header-inner">
-          <a href={routeLinks.home} className="logo-container"><img src="/image/logohorizontal.png" alt="Pitts Modern School I.E.P.L Gomia Dist Bokaro" className="logo-img" /></a>
-          <div className="header-middle-badge"><img src="/image/59yearslogo.png" alt="Celebrating 50 Years of Excellence in Education" className="header-59-img" /></div>
+          <a href={routeLinks.home} className="logo-container"><img src="/image/logohorizontal.webp" alt="Pitts Modern School I.E.P.L Gomia Dist Bokaro" className="logo-img" /></a>
+          <div className="header-middle-badge"><img src="/image/59yearslogo.webp" alt="Celebrating 50 Years of Excellence in Education" className="header-59-img" /></div>
           <div className="header-right-actions">
             <button onClick={() => setIsSearchOpen(true)} className="search-icon-btn" aria-label="Search website"><Search size={20} /></button>
             <button onClick={() => setIsMenuOpen(true)} className="doon-menu-btn" aria-label="Open navigation menu"><span>MENU</span><div className="menu-icon-lines"><div className="menu-line line-1"></div><div className="menu-line line-2"></div><div className="menu-line line-3"></div></div></button>
@@ -75,7 +75,7 @@ export default function HeaderLinked() {
       {isMenuOpen && <button className="menu-drawer-backdrop" style={{ display: 'block' }} onClick={() => setIsMenuOpen(false)} aria-label="Close navigation" />}
       <div className="side-menu-drawer" style={{ display: isMenuOpen ? 'flex' : 'none', transform: isMenuOpen ? 'translateX(0)' : 'translateX(105%)' }}>
         <div className="side-menu-body">
-          <img src="/image/logo.png" alt="" className="side-menu-watermark" />
+          <img src="/image/logo.webp" alt="" className="side-menu-watermark" />
           <button onClick={() => setIsMenuOpen(false)} className="side-menu-close" aria-label="Close menu"><X size={25} /></button>
           <div className="side-menu-content">
             <div className="side-section-title menu-animate-item">QUICK ACTIONS</div><div className="side-section-rule menu-animate-item"></div>

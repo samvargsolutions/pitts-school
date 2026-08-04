@@ -3,11 +3,11 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { routeLinks, useSiteContent } from '../context/siteContent';
 
 const DEFAULT_HERO_SLIDES = [
-  { desktop: '/hero/2.png', mobile: '/hero/2-mobile.png' },
-  { desktop: '/hero/4.png', mobile: '/hero/4-mobile.png' },
-  { desktop: '/hero/7.png', mobile: '/hero/7-mobile.png' },
-  { desktop: '/hero/1.png', mobile: '/hero/1-mobile.png' },
-  { desktop: '/hero/8.png', mobile: '/hero/8-mobile.png' },
+  { desktop: '/hero/2.webp', mobile: '/hero/2-mobile.webp' },
+  { desktop: '/hero/4.webp', mobile: '/hero/4-mobile.webp' },
+  { desktop: '/hero/7.webp', mobile: '/hero/7-mobile.webp' },
+  { desktop: '/hero/1.webp', mobile: '/hero/1-mobile.webp' },
+  { desktop: '/hero/8.webp', mobile: '/hero/8-mobile.webp' },
 ];
 
 export default function HeroSlideshowModular() {
@@ -52,10 +52,10 @@ export default function HeroSlideshowModular() {
       {/* Background Slideshow Layer */}
       <div className="hero-slides-wrapper">
         {heroSlides.map((slideObj, index) => {
-          const desktopImg = typeof slideObj === 'string' ? slideObj : (slideObj.desktop || slideObj.image || '/hero/2.png');
+          const desktopImg = typeof slideObj === 'string' ? slideObj : (slideObj.desktop || slideObj.image || '/hero/2.webp');
           const mobileImg = typeof slideObj === 'object' && slideObj.mobile
             ? slideObj.mobile
-            : desktopImg.replace(/(\.png|\.jpg|\.jpeg|\.webp)$/i, '-mobile$1');
+            : desktopImg.replace(/(\.webp|\.webp|\.webp|\.webp)$/i, '-mobile$1');
 
           return (
             <div

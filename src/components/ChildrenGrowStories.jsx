@@ -4,15 +4,15 @@ const storyPanels = [
   {
     key: 'seen',
     eyebrow: 'A place where children feel known...',
-    cutout: '/image/508106751_122235019598192910_2677457905750902582_n.jpg',
+    cutout: '/image/508106751_122235019598192910_2677457905750902582_n.webp',
     cutoutAlt: 'Smiling Pitts Modern School students',
     photos: [
       {
-        image: '/image/657648950_122278627682192910_3316470583572254992_n.jpg',
+        image: '/image/657648950_122278627682192910_3316470583572254992_n.webp',
         alt: 'Pitts Modern School teacher guiding a student',
       },
     ],
-    words: ['When children', 'feel seen,', 'they grow in', 'confidence.'],
+    words: ['When children feel seen,', 'they grow in confidence.'],
     highlights: ['seen,'],
   },
   {
@@ -20,33 +20,33 @@ const storyPanels = [
     eyebrow: 'School should open up the world...',
     photos: [
       {
-        image: '/image/dc13.jpg',
+        image: '/image/dc13.webp',
         alt: 'Student performing a cultural dance',
       },
       {
-        image: '/image/459679975_122182238516192910_2352708045737928534_n.jpg',
+        image: '/image/459679975_122182238516192910_2352708045737928534_n.webp',
         alt: 'Students learning through a hands-on activity',
       },
     ],
-    words: ['From culture', 'to hands-on learning,', 'every day brings', 'something new.'],
+    words: ['From culture to', 'hands-on learning,', 'every day brings', 'something new.'],
     highlights: ['hands-on learning,'],
   },
   {
     key: 'growth',
     eyebrow: 'Growth happens in many ways...',
-    cutout: '/image/aam69.jpg',
+    cutout: '/image/aam69.webp',
     cutoutAlt: 'Pitts Modern School students growing with confidence',
     photos: [
       {
-        image: '/image/basketball2.jpg',
+        image: '/image/basketball2.webp',
         alt: 'Students playing sports together',
       },
       {
-        image: '/image/508156078_122235017180192910_7876871399596625689_n.jpg',
+        image: '/image/508156078_122235017180192910_7876871399596625689_n.webp',
         alt: 'Students building teamwork through play',
       },
     ],
-    words: ['Sports, teamwork,', 'and new experiences', 'help children', 'grow for life.'],
+    words: ['Sports, teamwork, and', 'new experiences help', 'children grow for life.'],
     highlights: ['teamwork,'],
   },
 ];

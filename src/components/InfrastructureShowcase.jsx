@@ -9,18 +9,18 @@ const facilities = [
     label: 'Life sciences',
     description:
       'A focused laboratory environment for observation, specimens, charts and practical science work that helps students understand biology by seeing it closely.',
-    motif: '/icons-illustrations/green-leafs.png',
+    motif: '/icons-illustrations/green-leafs.webp',
     images: [
       {
-        src: '/image/Pu13.jpg',
+        src: '/image/Pu13.webp',
         caption: 'Specimen study and observation area'
       },
       {
-        src: '/image/IMG_2285.jpg',
+        src: '/image/IMG_2285.webp',
         caption: 'Hands-on nature and life-science learning'
       },
       {
-        src: '/image/cca18.jpg',
+        src: '/image/cca18.webp',
         caption: 'Student-led practical exploration'
       }
     ]
@@ -32,18 +32,18 @@ const facilities = [
     label: 'Digital learning',
     description:
       'A technology-enabled learning space for digital literacy, project work and guided computer education across middle and senior classes.',
-    motif: '/icons-illustrations/bluegate.png',
+    motif: '/icons-illustrations/bluegate.webp',
     images: [
       {
-        src: '/image/Pu11.jpg',
+        src: '/image/Pu11.webp',
         caption: 'Digital displays and interactive learning'
       },
       {
-        src: '/image/IMG_2190.jpg',
+        src: '/image/IMG_2190.webp',
         caption: 'Technology-supported classroom activities'
       },
       {
-        src: '/image/21.jpg',
+        src: '/image/21.webp',
         caption: 'Mentored academic work sessions'
       }
     ]
@@ -55,18 +55,18 @@ const facilities = [
     label: 'STEM and making',
     description:
       'A practical making space for experimentation, circuits, robotics thinking and problem solving, built around curiosity and teamwork.',
-    motif: '/icons-illustrations/yellow-stairs.png',
+    motif: '/icons-illustrations/yellow-stairs.webp',
     images: [
       {
-        src: '/image/24.jpg',
+        src: '/image/24.webp',
         caption: 'STEM orientation and demonstration space'
       },
       {
-        src: '/image/jal1.jpg',
+        src: '/image/jal1.webp',
         caption: 'Guided workshops and collaborative learning'
       },
       {
-        src: '/image/jal3.jpg',
+        src: '/image/jal3.webp',
         caption: 'Hands-on project discussions'
       }
     ]
@@ -78,18 +78,18 @@ const facilities = [
     label: 'Campus core',
     description:
       'The daily heart of Pitts Modern School, with green pathways, academic blocks, assembly spaces and a campus rhythm shaped by decades of school life.',
-    motif: '/icons-illustrations/red.png',
+    motif: '/icons-illustrations/red.webp',
     images: [
       {
-        src: '/image/inv1.jpg',
+        src: '/image/inv1.webp',
         caption: 'Campus community and academic block'
       },
       {
-        src: '/image/pat3.jpg',
+        src: '/image/pat3.webp',
         caption: 'Green campus pathways'
       },
       {
-        src: '/image/aam1.jpg',
+        src: '/image/aam1.webp',
         caption: 'Assembly and campus movement'
       }
     ]
@@ -101,18 +101,18 @@ const facilities = [
     label: 'Reading and research',
     description:
       'A calm reading-led space for reference work, self-study, storytelling and the habits of curiosity that stay with students beyond the classroom.',
-    motif: '/icons-illustrations/triangle.png',
+    motif: '/icons-illustrations/triangle.webp',
     images: [
       {
-        src: '/image/hrd2.jpg',
+        src: '/image/hrd2.webp',
         caption: 'Reading, speaking and reference culture'
       },
       {
-        src: '/image/23.jpg',
+        src: '/image/23.webp',
         caption: 'Quiet academic gathering space'
       },
       {
-        src: '/image/jal2.jpg',
+        src: '/image/jal2.webp',
         caption: 'Guided learning sessions'
       }
     ]
@@ -145,9 +145,9 @@ export default function InfrastructureShowcase() {
       className="infra-showcase-section"
       aria-labelledby="infra-main-title"
     >
-      <img className="infra-motif infra-motif-red" src="/icons-illustrations/red.png" alt="" />
-      <img className="infra-motif infra-motif-blue" src="/icons-illustrations/bluegate.png" alt="" />
-      <img className="infra-motif infra-motif-leaf" src="/icons-illustrations/green-leafs.png" alt="" />
+      <img className="infra-motif infra-motif-red" src="/icons-illustrations/red.webp" alt="" />
+      <img className="infra-motif infra-motif-blue" src="/icons-illustrations/bluegate.webp" alt="" />
+      <img className="infra-motif infra-motif-leaf" src="/icons-illustrations/green-leafs.webp" alt="" />
 
       <div className="infra-shell">
         <header className="infra-page-header">

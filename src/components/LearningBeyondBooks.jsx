@@ -3,32 +3,32 @@ import React from 'react';
 const learningMoments = [
   {
     label: 'Culture',
-    image: '/image/02.jpg',
+    image: '/image/02.webp',
     className: 'learning-circle learning-circle-large learning-circle-left',
   },
   {
     label: 'Creativity',
-    image: '/image/cca13.jpg',
+    image: '/image/cca13.webp',
     className: 'learning-circle learning-circle-medium learning-circle-top',
   },
   {
     label: 'Teamwork',
-    image: '/image/508156078_122235017180192910_7876871399596625689_n.jpg',
+    image: '/image/508156078_122235017180192910_7876871399596625689_n.webp',
     className: 'learning-circle learning-circle-small learning-circle-right',
   },
   {
     label: 'Sports',
-    image: '/image/aam46.jpg',
+    image: '/image/aam46.webp',
     className: 'learning-circle learning-circle-small learning-circle-lower-left',
   },
   {
     label: 'Art',
-    image: '/image/656180855_122278451030192910_256945773651336968_n.jpg',
+    image: '/image/656180855_122278451030192910_256945773651336968_n.webp',
     className: 'learning-circle learning-circle-large learning-circle-bottom',
   },
   {
     label: 'Discovery',
-    image: '/image/657051011_122278442678192910_4830634205277214454_n.jpg',
+    image: '/image/657051011_122278442678192910_4830634205277214454_n.webp',
     className: 'learning-circle learning-circle-medium learning-circle-lower-right',
   },
 ];

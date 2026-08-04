@@ -420,7 +420,7 @@ function LoginPanel({ onLogin }) {
   return (
     <main className="admin-login-page">
       <div className="admin-login-panel">
-        <img src="/image/logo.png" alt="Pitts Modern School" />
+        <img src="/image/logo.webp" alt="Pitts Modern School" />
         <h1>Please Enter Login Information</h1>
         <form onSubmit={submit}>
           <label>
@@ -572,7 +572,7 @@ export default function AdminPortal() {
           <div className="admin-mobile-drawer-box" onClick={(e) => e.stopPropagation()}>
             <div className="admin-mobile-drawer-head">
               <div className="admin-brand">
-                <img src="/image/logo.png" alt="" />
+                <img src="/image/logo.webp" alt="" />
                 <span>Pitts Admin Menu</span>
               </div>
               <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu"><X size={22} /></button>
@@ -597,7 +597,7 @@ export default function AdminPortal() {
 
       <aside className="admin-sidebar">
         <a className="admin-brand" href="/">
-          <img src="/image/logo.png" alt="" />
+          <img src="/image/logo.webp" alt="" />
           <span>Pitts Control<small>Website admin</small></span>
         </a>
         <nav aria-label="Admin modules">
@@ -732,12 +732,12 @@ export default function AdminPortal() {
                 <article style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'center' }}>
                   <strong style={{ fontSize: '1.1rem', color: '#0B427E' }}>{activeValue?.title || 'Admissions Open!'}</strong>
                   {activeValue?.subtitle && <small style={{ color: '#475569', fontSize: '0.82rem' }}>{activeValue.subtitle}</small>}
-                  {(normalizeAssetUrl(activeValue?.image) || '/image/admission_popup.png') && (
+                  {(normalizeAssetUrl(activeValue?.image) || '/image/admission_popup.webp') && (
                     <img
-                      src={normalizeAssetUrl(activeValue?.image) || '/image/admission_popup.png'}
+                      src={normalizeAssetUrl(activeValue?.image) || '/image/admission_popup.webp'}
                       alt=""
                       style={{ width: '100%', borderRadius: '10px', maxHeight: '180px', objectFit: 'cover' }}
-                      onError={(e) => { e.currentTarget.src = '/image/admission_popup.png'; }}
+                      onError={(e) => { e.currentTarget.src = '/image/admission_popup.webp'; }}
                     />
                   )}
                   {activeValue?.body && <p style={{ fontSize: '0.82rem', color: '#334155', margin: 0, textAlign: 'left' }}>{activeValue.body}</p>}
