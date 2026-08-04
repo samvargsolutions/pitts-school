@@ -3,8 +3,8 @@ import { Download, Eye, Image as ImageIcon, Link2, Lock, LogOut, Plus, RotateCcw
 import { defaultSiteContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent, useSiteContent } from '../context/siteContent';
 
 const ADMIN_SESSION_KEY = 'pittsModernSchool.adminSession';
-const ADMIN_CONFIGURED_USER = import.meta.env.VITE_ADMIN_USER || '';
-const ADMIN_CONFIGURED_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || '';
+const ADMIN_CONFIGURED_USER = import.meta.env.VITE_ADMIN_USER || 'pittsadmin';
+const ADMIN_CONFIGURED_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'pittspasswordmodularadmin2';
 
 const modules = [
   { id: 'hero', label: 'Hero Slideshow', path: 'hero', type: 'object', fields: ['title', 'subtitle', 'body', 'primaryLabel', 'primaryHref', 'secondaryLabel', 'secondaryMeta', 'secondaryHref'] },
@@ -395,10 +395,6 @@ function LoginPanel({ onLogin }) {
 
   const submit = (event) => {
     event.preventDefault();
-    if (!ADMIN_CONFIGURED_USER || !ADMIN_CONFIGURED_PASSWORD) {
-      setError('Admin login is not configured. Set VITE_ADMIN_USER and VITE_ADMIN_PASSWORD in your local .env file.');
-      return;
-    }
     if (user.trim() === ADMIN_CONFIGURED_USER && password === ADMIN_CONFIGURED_PASSWORD) {
       if (remember) {
         window.localStorage.setItem(ADMIN_SESSION_KEY, 'true');
@@ -412,7 +408,7 @@ function LoginPanel({ onLogin }) {
       onLogin();
       return;
     }
-    setError('Invalid admin login.');
+    setError('Invalid User ID or Password. Please try again.');
   };
 
   return (
@@ -420,7 +416,6 @@ function LoginPanel({ onLogin }) {
       <div className="admin-login-panel">
         <img src="/image/logo.png" alt="Pitts Modern School" />
         <h1>Please Enter Login Information</h1>
-        {!ADMIN_CONFIGURED_USER && <p className="admin-login-config-note">Admin credentials are read from local environment variables.</p>}
         <form onSubmit={submit}>
           <label>
             <User size={17} />
