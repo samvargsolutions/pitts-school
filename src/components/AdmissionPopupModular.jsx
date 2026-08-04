@@ -25,7 +25,8 @@ export default function AdmissionPopupModular() {
   if (!isOpen || !popup.enabled) return null;
 
   const popupLinks = popup.linksEnabled !== false && Array.isArray(popup.links) ? popup.links : [];
-  const heroImage = normalizeAssetUrl(popup.image) || '/image/admission_popup.png';
+  const rawImage = popup.image && popup.image !== 'none' && popup.image !== 'false' ? popup.image : '/image/admission_popup.png';
+  const heroImage = normalizeAssetUrl(rawImage) || '/image/admission_popup.png';
 
   return (
     <div className="popup-modal-overlay" onClick={() => setIsOpen(false)}>

@@ -102,7 +102,11 @@ function mergeContent(defaults, saved) {
   return Object.keys(defaults).reduce((acc, key) => {
     const defaultValue = defaults[key];
     const savedValue = saved[key];
-    acc[key] = defaultValue && typeof defaultValue === 'object' && !Array.isArray(defaultValue) ? mergeContent(defaultValue, savedValue) : (savedValue === undefined ? defaultValue : savedValue);
+    if (key === 'image' && (!savedValue || savedValue === '/image/admission_popup.pn')) {
+      acc[key] = defaultValue || '/image/admission_popup.png';
+    } else {
+      acc[key] = defaultValue && typeof defaultValue === 'object' && !Array.isArray(defaultValue) ? mergeContent(defaultValue, savedValue) : (savedValue === undefined ? defaultValue : savedValue);
+    }
     return acc;
   }, {});
 }
