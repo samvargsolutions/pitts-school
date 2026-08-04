@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSiteContent } from '../context/siteContent';
 import {
   Users,
   Search,
@@ -318,14 +319,55 @@ function SwissMotifInBody({ type, color = '#ffc72c', isHovered }) {
   );
 }
 
+// Derive a subjectTag from post text so subject filters work with admin-entered data
+function deriveSubjectTag(post = '') {
+  const p = post.toUpperCase();
+  if (p.includes('PHYSICS'))       return 'PHYSICS';
+  if (p.includes('CHEMISTRY'))     return 'CHEMISTRY';
+  if (p.includes('BIOLOGY'))       return 'BIOLOGY';
+  if (p.includes('COMPUTER'))      return 'COMPUTER';
+  if (p.includes('MATHS') || p.includes('MATH') || p.includes('MATHEMATICS')) return 'MATHS';
+  if (p.includes('ENGLISH'))       return 'ENGLISH';
+  if (p.includes('HINDI') || p.includes('SANSKRIT')) return 'HINDI & SANSKRIT';
+  if (p.includes('SOCIAL') || p.includes('EVS'))     return 'SOCIALSCIENCE';
+  if (p.includes('MUSIC'))         return 'MUSIC';
+  if (p.includes('ART'))           return 'ART';
+  if (p.includes('LIBRARY'))       return 'LIBRARY';
+  if (p.includes('PHYSICAL') || p.includes('SPORT')) return 'PHYSICAL EDU';
+  if (p.includes('SCIENCE'))       return 'SCIENCE';
+  if (p.includes('PRIMARY') || p.includes('PRT'))    return 'PRIMARY';
+  return 'ADMIN';
+}
+
 export default function FacultySection() {
+  const siteContent = useSiteContent();
   const [activeWing, setActiveWing] = useState('senior'); // 'senior', 'primary', 'admin'
   const [selectedSubject, setSelectedSubject] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredCardId, setHoveredCardId] = useState(null);
 
+  // Use content library data from admin (or fallback to static data)
+  const libraryFaculty = siteContent?.contentLibrary?.faculty;
+  const sourceData = (libraryFaculty && libraryFaculty.length > 0) ? libraryFaculty : facultyMasterData;
+
+  // Normalize source entries so both static and admin-entered data work
+  const normalizedFaculty = sourceData.map((m, idx) => ({
+    id: m.id || `fac-${idx}`,
+    name: m.name || 'Faculty Member',
+    post: m.post || m.role || '',
+    qualification: m.qualification || '',
+    deptName: m.department || m.deptName || '',
+    wing: m.wing || 'senior',
+    experience: m.experience || '',
+    email: m.email || '',
+    image: m.image || '/image/inv1.jpg',
+    isLeadership: m.isLeadership || false,
+    motifType: m.motifType || ((idx % 4) + 1),
+    subjectTag: m.subjectTag || deriveSubjectTag(m.post || m.role || ''),
+  }));
+
   // Filter faculty based on active wing, selected subject, and search query
-  const filteredFaculty = facultyMasterData.filter((member) => {
+  const filteredFaculty = normalizedFaculty.filter((member) => {
     const matchesWing = member.wing === activeWing;
 
     const matchesSubject =

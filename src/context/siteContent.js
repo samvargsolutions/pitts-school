@@ -97,19 +97,85 @@ export const defaultSiteContent = {
     primaryLinks: [['Home', routeLinks.home], ['About Us', routeLinks.about], ['Our Story', routeLinks.story], ['Our Management', routeLinks.management], ["Principal's Desk", routeLinks.principal], ['Infrastructure', routeLinks.infrastructure], ['Faculty & Staff', routeLinks.faculty], ['News and Events', routeLinks.events]],
     secondaryLinks: [['Result', routeLinks.results], ['Admission Test Result', routeLinks.admissionResults], ['Sports', routeLinks.sports], ['Co-curricular Activities', routeLinks.cultural], ['Gallery', routeLinks.gallery], ['Newsletters', routeLinks.newsletters], ['School Rules', routeLinks.rules], ['Contact Us', routeLinks.contact]],
   },
-  contentLibrary: { faculty: [], staff: [], sports: [], culturalActivities: [], gallery: [] },
+  contentLibrary: {
+    faculty: [
+      // ── SENIOR WING FACULTY ──
+      { name: 'Mr. Brij Mohan Lal Das',     post: 'PRINCIPAL',                             qualification: 'B.Sc (Chemistry), DSE, PGDCA, M.Sc (Comp.Sc), B.Ed', department: 'Leadership & Chemistry',           wing: 'senior',  experience: '28+ Years', email: 'principal@pittsmorns.edu.in',  image: '/image/inv1.jpg' },
+      { name: 'Mr. Dinesh Kumar',             post: 'PGT (Computer)',                         qualification: 'MCA',                                                   department: 'Computer Science',                 wing: 'senior',  experience: '16+ Years', email: 'dinesh.k@pitts.edu.in',        image: '/image/inv2.jpg' },
+      { name: 'Mr. Ajay Kumar',               post: 'PGT (Computer)',                         qualification: 'M.Sc, PGDCA',                                           department: 'Computer Science',                 wing: 'senior',  experience: '14+ Years', email: 'ajay.k@pitts.edu.in',          image: '/image/inv3.jpg' },
+      { name: 'Mrs. Sunita Mukherjee',        post: 'PGT (English) & HOD',                   qualification: 'M.A. (English Lit), B.Ed',                              department: 'Department of English',            wing: 'senior',  experience: '20+ Years', email: 'sunita.m@pitts.edu.in',        image: '/image/IMG_2137.jpg' },
+      { name: 'Dr. Rajesh Sharma',            post: 'PGT (Physics)',                          qualification: 'M.Sc (Physics), Ph.D, B.Ed',                            department: 'Department of Physics',            wing: 'senior',  experience: '18+ Years', email: 'rajesh.s@pitts.edu.in',        image: '/image/IMG_2190.jpg' },
+      { name: 'Mrs. Anjali Sinha',            post: 'PGT (Chemistry)',                        qualification: 'M.Sc (Chemistry), B.Ed',                                department: 'Department of Chemistry',          wing: 'senior',  experience: '15+ Years', email: 'anjali.s@pitts.edu.in',        image: '/image/IMG_2203.jpg' },
+      { name: 'Mr. Alok Nath Verma',          post: 'PGT (Mathematics)',                      qualification: 'M.Sc (Maths), B.Ed',                                    department: 'Department of Mathematics',        wing: 'senior',  experience: '17+ Years', email: 'alok.v@pitts.edu.in',          image: '/image/inv1.jpg' },
+      { name: 'Mrs. Meena Kumari',            post: 'TGT (Hindi & Sanskrit)',                 qualification: 'M.A. (Hindi), Shastri, B.Ed',                           department: 'Hindi & Sanskrit Wing',            wing: 'senior',  experience: '19+ Years', email: 'meena.k@pitts.edu.in',         image: '/image/inv2.jpg' },
+      // ── PRIMARY WING FACULTY ──
+      { name: 'Mrs. Subhashini Das',          post: 'Headmistress (Primary Wing)',            qualification: 'M.A. (Psychology), B.Ed',                               department: 'Primary Academic Leadership',      wing: 'primary', experience: '22+ Years', email: 'primary.hm@pitts.edu.in',      image: '/image/inv2.jpg' },
+      { name: 'Mrs. Vandana Srivastava',      post: 'Senior PRT Coordinator',                qualification: 'B.Sc (Botany), B.Ed',                                   department: 'Primary Environmental Studies',    wing: 'primary', experience: '15+ Years', email: 'vandana.s@pitts.edu.in',       image: '/image/inv3.jpg' },
+      { name: 'Mr. K. K. Mishra',             post: 'PRT Mathematics Educator',              qualification: 'B.Sc (Maths), D.El.Ed',                                 department: 'Primary Mathematics Wing',         wing: 'primary', experience: '10+ Years', email: 'kk.mishra@pitts.edu.in',       image: '/image/IMG_2137.jpg' },
+      { name: 'Mrs. Rekha Sharma',            post: 'PRT English & Art Faculty',             qualification: 'B.A. (English), Fine Arts Dip.',                        department: 'Primary Languages & Art',          wing: 'primary', experience: '8+ Years',  email: 'rekha.s@pitts.edu.in',         image: '/image/IMG_2190.jpg' },
+      { name: 'Mr. Pradeep Kumar',            post: 'PRT General Science Teacher',           qualification: 'B.Sc, D.El.Ed',                                         department: 'Primary Science Wing',             wing: 'primary', experience: '9+ Years',  email: 'pradeep.k@pitts.edu.in',       image: '/image/inv1.jpg' },
+      // ── ADMINISTRATIVE STAFF ──
+      { name: 'Mr. A. K. Banerjee',           post: 'Senior Bursar & Finance Officer',       qualification: 'M.Com, ICWA (Inter)',                                   department: 'Accounts & Bursar Office',         wing: 'admin',   experience: '24+ Years', email: 'bursar@pitts.edu.in',          image: '/image/inv1.jpg' },
+      { name: 'Mrs. Rashmi Ranjan',           post: 'Admissions & Student Relations Manager',qualification: 'MBA (HR), B.A.',                                        department: 'Admissions & Public Relations',    wing: 'admin',   experience: '12+ Years', email: 'admissions@pitts.edu.in',      image: '/image/inv2.jpg' },
+      { name: 'Mr. S. N. Das',               post: 'System Administrator & IT Operations Head', qualification: 'B.Tech (Information Tech), CCNA',                   department: 'IT Operations & Digital Campus',   wing: 'admin',   experience: '14+ Years', email: 'it.admin@pitts.edu.in',        image: '/image/inv3.jpg' },
+      { name: 'Mr. Ramesh Chandra Sen',       post: 'Senior Administrative Executive',       qualification: 'B.A. (Hons), PGDHM',                                   department: 'General Campus Administration',    wing: 'admin',   experience: '18+ Years', email: 'admin.exec@pitts.edu.in',      image: '/image/IMG_2203.jpg' },
+    ],
+    staff: [],
+    sports: [
+      { title: 'Basketball Championship 2024', date: '2024', image: '/image/basketball2.jpg', text: 'Annual inter-house basketball championship showcasing team spirit and athletic excellence.', href: '/sports' },
+      { title: 'Sports Meet & Athletics',       date: '2024', image: '/image/sp1.jpg',         text: 'School annual sports meet with track & field events, relay races and gymnastics.', href: '/sports' },
+      { title: 'Drill & Combat Display',        date: '2024', image: '/image/dc2.jpg',          text: 'Precision drill and combat display by students demonstrating discipline and fitness.', href: '/sports' },
+      { title: 'Swimming Championship',         date: '2024', image: '/image/sp8.jpg',          text: 'Inter-house swimming championship bringing together the school\'s best swimmers.', href: '/sports' },
+    ],
+    culturalActivities: [
+      { title: 'Annual Academic Meet 2024',       date: '2024', image: '/image/aam1.jpg',   text: 'Celebrating academic achievement with awards, performances and recognition of student excellence.', href: '/CulturalCoCulturalActivity' },
+      { title: 'Co-Curricular Activities Fest',   date: '2024', image: '/image/CCA12.jpg',  text: 'A celebration of music, dance, drama and art showcasing the school\'s cultural vibrancy.', href: '/CulturalCoCulturalActivity' },
+      { title: 'Investiture Ceremony',            date: '2024', image: '/image/inv1.jpg',   text: 'Annual investiture ceremony honoring student council members and house captains.', href: '/CulturalCoCulturalActivity' },
+      { title: 'School Programme & Farewell',     date: '2024', image: '/image/hrd2.jpg',   text: 'Farewell programme celebrating the outgoing batch with performances, memories and gratitude.', href: '/CulturalCoCulturalActivity' },
+    ],
+    gallery: [
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam1.jpg',   caption: 'Annual Academic Meet 2024' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam32.jpg',  caption: 'Annual Academic Meet — Award Ceremony' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam33.jpg',  caption: 'Annual Academic Meet — Cultural Show' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam36.jpg',  caption: 'Annual Academic Meet — Highlights' },
+      { title: 'Annual Academic Meet', category: 'academics', image: '/image/aam44.jpg',  caption: 'Annual Academic Meet — Student Excellence' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/CCA12.jpg',   caption: 'Co-Curricular Activities Festival' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/CCA6.jpg',    caption: 'Cultural Performance on Stage' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca13.jpg',   caption: 'Creative Showcase' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca14.jpg',   caption: 'CCA Competition 2024' },
+      { title: 'Co-Curricular Activities', category: 'cca', image: '/image/cca17.jpg',   caption: 'CCA Highlights' },
+      { title: 'Basketball Championship',   category: 'sports', image: '/image/basketball2.jpg', caption: 'Inter-House Basketball Championship' },
+      { title: 'Sports Meet',               category: 'sports', image: '/image/sp1.jpg',         caption: 'Annual Sports Meet 2024' },
+      { title: 'Sports Meet',               category: 'sports', image: '/image/sp8.jpg',          caption: 'Swimming Championship' },
+      { title: 'Drill & Combat',            category: 'sports', image: '/image/dc11.jpg',          caption: 'Combat Display 2024' },
+      { title: 'Drill & Combat',            category: 'sports', image: '/image/dc12.jpg',          caption: 'Drill Precision Showcase' },
+      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv1.jpg',          caption: 'Investiture Ceremony 2024' },
+      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv2.jpg',          caption: 'Badge Pinning Ceremony' },
+      { title: 'Investiture Ceremony',      category: 'events', image: '/image/inv3.jpg',          caption: 'Student Council Investiture' },
+      { title: 'School Programme',          category: 'events', image: '/image/hrd2.jpg',           caption: 'School Annual Programme' },
+      { title: 'School Programme',          category: 'events', image: '/image/hrd6.jpg',           caption: 'School Farewell Programme' },
+    ],
+  },
 };
 
-function mergeContent(defaults, saved) {
+function mergeContent(defaults, saved, path) {
   if (!saved || typeof saved !== 'object') return defaults;
-  if (Array.isArray(defaults)) return Array.isArray(saved) ? saved : defaults;
+  if (Array.isArray(defaults)) {
+    if (!Array.isArray(saved)) return defaults;
+    // If the saved array is empty but defaults have data (e.g. first-run contentLibrary),
+    // fall back to defaults so pre-seeded data is always visible.
+    if (saved.length === 0 && defaults.length > 0) return defaults;
+    return saved;
+  }
   return Object.keys(defaults).reduce((acc, key) => {
     const defaultValue = defaults[key];
     const savedValue = saved[key];
     if (key === 'image' && (!savedValue || savedValue === '/image/admission_popup.pn')) {
       acc[key] = defaultValue || '/image/admission_popup.png';
     } else {
-      acc[key] = defaultValue && typeof defaultValue === 'object' && !Array.isArray(defaultValue) ? mergeContent(defaultValue, savedValue) : (savedValue === undefined ? defaultValue : savedValue);
+      acc[key] = defaultValue && typeof defaultValue === 'object' && !Array.isArray(defaultValue)
+        ? mergeContent(defaultValue, savedValue, key)
+        : (savedValue === undefined ? defaultValue : savedValue);
     }
     return acc;
   }, {});

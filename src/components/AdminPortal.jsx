@@ -7,21 +7,21 @@ const ADMIN_CONFIGURED_USER = import.meta.env.VITE_ADMIN_USER || '';
 const ADMIN_CONFIGURED_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || '';
 
 const modules = [
-  { id: 'hero', label: 'Hero', path: 'hero', type: 'object', fields: ['title', 'subtitle', 'body', 'primaryLabel', 'primaryHref', 'secondaryLabel', 'secondaryMeta', 'secondaryHref'] },
-  { id: 'popup', label: 'Popup', path: 'popup', type: 'object', fields: ['enabled', 'title', 'subtitle', 'body', 'image', 'ctaLabel', 'ctaHref'] },
+  { id: 'hero', label: 'Hero Slideshow', path: 'hero', type: 'object', fields: ['title', 'subtitle', 'body', 'primaryLabel', 'primaryHref', 'secondaryLabel', 'secondaryMeta', 'secondaryHref'] },
+  { id: 'popup', label: 'Popup Announcement', path: 'popup', type: 'object', fields: ['enabled', 'title', 'subtitle', 'body', 'image', 'ctaLabel', 'ctaHref'] },
   { id: 'announcements', label: 'Announcement Bar', path: 'header.announcements', type: 'array', fields: ['text', 'href'] },
   { id: 'quickActions', label: 'Quick Actions', path: 'header.quickActions', type: 'array', fields: ['title', 'href'] },
   { id: 'latestHighlights', label: 'Latest Highlights', path: 'latestHighlights', type: 'array', fields: ['title', 'image', 'href', 'imagePosition'] },
   { id: 'upcomingEvents', label: 'Upcoming Events', path: 'upcomingEvents', type: 'array', fields: ['month', 'day', 'weekday', 'title', 'type', 'time', 'image', 'excerpt', 'href'] },
   { id: 'notices', label: 'Notice Board', path: 'notices', type: 'array', fields: ['day', 'month', 'label', 'title', 'href'] },
   { id: 'newsletters', label: 'Newsletters', path: 'newsletters', type: 'array', fields: ['title', 'image', 'href'] },
-  { id: 'resultsConfig', label: 'Results Configuration', path: 'results', type: 'object', fields: ['year', 'bulletinHref'] },
-  { id: 'resultTags', label: 'Result Class Tags', path: 'results.tags', type: 'array', fields: ['name'] },
-  { id: 'toppers', label: 'Result Toppers', path: 'results.toppers', type: 'array', fields: ['rank', 'name', 'score', 'className', 'image', 'position', 'tone'] },
-  { id: 'landmarks', label: 'Landmark Moments', path: 'results.landmarkSlides', type: 'array', fields: ['image', 'tag', 'caption'] },
-  { id: 'faculty', label: 'Faculty Library', path: 'contentLibrary.faculty', type: 'array', fields: ['name', 'role', 'department', 'image', 'href'] },
+  { id: 'resultsConfig', label: 'Results — Session & Links', path: 'results', type: 'object', fields: ['year', 'bulletinHref'] },
+  { id: 'resultTags', label: 'Results — Class Tags', path: 'results.tags', type: 'array', fields: ['name'] },
+  { id: 'toppers', label: 'Results — Toppers', path: 'results.toppers', type: 'array', fields: ['rank', 'name', 'score', 'className', 'image', 'position', 'tone'] },
+  { id: 'landmarks', label: 'Results — Landmark Moments', path: 'results.landmarkSlides', type: 'array', fields: ['image', 'tag', 'caption'] },
+  { id: 'faculty', label: 'Faculty Library', path: 'contentLibrary.faculty', type: 'array', fields: ['name', 'post', 'qualification', 'department', 'wing', 'experience', 'email', 'image'] },
   { id: 'sports', label: 'Sports Library', path: 'contentLibrary.sports', type: 'array', fields: ['title', 'date', 'image', 'text', 'href'] },
-  { id: 'activities', label: 'Activity Library', path: 'contentLibrary.culturalActivities', type: 'array', fields: ['title', 'date', 'image', 'text', 'href'] },
+  { id: 'activities', label: 'Activities Library', path: 'contentLibrary.culturalActivities', type: 'array', fields: ['title', 'date', 'image', 'text', 'href'] },
   { id: 'gallery', label: 'Gallery Library', path: 'contentLibrary.gallery', type: 'array', fields: ['title', 'category', 'image', 'caption'] },
 ];
 
@@ -593,12 +593,33 @@ export default function AdminPortal() {
 
             {activeModule.type === 'object' ? (
               <div className="admin-object-grid">
+                {activeModule.id === 'resultsConfig' && (
+                  <div style={{ gridColumn: '1 / -1', background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '10px', padding: '1rem 1.2rem', marginBottom: '0.5rem' }}>
+                    <strong style={{ color: '#1E40AF', fontSize: '0.88rem' }}>ℹ️ How to edit results:</strong>
+                    <ul style={{ margin: '0.4rem 0 0 1.2rem', color: '#1D4ED8', fontSize: '0.83rem', lineHeight: 1.6 }}>
+                      <li><b>year</b> — the session label shown on the home &amp; results page (e.g. <code>2025-26</code>)</li>
+                      <li><b>bulletinHref</b> — URL or internal link for the "View Full Results" button</li>
+                      <li>To add/remove class tabs (Class X, Class XII…) use <b>Results — Class Tags</b> in the sidebar</li>
+                      <li>To add/edit student toppers use <b>Results — Toppers</b> in the sidebar</li>
+                    </ul>
+                  </div>
+                )}
                 {activeModule.fields.map((field) => (
                   <FieldInput key={field} field={field} value={activeValue?.[field]} onChange={(value) => updateObjectField(field, value)} />
                 ))}
               </div>
             ) : (
               <div className="admin-row-list">
+                {['faculty', 'gallery', 'sports', 'activities'].includes(activeModule.id) && (
+                  <div style={{ background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: '10px', padding: '0.9rem 1.2rem', marginBottom: '1rem' }}>
+                    <strong style={{ color: '#166534', fontSize: '0.85rem' }}>
+                      {activeModule.id === 'faculty' && '👩‍🏫 Faculty Library — data shown on the /faculty page. Use wing: senior / primary / admin'}
+                      {activeModule.id === 'gallery' && '🖼️ Gallery Library — photos shown on the /gallery page. Use category: academics / cca / sports / events / campus'}
+                      {activeModule.id === 'sports' && '🏆 Sports Library — items shown on the /sports page'}
+                      {activeModule.id === 'activities' && '🎭 Activities Library — items shown on the /CulturalCoCulturalActivity page'}
+                    </strong>
+                  </div>
+                )}
                 {(activeValue || []).map((item, index) => (
                   <article className="admin-data-row" key={`${activeModule.id}-${index}`}>
                     <div className="admin-data-row-head">

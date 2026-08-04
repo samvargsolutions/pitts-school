@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight, ZoomIn, Play, Camera, Film } from 'lucide-react';
+import { useSiteContent } from '../context/siteContent';
 
 /* ─── PHOTO CATALOGUE ──────────────────────────────────────────── */
 const GALLERY_ITEMS = [
@@ -176,14 +177,7 @@ const VIDEO_ITEMS = [
   }
 ];
 
-const PHOTO_FILTERS = [
-  { key: 'all',      label: 'ALL',            count: GALLERY_ITEMS.length },
-  { key: 'academics', label: 'ACADEMICS',     count: GALLERY_ITEMS.filter(i => i.cat === 'academics').length },
-  { key: 'cca',      label: 'CO-CURRICULAR', count: GALLERY_ITEMS.filter(i => i.cat === 'cca').length },
-  { key: 'sports',   label: 'SPORTS',         count: GALLERY_ITEMS.filter(i => i.cat === 'sports').length },
-  { key: 'events',   label: 'EVENTS',         count: GALLERY_ITEMS.filter(i => i.cat === 'events').length },
-  { key: 'campus',   label: 'CAMPUS LIFE',    count: GALLERY_ITEMS.filter(i => i.cat === 'campus').length },
-];
+// PHOTO_FILTERS are computed dynamically inside the component based on active items
 
 const VIDEO_FILTERS = [
   { key: 'all',      label: 'ALL VIDEOS',     count: VIDEO_ITEMS.length },
@@ -264,6 +258,7 @@ function VideoModal({ video, onClose }) {
 
 /* ─── MAIN GALLERY COMPONENT ─────────────────────────────────────── */
 export default function GallerySection() {
+  const siteContent = useSiteContent();
   const [activeMode, setActiveMode] = useState('photos'); // 'photos' | 'videos'
   const [activePhotoFilter, setActivePhotoFilter] = useState('all');
   const [activeVideoFilter, setActiveVideoFilter] = useState('all');
@@ -271,9 +266,30 @@ export default function GallerySection() {
   const [activeVideoModal, setActiveVideoModal] = useState(null);
   const [hoveredId, setHoveredId] = useState(null);
 
+  // Use admin-managed gallery data or fall back to the full static catalogue
+  const adminGallery = siteContent?.contentLibrary?.gallery;
+  const activeItems = (adminGallery && adminGallery.length > 0)
+    ? adminGallery.map((item, idx) => ({
+        id: item.id || `g-${idx}`,
+        src: item.image || item.src || '',
+        cat: item.category || item.cat || 'events',
+        label: item.caption || item.title || item.label || 'School Photo',
+      }))
+    : GALLERY_ITEMS;
+
+  // Build photo filters dynamically based on active items
+  const PHOTO_FILTERS = [
+    { key: 'all',       label: 'ALL',            count: activeItems.length },
+    { key: 'academics', label: 'ACADEMICS',      count: activeItems.filter(i => i.cat === 'academics').length },
+    { key: 'cca',       label: 'CO-CURRICULAR', count: activeItems.filter(i => i.cat === 'cca').length },
+    { key: 'sports',    label: 'SPORTS',         count: activeItems.filter(i => i.cat === 'sports').length },
+    { key: 'events',    label: 'EVENTS',         count: activeItems.filter(i => i.cat === 'events').length },
+    { key: 'campus',    label: 'CAMPUS LIFE',    count: activeItems.filter(i => i.cat === 'campus').length },
+  ];
+
   const filteredPhotos = activePhotoFilter === 'all'
-    ? GALLERY_ITEMS
-    : GALLERY_ITEMS.filter(i => i.cat === activePhotoFilter);
+    ? activeItems
+    : activeItems.filter(i => i.cat === activePhotoFilter);
 
   const filteredVideos = activeVideoFilter === 'all'
     ? VIDEO_ITEMS
