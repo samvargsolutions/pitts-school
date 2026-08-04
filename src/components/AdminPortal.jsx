@@ -363,10 +363,10 @@ function EventCalendarPreview({ events = [] }) {
 }
 
 function LoginPanel({ onLogin }) {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(() => window.localStorage.getItem('pittsAdmin.rememberedUser') || '');
   const [password, setPassword] = useState('');
   const [year, setYear] = useState('2026-27');
-  const [remember, setRemember] = useState(false);
+  const [remember, setRemember] = useState(() => window.localStorage.getItem('pittsAdmin.remember') === 'true');
   const [error, setError] = useState('');
 
   const submit = (event) => {
@@ -376,7 +376,14 @@ function LoginPanel({ onLogin }) {
       return;
     }
     if (user.trim() === ADMIN_CONFIGURED_USER && password === ADMIN_CONFIGURED_PASSWORD) {
-      if (remember) window.localStorage.setItem(ADMIN_SESSION_KEY, 'true');
+      if (remember) {
+        window.localStorage.setItem(ADMIN_SESSION_KEY, 'true');
+        window.localStorage.setItem('pittsAdmin.rememberedUser', user);
+        window.localStorage.setItem('pittsAdmin.remember', 'true');
+      } else {
+        window.localStorage.removeItem('pittsAdmin.rememberedUser');
+        window.localStorage.removeItem('pittsAdmin.remember');
+      }
       window.sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
       onLogin();
       return;
