@@ -9,6 +9,7 @@ export default function FooterLinked() {
 
   return (
     <footer className="site-footer" aria-labelledby="site-footer-title">
+      <div className="footer-bg-watermark" aria-hidden="true" />
       <div className="site-footer-inner">
         <section className="site-footer-brand" aria-labelledby="site-footer-title">
           <a className="site-footer-logo-link" href={routeLinks.home} aria-label="Pitts Modern School home">
@@ -57,11 +58,13 @@ export default function FooterLinked() {
       </div>
 
       <div className="site-footer-bottom">
-        <p>© 2026 Pitts Modern School, Gomia. All rights reserved.</p>
-        <div className="footer-bottom-links">
-          <a href={routeLinks.privacy}>Privacy Policy</a>
-          <span className="footer-link-dot">•</span>
-          <a href={routeLinks.admin}>Admin</a>
+        <div className="site-footer-bottom-inner">
+          <p>© 2026 Pitts Modern School, Gomia. All rights reserved.</p>
+          <div className="footer-bottom-links">
+            <a href={routeLinks.privacy}>Privacy Policy</a>
+            <span className="footer-link-dot">•</span>
+            <a href={routeLinks.admin}>Admin</a>
+          </div>
         </div>
       </div>
     </footer>

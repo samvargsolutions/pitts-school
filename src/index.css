@@ -3800,16 +3800,34 @@ button {
   .header-59-img {
     height: 64px;
   }
-}/* === COMPACT MODERN LIGHT FOOTER START === */
+}/* === MODERN BRAND-THEMED FOOTER WITH WATERMARK START === */
 .site-footer {
   position: relative;
   overflow: hidden;
   width: 100%;
-  background: #ffffff;
-  border-top: 1px solid #e2e8f0;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);
+  border-top: 3px solid #0B427E;
   color: #1e293b;
   isolation: isolate;
   z-index: 10;
+}
+
+/* Background Watermark Logo */
+.footer-bg-watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(340px, 45vw, 560px);
+  height: clamp(340px, 45vw, 560px);
+  background-image: url('/image/logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.055;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 .global-bg-logo-watermark {
@@ -3822,33 +3840,39 @@ button {
 
 .site-footer-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(1200px, 100%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(250px, 1.1fr) minmax(140px, 0.7fr) minmax(140px, 0.7fr) minmax(260px, 1.1fr);
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  padding: 2.25rem clamp(1rem, 2.5vw, 1.75rem) 1.5rem;
+  grid-template-columns: minmax(260px, 1.15fr) minmax(140px, 0.7fr) minmax(140px, 0.7fr) minmax(260px, 1.1fr);
+  gap: clamp(1.5rem, 3.2vw, 2.75rem);
+  padding: 2.35rem clamp(1rem, 2.5vw, 1.75rem) 1.65rem;
 }
 
 .site-footer-logo-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.8rem;
   color: #0B427E;
   text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.site-footer-logo-link:hover {
+  transform: translateY(-1px);
 }
 
 .site-footer-logo-link img {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(11, 66, 126, 0.12));
 }
 
 .site-footer-logo-link span {
   display: grid;
   color: #0B427E;
-  font-size: 1.08rem;
+  font-size: 1.12rem;
   line-height: 1.05;
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -3856,9 +3880,9 @@ button {
 }
 
 .site-footer-logo-link small {
-  margin-top: 0.15rem;
+  margin-top: 0.18rem;
   color: #e31e26;
-  font-size: 0.7em;
+  font-size: 0.72em;
   line-height: 1;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -3866,29 +3890,30 @@ button {
 
 .site-footer-brand p {
   width: min(340px, 100%);
-  margin: 0.65rem 0 0.85rem;
+  margin: 0.7rem 0 0.95rem;
   color: #475569;
-  font-size: 0.84rem;
-  line-height: 1.5;
-  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  font-weight: 500;
 }
 
 .site-footer-social {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
 .site-footer-social a {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid #cbd5e1;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid #0B427E;
   border-radius: 50%;
-  background: #f8fafc;
+  background: #ffffff;
   color: #0B427E;
   text-decoration: none;
-  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(11, 66, 126, 0.08);
+  transition: all 0.22s ease;
 }
 
 .site-footer-social a:hover,
@@ -3896,15 +3921,16 @@ button {
   border-color: #e31e26;
   background: #e31e26;
   color: #ffffff;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(227, 30, 38, 0.25);
 }
 
 .site-footer h2 {
   position: relative;
-  margin: 0 0 0.75rem;
-  padding-bottom: 0.35rem;
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.4rem;
   color: #0B427E;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   line-height: 1;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -3917,9 +3943,9 @@ button {
   left: 0;
   bottom: 0;
   width: 32px;
-  height: 2px;
-  background: #e31e26;
-  border-radius: 1px;
+  height: 2.5px;
+  background: linear-gradient(90deg, #e31e26 0%, #f4b41a 100%);
+  border-radius: 2px;
 }
 
 .site-footer-links ul {
@@ -3931,51 +3957,71 @@ button {
 }
 
 .site-footer-links li+li {
-  border-top: 1px dashed #f1f5f9;
+  border-top: 1px dashed #e2e8f0;
 }
 
 .site-footer-links a {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  min-height: 1.85rem;
+  gap: 0.35rem;
+  min-height: 1.95rem;
   color: #334155;
-  font-size: 0.82rem;
+  font-size: 0.83rem;
   line-height: 1.25;
   font-weight: 600;
   text-decoration: none;
   transition: color 150ms ease, transform 150ms ease;
 }
 
+.site-footer-links a svg {
+  color: #f4b41a;
+  transition: transform 0.15s ease;
+}
+
 .site-footer-links a:hover,
 .site-footer-links a:focus-visible {
   color: #e31e26;
+  transform: translateX(3px);
+}
+
+.site-footer-links a:hover svg {
   transform: translateX(2px);
 }
 
 .site-footer-contact address {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.7rem;
   margin: 0;
   font-style: normal;
 }
 
 .site-footer-contact-item {
   display: grid;
-  grid-template-columns: 28px minmax(0, 1fr);
-  gap: 0.6rem;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 0.65rem;
   color: #334155;
   text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.site-footer-contact-item:hover {
+  transform: translateX(2px);
 }
 
 .site-footer-contact-item svg {
   display: grid;
   place-self: start;
   box-sizing: content-box;
-  padding: 0.35rem;
-  border-radius: 6px;
-  background: #eff6ff;
-  color: #0B427E;
+  padding: 0.38rem;
+  border-radius: 8px;
+  background: #0B427E;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(11, 66, 126, 0.15);
+  transition: background 0.2s ease;
+}
+
+.site-footer-contact-item:hover svg {
+  background: #e31e26;
 }
 
 .site-footer-contact-item strong {
@@ -3985,25 +4031,34 @@ button {
   font-size: 0.72rem;
   line-height: 1;
   font-weight: 900;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .site-footer-contact-item span {
   color: #475569;
-  font-size: 0.8rem;
+  font-size: 0.81rem;
+  line-height: 1.38;
+  font-weight: 500;
+}
+
+.site-footer-contact-item:hover strong {
+  color: #e31e26;
+}
+
+/* Modern Dark Navy Bottom Strip */
+.site-footer-bottom {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background: #072b61;
+  color: #cbd5e1;
+  font-size: 0.78rem;
   line-height: 1.35;
   font-weight: 500;
 }
 
-.site-footer-contact-item:hover strong,
-.site-footer-contact-item:focus-visible strong {
-  color: #e31e26;
-}
-
-.site-footer-bottom {
-  position: relative;
-  z-index: 1;
+.site-footer-bottom-inner {
   width: min(1200px, 100%);
   margin: 0 auto;
   display: flex;
@@ -4011,11 +4066,6 @@ button {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.85rem clamp(1rem, 2.5vw, 1.75rem);
-  border-top: 1px solid #e2e8f0;
-  color: #64748b;
-  font-size: 0.78rem;
-  line-height: 1.35;
-  font-weight: 500;
 }
 
 .site-footer-bottom p {
@@ -4025,23 +4075,24 @@ button {
 .footer-bottom-links {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
 .footer-link-dot {
-  color: #cbd5e1;
+  color: #64748b;
   font-size: 0.6rem;
 }
 
 .site-footer-bottom a {
-  color: #0B427E;
+  color: #f4b41a;
   font-weight: 700;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .site-footer-bottom a:hover {
-  color: #e31e26;
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 @media (max-width: 980px) {
@@ -4055,19 +4106,25 @@ button {
 @media (max-width: 600px) {
   .site-footer-inner {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1.35rem;
     padding: 1.5rem 0.85rem 1rem;
   }
 
-  .site-footer-bottom {
+  .site-footer-bottom-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.4rem;
+    gap: 0.45rem;
     padding: 0.75rem 0.85rem;
     font-size: 0.75rem;
   }
+
+  .footer-bg-watermark {
+    width: clamp(280px, 75vw, 400px);
+    height: clamp(280px, 75vw, 400px);
+    opacity: 0.045;
+  }
 }
-/* === COMPACT MODERN LIGHT FOOTER END === */
+/* === MODERN BRAND-THEMED FOOTER WITH WATERMARK END === */
 
 @media (max-width: 768px) {
   .header-59-img {
