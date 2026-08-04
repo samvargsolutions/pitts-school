@@ -260,7 +260,6 @@ function repairPercentEncoding(value) {
 export function normalizeAssetUrl(value, fallback = '') {
   if (!value || typeof value !== 'string') return fallback;
   let trimmed = repairPercentEncoding(value.trim().replace(/\\/g, '/'));
-  if (trimmed.endsWith('.webp')) trimmed = `${trimmed}g`;
   if (/^(data:|blob:|https?:\/\/)/i.test(trimmed)) return trimmed;
   if (trimmed.startsWith('/')) return trimmed;
 

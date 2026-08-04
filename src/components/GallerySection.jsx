@@ -116,7 +116,7 @@ const GALLERY_ITEMS = [
   { id: 97, src: '/image/655235611_122278627622192910_6813982125465658890_n.webp', cat: 'events', label: 'School Highlights' },
   { id: 98, src: '/image/656729874_122278628264192910_5575061535742040043_n.webp', cat: 'events', label: 'School Highlights' },
   { id: 99, src: '/image/658952886_122279886296192910_3270116905043812727_n.webp', cat: 'events', label: 'School Highlights' },
-  { id: 100, src: '/image/662488026_122279886146192910_3383953004717888381_n.webp', cat: 'events', label: 'School Highlights' },
+  { id: 100, src: '/image/662488026_122279886146192910_3383945004717888381_n.webp', cat: 'events', label: 'School Highlights' },
 ];
 
 /* ─── VIDEO CATALOGUE (ALL HORIZONTAL) ───────────────────────────── */
