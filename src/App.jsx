@@ -6,7 +6,6 @@ import HeroSlideshow from './components/HeroSlideshowModular';
 import AboutPitts from './components/AboutPitts';
 import LatestHighlights from './components/LatestHighlightsModular';
 import ResultsProud from './components/ResultsProudModular';
-import ChildrenGrowStories from './components/ChildrenGrowStories';
 import LearningBeyondBooks from './components/LearningBeyondBooks';
 import Footer from './components/FooterLinked';
 import AboutUsSection from './components/AboutUsSection';
@@ -32,7 +31,6 @@ import { versionPublicAssetUrl } from './context/siteContent';
 
 export default function App() {
   const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
-  const isOurStoryPage = pathname === '/our-story';
   const isAboutUsPage = pathname === '/about-us';
   const isInfrastructurePage = pathname === '/infrastructure';
   const isNewsNoticesPage = pathname === '/news-and-notices' || pathname === '/news' || pathname === '/notices' || pathname.startsWith('/news/') || pathname.startsWith('/notices/');
@@ -83,20 +81,14 @@ export default function App() {
 
   return (
     <>
-      <LogoPreloader />
+      {isHomePage && <LogoPreloader />}
       <div className="min-h-screen bg-white text-gray-900">
         <Header />
         {!isHomePage && <div className="global-bg-logo-watermark" aria-hidden="true" />}
         {isHomePage && <AdmissionPopup />}
 
         <div className="main-page-wrapper">
-          {isOurStoryPage ? (
-            <>
-              {/* === MOVABLE SECTION START: Children Grow Story Panels === */}
-              <ChildrenGrowStories />
-              {/* === MOVABLE SECTION END: Children Grow Story Panels === */}
-            </>
-          ) : isAboutUsPage ? (
+          {isAboutUsPage ? (
             <>
               {/* === MOVABLE SECTION START: About Us Page === */}
               <AboutUsSection />
