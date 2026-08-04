@@ -389,7 +389,7 @@ export default function EventsSection() {
   const [selectedCalendarDate, setSelectedCalendarDate] = useState('AUG 15');
   const [activeGalleryEvent, setActiveGalleryEvent] = useState(null);
 
-  const adminEvents = Array.isArray(siteContent.upcomingEvents) ? siteContent.upcomingEvents : upcomingEventsData;
+  const adminEvents = Array.isArray(siteContent.upcomingEvents) && siteContent.upcomingEvents.length > 0 ? siteContent.upcomingEvents : upcomingEventsData;
   const syncedEvents = adminEvents.map(mapAdminEvent);
   const calendarGridTiles = syncedEvents.slice(0, 9).map((event) => {
     const dateStr = eventDateKey(event);

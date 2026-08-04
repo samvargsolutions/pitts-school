@@ -98,7 +98,7 @@ function SwissMotifInBody({ type, color = '#ffc72c', isHovered }) {
 export default function NewslettersSection() {
   const siteContent = useSiteContent();
   const [hoveredCardId, setHoveredCardId] = useState(null);
-  const newslettersSource = Array.isArray(siteContent.newsletters) ? siteContent.newsletters : newslettersData;
+  const newslettersSource = Array.isArray(siteContent.newsletters) && siteContent.newsletters.length > 0 ? siteContent.newsletters : newslettersData;
   const newsletters = newslettersSource.map((item, index) => ({
     id: item.id || `news-mag-${index + 1}`,
     title: item.title || 'School newsletter',

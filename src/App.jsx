@@ -1,5 +1,6 @@
 import React from 'react';
 import { Agentation } from 'agentation';
+import LogoPreloader from './components/LogoPreloader';
 import Header from './components/HeaderLinked';
 import HeroSlideshow from './components/HeroSlideshowModular';
 import AboutPitts from './components/AboutPitts';
@@ -60,6 +61,7 @@ export default function App() {
 
   return (
     <>
+      <LogoPreloader />
       <div className="min-h-screen bg-white text-gray-900">
         <Header />
         {!isHomePage && <div className="global-bg-logo-watermark" aria-hidden="true" />}

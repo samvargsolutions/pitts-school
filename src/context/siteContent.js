@@ -75,9 +75,10 @@ export const defaultSiteContent = {
     { day: '09', month: 'Apr', label: 'Academics', title: 'Book list for the Session 2026-2027', href: routeLinks.news },
   ],
   newsletters: [
-    { title: 'SSE result 2026 : Our school toppers', image: '/image/655235611_122278627622192910_6813982125465658890_n.jpg', href: routeLinks.newsletters },
-    { title: 'Cultural performances bring colour and confidence to campus', image: '/image/dc13.jpg', href: routeLinks.newsletters },
-    { title: 'Students celebrate service, creativity and school spirit', image: '/image/657051011_122278442678192910_4830634205277214454_n.jpg', href: routeLinks.newsletters },
+    { title: 'Class 10 CBSE Result : School Toppers (Dainik Jagran)', date: 'Press Coverage • 16.04.2026', summary: 'Dainik Jagran feature on Pitts Modern School students scoring 97.8% distinction in CBSE Class 10 Board Examinations.', image: '/image/inv1.jpg', href: routeLinks.newsletters },
+    { title: 'SSE Result 2026 : Our School Toppers (Prabhat Khabar)', date: 'Press Coverage • 15.04.2026', summary: 'Prabhat Khabar press report honoring Ananya & Riddhi for achieving top regional ranks in CBSE Senior Secondary exams.', image: '/image/inv2.jpg', href: routeLinks.newsletters },
+    { title: 'Elocution & Declamation Competition Winners (Hindustan)', date: 'Press Coverage • 23.04.2026', summary: 'Hindustan Dainik feature on PMS students Vinayak and Siddhi winning 2nd prize at regional inter-school debate summit.', image: '/image/inv3.jpg', href: routeLinks.newsletters },
+    { title: 'Jharkhand Haqeeqat : JEE Main Top Ranks Achieved by PMS Students', date: 'Press Coverage • 18.04.2026', summary: 'Jharkhand Haqeeqat report celebrating Pitts Modern School students securing 3rd district rank in JEE engineering examination.', image: '/image/IMG_2137.jpg', href: routeLinks.newsletters },
   ],
   results: {
     year: '2025-26', bulletinHref: routeLinks.results,
