@@ -181,6 +181,31 @@ function mergeContent(defaults, saved, path) {
   }, {});
 }
 
+const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fcc2c22897052';
+let isSyncingCloud = false;
+
+export async function fetchCloudContent() {
+  if (typeof window === 'undefined' || isSyncingCloud) return null;
+  try {
+    isSyncingCloud = true;
+    const response = await fetch(CLOUD_SYNC_ENDPOINT, { cache: 'no-store' });
+    if (!response.ok) return null;
+    const data = await response.json();
+    const cloudContent = data?.data?.content;
+    if (cloudContent && typeof cloudContent === 'object') {
+      const merged = mergeContent(defaultSiteContent, cloudContent);
+      window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
+      window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
+      return merged;
+    }
+  } catch (error) {
+    // Graceful fallback to LocalStorage if offline
+  } finally {
+    isSyncingCloud = false;
+  }
+  return null;
+}
+
 export function getSiteContent() {
   if (typeof window === 'undefined') return defaultSiteContent;
   try {
@@ -194,14 +219,28 @@ export function getSiteContent() {
 
 export function saveSiteContent(content) {
   if (typeof window === 'undefined') return;
-  window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(content));
-  window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: content }));
+  const merged = mergeContent(defaultSiteContent, content);
+  window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
+  window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
+
+  // Push updates asynchronously to Cloud Storage for cross-device synchronization
+  fetch(CLOUD_SYNC_ENDPOINT, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: 'pitts_site_content_v1', data: { content: merged, updatedAt: Date.now() } }),
+  }).catch((err) => console.warn('Cloud sync push error:', err));
 }
 
 export function resetSiteContent() {
   if (typeof window === 'undefined') return defaultSiteContent;
   window.localStorage.removeItem(SITE_CONTENT_KEY);
   window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: defaultSiteContent }));
+  // Also reset cloud content
+  fetch(CLOUD_SYNC_ENDPOINT, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: 'pitts_site_content_v1', data: { content: defaultSiteContent, updatedAt: Date.now() } }),
+  }).catch(() => {});
   return defaultSiteContent;
 }
 
@@ -237,9 +276,19 @@ export function useSiteContent() {
     const sync = () => setContent(getSiteContent());
     window.addEventListener('storage', sync);
     window.addEventListener(SITE_CONTENT_EVENT, sync);
+
+    // Initial background cloud sync
+    fetchCloudContent();
+
+    // Periodic cloud poll every 10 seconds for cross-device updates
+    const pollInterval = setInterval(() => {
+      fetchCloudContent();
+    }, 10000);
+
     return () => {
       window.removeEventListener('storage', sync);
       window.removeEventListener(SITE_CONTENT_EVENT, sync);
+      clearInterval(pollInterval);
     };
   }, []);
   return content;

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Download, Eye, Image as ImageIcon, Link2, Lock, LogOut, Plus, RotateCcw, Save, ShieldCheck, Trash2, Upload, User } from 'lucide-react';
+import { Download, Eye, Image as ImageIcon, Link2, Lock, LogOut, Menu, Plus, RotateCcw, Save, ShieldCheck, Trash2, Upload, User, X } from 'lucide-react';
 import { defaultSiteContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent, useSiteContent } from '../context/siteContent';
 
 const ADMIN_SESSION_KEY = 'pittsModernSchool.adminSession';
@@ -449,6 +449,7 @@ export default function AdminPortal() {
   const [savedLabel, setSavedLabel] = useState('Saved locally');
   const [saveState, setSaveState] = useState('saved');
   const [isSaving, setIsSaving] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const activeModule = useMemo(() => modules.find((module) => module.id === activeId) || modules[0], [activeId]);
   const activeValue = getAtPath(content, activeModule.path);
 
@@ -479,7 +480,7 @@ export default function AdminPortal() {
   const save = async () => {
     setIsSaving(true);
     setSaveState('dirty');
-    setSavedLabel('Optimizing uploads...');
+    setSavedLabel('Optimizing uploads & syncing cloud...');
     try {
       const cleanedContent = cleanInvalidLinkUploads(content);
       const optimizedContent = await optimizeContentForStorage(cleanedContent);
@@ -487,7 +488,7 @@ export default function AdminPortal() {
       const savedContent = getSiteContent();
       setContent(savedContent);
       setSaveState('saved');
-      setSavedLabel(`Changes saved at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (${describeBytes(getStorageBytes(savedContent))})`);
+      setSavedLabel(`Saved & synced cloud at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (${describeBytes(getStorageBytes(savedContent))})`);
     } catch (error) {
       console.error('Could not save admin changes.', error);
       setSaveState('error');
@@ -501,7 +502,7 @@ export default function AdminPortal() {
     const next = resetSiteContent();
     updateContent(next);
     setSaveState('saved');
-    setSavedLabel('Defaults restored');
+    setSavedLabel('Defaults restored & synced');
   };
 
   const exportJson = () => {
@@ -543,8 +544,52 @@ export default function AdminPortal() {
     setSavedLabel('Popup will show again on the website after refresh');
   };
 
+  const selectModule = (id) => {
+    setActiveId(id);
+    setIsMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <main className="admin-portal-page">
+      {/* MOBILE TOP BAR WITH HAMBURGER BUTTON */}
+      <div className="admin-mobile-header">
+        <button className="admin-mobile-hamburger" onClick={() => setIsMobileMenuOpen(true)} aria-label="Open admin menu">
+          <Menu size={22} />
+          <span>Modules</span>
+        </button>
+        <span className="admin-mobile-active-module">{activeModule.label}</span>
+      </div>
+
+      {/* MOBILE DRAWER OVERLAY */}
+      {isMobileMenuOpen && (
+        <div className="admin-mobile-drawer-backdrop" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="admin-mobile-drawer-box" onClick={(e) => e.stopPropagation()}>
+            <div className="admin-mobile-drawer-head">
+              <div className="admin-brand">
+                <img src="/image/logo.png" alt="" />
+                <span>Pitts Admin Menu</span>
+              </div>
+              <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu"><X size={22} /></button>
+            </div>
+            <nav className="admin-mobile-drawer-nav">
+              {modules.map((module) => (
+                <button
+                  key={module.id}
+                  className={activeId === module.id ? 'active' : ''}
+                  onClick={() => selectModule(module.id)}
+                >
+                  <span>{module.label}</span>
+                </button>
+              ))}
+            </nav>
+            <button className="admin-logout" style={{ marginTop: '1rem' }} onClick={logout}>
+              <LogOut size={16} /> Logout
+            </button>
+          </div>
+        </div>
+      )}
+
       <aside className="admin-sidebar">
         <a className="admin-brand" href="/">
           <img src="/image/logo.png" alt="" />
@@ -552,7 +597,7 @@ export default function AdminPortal() {
         </a>
         <nav aria-label="Admin modules">
           {modules.map((module) => (
-            <button key={module.id} className={activeId === module.id ? 'active' : ''} onClick={() => setActiveId(module.id)}>
+            <button key={module.id} className={activeId === module.id ? 'active' : ''} onClick={() => selectModule(module.id)}>
               {module.label}
             </button>
           ))}
