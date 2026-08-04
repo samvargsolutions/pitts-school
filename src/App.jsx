@@ -28,6 +28,7 @@ import ManagementSection from './components/ManagementSection';
 import AdmissionPopup from './components/AdmissionPopupModular';
 import { CulturalCoCurricularPage, SportsActivityPage } from './components/StudentLifeShowcase';
 import AdminPortal from './components/AdminPortal';
+import { versionPublicAssetUrl } from './context/siteContent';
 
 export default function App() {
   const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
@@ -54,6 +55,27 @@ export default function App() {
 
   const isAdminPage = pathname === '/admin' || pathname === '/admin-login';
   const isHomePage = pathname === '/';
+
+  React.useEffect(() => {
+    const retryLocalImage = (event) => {
+      const image = event.target;
+      if (!(image instanceof HTMLImageElement) || image.dataset.assetRetry === 'true') return;
+
+      try {
+        const currentUrl = new URL(image.currentSrc || image.src, window.location.origin);
+        if (currentUrl.origin !== window.location.origin) return;
+        if (!/\.(webp|png|jpe?g|svg)$/i.test(currentUrl.pathname)) return;
+
+        image.dataset.assetRetry = 'true';
+        image.src = versionPublicAssetUrl(`${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`);
+      } catch {
+        // Ignore malformed image URLs and leave the browser's native broken image state.
+      }
+    };
+
+    window.addEventListener('error', retryLocalImage, true);
+    return () => window.removeEventListener('error', retryLocalImage, true);
+  }, []);
 
   if (isAdminPage) {
     return <AdminPortal />;

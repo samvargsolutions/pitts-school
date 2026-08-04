@@ -257,14 +257,28 @@ function repairPercentEncoding(value) {
   return value.replace(/%(?![0-9A-Fa-f]{2})/g, '%25');
 }
 
+export const PUBLIC_ASSET_VERSION = 'asset-case-20260804';
+
+export function versionPublicAssetUrl(value) {
+  if (!value || typeof value !== 'string') return value;
+  if (!/^\/(?:image|hero|icons-illustrations|newsletters|whatshappingcard)\//i.test(value)) return value;
+  if (/[?&]v=/.test(value)) return value;
+
+  const hashIndex = value.indexOf('#');
+  const pathAndSearch = hashIndex === -1 ? value : value.slice(0, hashIndex);
+  const hash = hashIndex === -1 ? '' : value.slice(hashIndex);
+  const separator = pathAndSearch.includes('?') ? '&' : '?';
+  return `${pathAndSearch}${separator}v=${PUBLIC_ASSET_VERSION}${hash}`;
+}
+
 export function normalizeAssetUrl(value, fallback = '') {
   if (!value || typeof value !== 'string') return fallback;
   let trimmed = repairPercentEncoding(value.trim().replace(/\\/g, '/'));
   if (/^(data:|blob:|https?:\/\/)/i.test(trimmed)) return trimmed;
-  if (trimmed.startsWith('/')) return trimmed;
+  if (trimmed.startsWith('/')) return versionPublicAssetUrl(trimmed);
 
   const publicMatch = trimmed.match(/(?:^|\/)(image|icons-illustrations|assets)\/.+$/i);
-  if (publicMatch) return `/${publicMatch[0].replace(/^\/+/, '')}`;
+  if (publicMatch) return versionPublicAssetUrl(`/${publicMatch[0].replace(/^\/+/, '')}`);
 
   if (/^[A-Za-z]:\//.test(trimmed)) return fallback;
   return trimmed;
