@@ -1,7 +1,8 @@
-﻿import React from 'react';
+import React, { useState } from 'react';
 import { routeLinks, useSiteContent } from '../context/siteContent';
+import { ArrowLeft, ArrowRight, ChevronDown, Download } from 'lucide-react';
 
-const toppers = [
+const defaultToppers = [
   {
     rank: '01',
     name: 'Ananya Sharma',
@@ -40,7 +41,7 @@ const toppers = [
   },
 ];
 
-const slideshowItems = [
+const defaultSlideshowItems = [
   {
     id: 's1',
     image: '/image/654420916_122278450718192910_7739475501613658151_n.jpg',
@@ -105,10 +106,20 @@ const slideshowItems = [
 
 export default function ResultsProud() {
   const siteContent = useSiteContent();
-  const toppers = siteContent.results.toppers || [];
-  const slideshowItems = siteContent.results.landmarkSlides || [];
-  const resultYear = siteContent.results.year || '2025-26';
-  const bulletinHref = siteContent.results.bulletinHref || routeLinks.results;
+  const toppers = siteContent.results?.toppers || defaultToppers;
+  const slideshowItems = siteContent.results?.landmarkSlides || defaultSlideshowItems;
+  const resultYear = siteContent.results?.year || '2025-26';
+  const bulletinHref = siteContent.results?.bulletinHref || routeLinks.results;
+
+  const [activeFilter, setActiveFilter] = useState('All Toppers');
+
+  const tagsList = siteContent.results?.tags || [{ name: 'Class X' }, { name: 'Class XII' }];
+  const filters = ['All Toppers', ...tagsList.map(t => t.name).filter(Boolean)];
+
+  const filteredToppers = activeFilter === 'All Toppers'
+    ? toppers
+    : toppers.filter(t => t.className === activeFilter);
+
   return (
     <section className="results-proud-section" aria-labelledby="results-proud-title">
       <img className="results-motif results-motif-pink" src="/icons-illustrations/red-drop.png" alt="" aria-hidden="true" />
@@ -127,29 +138,36 @@ export default function ResultsProud() {
             <div className="results-dot-grid" aria-hidden="true" />
             <button className="results-year-button" type="button" aria-label={`Selected result year ${resultYear}`}>
               {resultYear}
-              <span aria-hidden="true">âŒ„</span>
+              <ChevronDown size={14} style={{ marginLeft: '6px', display: 'inline-block', verticalAlign: 'middle' }} />
             </button>
             <a className="results-all-button" href={routeLinks.results}>
               View All Results
             </a>
-            <a className="results-download-link" href={bulletinHref}>
+            <a className="results-download-link" href={bulletinHref} target="_blank" rel="noreferrer">
               Download Result Bulletin
-              <span aria-hidden="true">â†“</span>
+              <Download size={14} style={{ marginLeft: '6px', display: 'inline-block', verticalAlign: 'middle' }} />
             </a>
           </div>
         </div>
 
         <div className="results-tabs" aria-label="Result filters">
-          <button className="results-tab is-active" type="button">All Toppers</button>
-          <button className="results-tab" type="button">Class X</button>
-          <button className="results-tab" type="button">Class XII</button>
+          {filters.map((filterName) => (
+            <button
+              key={filterName}
+              className={`results-tab ${activeFilter === filterName ? 'is-active' : ''}`}
+              onClick={() => setActiveFilter(filterName)}
+              type="button"
+            >
+              {filterName}
+            </button>
+          ))}
         </div>
 
         <div className="results-carousel" aria-label="Top result achievers">
-          <button className="results-arrow results-arrow-left" type="button" aria-label="Previous toppers">â†</button>
+          <button className="results-arrow results-arrow-left" type="button" aria-label="Previous toppers"><ArrowLeft size={16} /></button>
           <div className="results-card-track">
-            {toppers.map((topper) => (
-              <article className={`result-card result-card-${topper.tone}`} key={topper.rank}>
+            {filteredToppers.map((topper, idx) => (
+              <article className={`result-card result-card-${topper.tone || 'blue'}`} key={`${topper.rank || idx}`}>
                 <span className="result-card-rank">{topper.rank}</span>
                 <span className="result-card-class">{topper.className}</span>
                 <div className="result-card-photo">
@@ -160,7 +178,7 @@ export default function ResultsProud() {
               </article>
             ))}
           </div>
-          <button className="results-arrow results-arrow-right" type="button" aria-label="Next toppers">â†’</button>
+          <button className="results-arrow results-arrow-right" type="button" aria-label="Next toppers"><ArrowRight size={16} /></button>
         </div>
 
         <div className="results-progress" aria-hidden="true">

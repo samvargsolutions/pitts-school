@@ -6,16 +6,17 @@ import {
   ChevronRight,
   GraduationCap
 } from 'lucide-react';
+import { useSiteContent, routeLinks } from '../context/siteContent';
 
-// Class X Board Toppers Data (From Previous Website Screenshot)
-const classXToppers = [
+const defaultClassXToppers = [
   {
     id: 'cx-1',
     name: 'ANANYA',
     score: '97.8%',
     image: '/image/inv1.jpg',
     bgColor: '#0B427E',
-    motifType: 1
+    motifType: 1,
+    className: 'Class X'
   },
   {
     id: 'cx-2',
@@ -23,7 +24,8 @@ const classXToppers = [
     score: '97.8%',
     image: '/image/inv2.jpg',
     bgColor: '#009951',
-    motifType: 2
+    motifType: 2,
+    className: 'Class X'
   },
   {
     id: 'cx-3',
@@ -31,19 +33,20 @@ const classXToppers = [
     score: '96.6%',
     image: '/image/inv3.jpg',
     bgColor: '#075cff',
-    motifType: 3
+    motifType: 3,
+    className: 'Class X'
   }
 ];
 
-// Class XII Board Toppers Data (From Previous Website Screenshot)
-const classXIIToppers = [
+const defaultClassXIIToppers = [
   {
     id: 'cxii-1',
     name: 'ANUSHKA GUPTA',
     score: '97.8%',
     image: '/image/IMG_2137.jpg',
     bgColor: '#0B427E',
-    motifType: 1
+    motifType: 1,
+    className: 'Class XII'
   },
   {
     id: 'cxii-2',
@@ -51,7 +54,8 @@ const classXIIToppers = [
     score: '95%',
     image: '/image/IMG_2190.jpg',
     bgColor: '#009951',
-    motifType: 2
+    motifType: 2,
+    className: 'Class XII'
   },
   {
     id: 'cxii-3',
@@ -59,9 +63,12 @@ const classXIIToppers = [
     score: '93.6%',
     image: '/image/IMG_2203.jpg',
     bgColor: '#930018',
-    motifType: 3
+    motifType: 3,
+    className: 'Class XII'
   }
 ];
+
+const fallbackToppers = [...defaultClassXToppers, ...defaultClassXIIToppers];
 
 // Swiss Modular Geometric SVG Motif
 function SwissMotifInBody({ type, color = '#ffc72c', isHovered }) {
@@ -102,15 +109,23 @@ function SwissMotifInBody({ type, color = '#ffc72c', isHovered }) {
 }
 
 export default function CBSEResultSection() {
+  const siteContent = useSiteContent();
+  const toppers = siteContent.results?.toppers || fallbackToppers;
+  const tagsList = siteContent.results?.tags || [{ name: 'Class X' }, { name: 'Class XII' }];
+  const resultYear = siteContent.results?.year || '2025-26';
+  const bulletinHref = siteContent.results?.bulletinHref || routeLinks.results;
+
   const [activeTab, setActiveTab] = useState('all');
   const [hoveredCardId, setHoveredCardId] = useState(null);
+
+  const displayedTags = activeTab === 'all' ? tagsList : tagsList.filter(t => t.name === activeTab);
 
   return (
     <div className="cbse-results-page-wrapper results-page-watermark-wrapper">
       {/* Top Header Bar */}
       <div className="page-nav-top-bar results-page-content-z">
         <div className="page-nav-top-inner">
-          <span className="editorial-overline">NATIONAL CBSE BOARD ACADEMIC EXCELLENCE</span>
+          <span className="editorial-overline">NATIONAL CBSE BOARD ACADEMIC EXCELLENCE {resultYear}</span>
           <h1 className="page-standalone-title">EXAM RESULTS</h1>
         </div>
       </div>
@@ -125,146 +140,97 @@ export default function CBSEResultSection() {
                 onClick={() => setActiveTab('all')}
               >
                 <Trophy size={16} />
-                <span>All Results</span>
+                <span>All Toppers</span>
               </button>
 
-              <button
-                className={`result-tab-btn ${activeTab === 'class10' ? 'active' : ''}`}
-                onClick={() => setActiveTab('class10')}
-              >
-                <GraduationCap size={16} />
-                <span>SSE Class X Result</span>
-              </button>
-
-              <button
-                className={`result-tab-btn ${activeTab === 'class12' ? 'active' : ''}`}
-                onClick={() => setActiveTab('class12')}
-              >
-                <Award size={16} />
-                <span>SSCE Class XII Result</span>
-              </button>
+              {tagsList.map((tag) => (
+                <button
+                  key={tag.name}
+                  className={`result-tab-btn ${activeTab === tag.name ? 'active' : ''}`}
+                  onClick={() => setActiveTab(tag.name)}
+                >
+                  <GraduationCap size={16} />
+                  <span>{tag.name} Result</span>
+                </button>
+              ))}
             </div>
 
             <div className="results-pdf-actions">
-              <button
-                onClick={() => alert('Downloading SSE 2026 Class X Result PDF...')}
+              <a
+                href={bulletinHref}
+                target="_blank"
+                rel="noreferrer"
                 className="download-result-pdf-btn"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}
               >
                 <Download size={15} />
-                <span>Class X Result</span>
-              </button>
-              <button
-                onClick={() => alert('Downloading SSCE 2026 Class XII Result PDF...')}
-                className="download-result-pdf-btn"
-              >
-                <Download size={15} />
-                <span>Class XII Result</span>
-              </button>
+                <span>Download Result Bulletin</span>
+              </a>
             </div>
           </div>
 
-          {/* 1. CLASS X RESULT SECTION */}
-          {(activeTab === 'all' || activeTab === 'class10') && (
-            <div className="result-category-block">
-              <div className="category-block-header">
-                <h2 className="category-title">Close SSE 2026 CLASS X RESULT</h2>
-                <button
-                  onClick={() => alert('Downloading full Class X result gazette...')}
-                  className="section-download-link"
-                >
-                  <span>Download Result</span>
-                  <ChevronRight size={15} />
-                </button>
-              </div>
+          {/* DYNAMIC RESULT SECTIONS */}
+          {displayedTags.map((tag, tagIndex) => {
+            const tagToppers = toppers.filter(student => student.className === tag.name);
+            if (tagToppers.length === 0) return null;
 
-              <div className="toppers-cards-grid">
-                {classXToppers.map((student) => {
-                  const isHovered = hoveredCardId === student.id;
+            return (
+              <div className={`result-category-block ${tagIndex > 0 ? 'mt-10' : ''}`} key={tag.name}>
+                <div className="category-block-header">
+                  <h2 className="category-title">{tag.name} BOARD RESULTS ({resultYear})</h2>
+                  <a
+                    href={bulletinHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="section-download-link"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <span>Download Gazette</span>
+                    <ChevronRight size={15} />
+                  </a>
+                </div>
 
-                  return (
-                    <article
-                      key={student.id}
-                      className={`topper-card-swiss ${isHovered ? 'is-hovered' : ''}`}
-                      style={{ '--card-hover-bg': student.bgColor }}
-                      onMouseEnter={() => setHoveredCardId(student.id)}
-                      onMouseLeave={() => setHoveredCardId(null)}
-                    >
-                      <div className="topper-photo-wrap">
-                        <img
-                          src={student.image}
-                          alt={student.name}
-                          className="topper-photo-img"
-                        />
-                      </div>
+                <div className="toppers-cards-grid">
+                  {tagToppers.map((student, idx) => {
+                    const uniqueId = `${tag.name}-${idx}`;
+                    const isHovered = hoveredCardId === uniqueId;
+                    const cardBg = student.tone === 'blue' ? '#0B427E' : student.tone === 'green' ? '#009951' : student.tone === 'pink' ? '#930018' : '#075cff';
 
-                      <div className="topper-card-body">
-                        <div className="card-body-motif-container">
-                          <SwissMotifInBody
-                            type={student.motifType}
-                            color="#075cff"
-                            isHovered={isHovered}
+                    return (
+                      <article
+                        key={uniqueId}
+                        className={`topper-card-swiss ${isHovered ? 'is-hovered' : ''}`}
+                        style={{ '--card-hover-bg': cardBg }}
+                        onMouseEnter={() => setHoveredCardId(uniqueId)}
+                        onMouseLeave={() => setHoveredCardId(null)}
+                      >
+                        <div className="topper-photo-wrap">
+                          <img
+                            src={student.image}
+                            alt={student.name}
+                            className="topper-photo-img"
+                            style={{ objectPosition: student.position || 'center' }}
                           />
                         </div>
 
-                        <h3 className="topper-name">{student.name} ({student.score})</h3>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+                        <div className="topper-card-body">
+                          <div className="card-body-motif-container">
+                            <SwissMotifInBody
+                              type={(idx % 3) + 1}
+                              color="#075cff"
+                              isHovered={isHovered}
+                            />
+                          </div>
 
-          {/* 2. CLASS XII RESULT SECTION */}
-          {(activeTab === 'all' || activeTab === 'class12') && (
-            <div className="result-category-block mt-10">
-              <div className="category-block-header">
-                <h2 className="category-title">Close SSCE 2026 CLASS -XII RESULT</h2>
-                <button
-                  onClick={() => alert('Downloading full Class XII result gazette...')}
-                  className="section-download-link"
-                >
-                  <span>Download Result</span>
-                  <ChevronRight size={15} />
-                </button>
-              </div>
-
-              <div className="toppers-cards-grid">
-                {classXIIToppers.map((student) => {
-                  const isHovered = hoveredCardId === student.id;
-
-                  return (
-                    <article
-                      key={student.id}
-                      className={`topper-card-swiss ${isHovered ? 'is-hovered' : ''}`}
-                      onMouseEnter={() => setHoveredCardId(student.id)}
-                      onMouseLeave={() => setHoveredCardId(null)}
-                    >
-                      <div className="topper-photo-wrap">
-                        <img
-                          src={student.image}
-                          alt={student.name}
-                          className="topper-photo-img"
-                        />
-                      </div>
-
-                      <div className="topper-card-body">
-                        <div className="card-body-motif-container">
-                          <SwissMotifInBody
-                            type={student.motifType}
-                            color="#075cff"
-                            isHovered={isHovered}
-                          />
+                          <h3 className="topper-name">{student.name} ({student.score})</h3>
                         </div>
-
-                        <h3 className="topper-name">{student.name} ({student.score})</h3>
-                      </div>
-                    </article>
-                  );
-                })}
+                      </article>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })}
         </div>
       </section>
     </div>

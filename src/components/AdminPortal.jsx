@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Download, Eye, Image as ImageIcon, Link2, Lock, LogOut, Plus, RotateCcw, Save, ShieldCheck, Trash2, Upload, User } from 'lucide-react';
-import { defaultSiteContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent } from '../context/siteContent';
+import { defaultSiteContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent, useSiteContent } from '../context/siteContent';
 
 const ADMIN_SESSION_KEY = 'pittsModernSchool.adminSession';
 const ADMIN_CONFIGURED_USER = import.meta.env.VITE_ADMIN_USER || '';
@@ -15,6 +15,8 @@ const modules = [
   { id: 'upcomingEvents', label: 'Upcoming Events', path: 'upcomingEvents', type: 'array', fields: ['month', 'day', 'weekday', 'title', 'type', 'time', 'image', 'excerpt', 'href'] },
   { id: 'notices', label: 'Notice Board', path: 'notices', type: 'array', fields: ['day', 'month', 'label', 'title', 'href'] },
   { id: 'newsletters', label: 'Newsletters', path: 'newsletters', type: 'array', fields: ['title', 'image', 'href'] },
+  { id: 'resultsConfig', label: 'Results Configuration', path: 'results', type: 'object', fields: ['year', 'bulletinHref'] },
+  { id: 'resultTags', label: 'Result Class Tags', path: 'results.tags', type: 'array', fields: ['name'] },
   { id: 'toppers', label: 'Result Toppers', path: 'results.toppers', type: 'array', fields: ['rank', 'name', 'score', 'className', 'image', 'position', 'tone'] },
   { id: 'landmarks', label: 'Landmark Moments', path: 'results.landmarkSlides', type: 'array', fields: ['image', 'tag', 'caption'] },
   { id: 'faculty', label: 'Faculty Library', path: 'contentLibrary.faculty', type: 'array', fields: ['name', 'role', 'department', 'image', 'href'] },
@@ -229,6 +231,28 @@ function FieldInput({ field, value, onChange }) {
       <label className="admin-toggle-field">
         <input type="checkbox" checked={Boolean(value)} onChange={(event) => onChange(event.target.checked)} />
         <span>{Boolean(value) ? 'Enabled' : 'Disabled'}</span>
+      </label>
+    );
+  }
+
+  if (field === 'className') {
+    const siteContent = useSiteContent();
+    const tagsList = siteContent?.results?.tags || [];
+    const classOptions = tagsList.map(t => t.name).filter(Boolean);
+    return (
+      <label className="admin-field">
+        <span>{humanLabel(field)}</span>
+        <select
+          value={value || ''}
+          onChange={(event) => onChange(event.target.value)}
+          className="admin-internal-link-picker"
+          style={{ width: '100%', marginTop: '0.35rem', display: 'block' }}
+        >
+          <option value="">Select a class tag...</option>
+          {classOptions.map((opt) => (
+            <option key={opt} value={opt}>{opt}</option>
+          ))}
+        </select>
       </label>
     );
   }

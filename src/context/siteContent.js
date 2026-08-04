@@ -75,6 +75,10 @@ export const defaultSiteContent = {
   ],
   results: {
     year: '2025-26', bulletinHref: routeLinks.results,
+    tags: [
+      { name: 'Class X' },
+      { name: 'Class XII' }
+    ],
     toppers: [
       { rank: '01', name: 'Ananya Sharma', score: '99.4%', className: 'Class XII', image: '/image/656729874_122278628264192910_5575061535742040043_n.jpg', position: '64% center', tone: 'blue' },
       { rank: '02', name: 'Vivaan Singh', score: '98.8%', className: 'Class X', image: '/image/655235611_122278627622192910_6813982125465658890_n.jpg', position: '52% center', tone: 'ice' },
