@@ -52,14 +52,16 @@ export default function LearningBeyondBooks() {
           </p>
         </div>
 
-        {learningMoments.map((moment) => (
-          <figure className={moment.className} key={moment.label} tabIndex={0}>
-            <img src={moment.image} alt={`${moment.label} at Pitts Modern School`} />
-            <figcaption className="learning-circle-overlay">
-              <span>{moment.label}</span>
-            </figcaption>
-          </figure>
-        ))}
+        <div className="learning-circles-mobile-grid">
+          {learningMoments.map((moment) => (
+            <figure className={moment.className} key={moment.label} tabIndex={0}>
+              <img src={moment.image} alt={`${moment.label} at Pitts Modern School`} />
+              <figcaption className="learning-circle-overlay">
+                <span>{moment.label}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
 
         <span className="learning-dot learning-dot-red learning-dot-one" aria-hidden="true" />
         <span className="learning-dot learning-dot-blue learning-dot-two" aria-hidden="true" />
@@ -70,3 +72,4 @@ export default function LearningBeyondBooks() {
     </section>
   );
 }
+

@@ -805,6 +805,18 @@ button {
   z-index: 50;
 }
 
+/* Desktop: wrapper is transparent — children still use absolute positioning */
+.learning-circles-mobile-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.learning-circles-mobile-grid > .learning-circle {
+  pointer-events: all;
+}
+
 .learning-copy {
   position: absolute;
   z-index: 5;
@@ -14862,3 +14874,473 @@ button {
 }
 
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   COMPREHENSIVE MOBILE OPTIMIZATION LAYER
+   Covers all pages at phone sizes (390px–768px)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── TABLET / LARGE PHONE (≤768px) ──────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* INDEX.HTML: ensure no horizontal overflow */
+  html, body, #root {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* ── TOP BANNER: hide on mobile to save space ─── */
+  .top-banner { display: none; }
+
+  /* ── HEADER ─── */
+  .main-header-inner {
+    padding: 0.55rem clamp(0.75rem, 4vw, 1.25rem);
+    gap: 0.6rem;
+  }
+  .logo-container { margin-left: 0; }
+  .logo-img { height: clamp(44px, 10vw, 64px); }
+  .header-middle-badge { display: none; }
+  .header-right-actions { margin-right: 0; gap: 0.5rem; }
+  .header-59-img { display: none; }
+
+  /* ── ANNOUNCEMENT BAR ─── */
+  .announcement-bar { height: 40px; }
+  .announcement-inner { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .announcement-badge { font-size: 0.82rem; padding-right: 0.6rem; }
+  .marquee-item { font-size: 0.88rem; padding: 0 0.6rem; }
+
+  /* ── POPUP ─── */
+  .popup-modal-overlay { padding: 0.5rem; align-items: flex-end; }
+  .popup-modal-content {
+    width: 100%;
+    max-height: 90vh;
+    border-radius: 16px 16px 0 0;
+    padding: 1.5rem 1.2rem 1.2rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .popup-header h2 { font-size: clamp(1.2rem, 6vw, 1.6rem); margin-bottom: 0.3rem; }
+  .popup-sub { font-size: 0.82rem; margin-bottom: 1rem; }
+  .popup-image-container { margin-bottom: 1rem; }
+  .popup-link-item { padding: 0.75rem 0.85rem; }
+  .popup-link-item span { font-size: 0.88rem; }
+  .popup-cta-btn { padding: 0.85rem 1rem; font-size: 0.85rem; }
+
+  /* ── HERO SLIDESHOW ─── */
+  .hero-showcase-inner {
+    grid-template-columns: 1fr !important;
+    padding: 2rem 1rem 3rem;
+    gap: 1.2rem;
+  }
+  .hero-showcase-copy { text-align: center; }
+  .hero-showcase-copy h1 { font-size: clamp(2.1rem, 9.5vw, 3.2rem); }
+  .hero-showcase-copy p { font-size: 0.95rem; }
+  .hero-showcase-actions { flex-direction: column; gap: 0.7rem; }
+  .hero-primary-action, .hero-secondary-action { width: 100%; min-height: 50px; }
+  .hero-showcase-media {
+    width: 100%;
+    height: clamp(220px, 58vw, 360px);
+    justify-self: center;
+  }
+  .hero-showcase-media img { width: 140vw; transform: translate(-50%, -44%); }
+  .hero-values-band {
+    flex-wrap: wrap; gap: 0.5rem 0.75rem;
+    font-size: 0.68rem; padding: 0 0.75rem;
+    letter-spacing: 0.12em;
+  }
+
+  /* ── ABOUT PITTS ─── */
+  .about-pitts-section { padding: 3rem 1rem 4rem; }
+  .about-pitts-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-pitts-copy { order: 1; }
+  .about-pitts-media { order: 2; min-height: 360px; }
+  .about-pitts-copy h2 { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .about-pitts-main-photo { width: 100%; height: 300px; }
+  .about-pitts-inset-photo { right: 0; top: 220px; width: min(55vw, 200px); height: 130px; }
+
+  /* ── LATEST HIGHLIGHTS ─── */
+  .latest-highlights-section { padding: 1.5rem 1rem 4rem; }
+  .whats-new-header h2 { font-size: clamp(2.4rem, 11vw, 3.5rem); }
+  .latest-highlights-inner { grid-template-columns: 1fr; gap: 1.8rem; }
+  .latest-image-deck { width: min(76vw, 340px); margin-left: 2.5rem; }
+
+  /* ── RESULTS PROUD ─── */
+  .results-proud-section { padding: 3.5rem 1rem 4rem; }
+  .results-proud-top { grid-template-columns: 1fr; gap: 2rem; }
+  .results-proud-heading h2 { font-size: clamp(2.1rem, 9vw, 3rem); }
+  .results-proud-actions { justify-content: flex-start; }
+  .results-proud-tabs { flex-wrap: wrap; gap: 0.5rem; }
+  .results-tab { flex: 1 1 auto; min-width: 120px; font-size: 0.82rem; }
+  .results-cards-track { grid-template-columns: 1fr !important; gap: 1rem; }
+  .results-card { min-width: 0; }
+
+  /* ── FOOTER ─── */
+  .site-footer-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.25rem 2rem; }
+  .site-footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; font-size: 0.78rem; }
+
+  /* ── GALLERY PAGE ─── */
+  .gallery-page-wrapper { padding: 1.5rem 0.75rem; }
+  .gallery-mode-tabs { gap: 0.4rem; flex-wrap: wrap; }
+  .gallery-mode-btn { flex: 1 1 calc(50% - 0.4rem); font-size: 0.82rem; padding: 0.6rem 0.75rem; }
+  .photo-filter-bar { gap: 0.4rem; flex-wrap: wrap; padding: 0.75rem 0; }
+  .photo-filter-btn { flex: 1 1 calc(33% - 0.4rem); font-size: 0.75rem; padding: 0.5rem 0.6rem; white-space: nowrap; }
+  .gallery-swiss-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.6rem; }
+  .gallery-lightbox { padding: 0.5rem; }
+  .lb-close { top: 0.5rem; right: 0.5rem; }
+  .videos-horizontal-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+
+  /* ── FACULTY PAGE ─── */
+  .wing-selector-bar { flex-direction: column; gap: 0.85rem; }
+  .wing-tabs-group { width: 100%; overflow-x: auto; gap: 0.4rem; padding-bottom: 0.25rem; display: flex; }
+  .wing-tab-btn { flex: 0 0 auto; font-size: 0.82rem; padding: 0.6rem 1rem; white-space: nowrap; }
+  .faculty-search-box { width: 100%; }
+  .faculty-search-input { width: 100%; font-size: 0.9rem; }
+  .faculty-layout-grid { grid-template-columns: 1fr !important; }
+  .faculty-sidebar { display: flex; flex-direction: row; overflow-x: auto; gap: 0.4rem; padding-bottom: 0.35rem; border-right: 0; border-bottom: 1px solid #e2e8f0; }
+  .sidebar-header { display: none; }
+  .subject-buttons-stack { flex-direction: row; gap: 0.35rem; }
+  .subject-filter-btn { flex: 0 0 auto; font-size: 0.78rem; padding: 0.45rem 0.85rem; white-space: nowrap; }
+  .faculty-cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem; }
+  .faculty-card-swiss .faculty-photo-wrap { height: 180px; }
+  .faculty-name { font-size: 0.95rem; }
+
+  /* ── SPORTS PAGE ─── */
+  .sports-illustrated-hero { padding: 0 0.75rem; }
+  .sports-hero-top-bar { flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .sports-kicker-rule { display: none; }
+  .sports-top-dots, .sports-bottom-dots { gap: 0.3rem; }
+  .sports-hero-grid { grid-template-columns: 1fr !important; gap: 1.5rem; }
+  .sports-bg-semicircle { width: 70px; height: 140px; left: -0.75rem; }
+  .sports-hero-title { font-size: clamp(2.5rem, 9vw, 3.5rem); }
+  .sports-middle-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .sports-illustrations-trio { gap: 0.6rem; }
+  .sports-fig-img { max-height: clamp(120px, 28vw, 170px); }
+  .sports-fig-backdrop { width: clamp(80px, 20vw, 130px); height: clamp(80px, 20vw, 130px); }
+  .sports-hero-right-col { flex-direction: column; }
+  .sports-vertical-text { display: none; }
+  .sports-info-card { padding: 1.25rem; }
+  .sports-hero-bottom-bar { flex-wrap: wrap; gap: 0.75rem; padding-top: 1rem; margin-top: 1.5rem; }
+
+  /* ── CO-CURRICULAR ACTIVITY PAGE ─── */
+  .co-illustrated-hero { padding: 0 0.75rem; }
+  .co-hero-top-bar { flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .co-kicker-rule { display: none; }
+  .co-hero-grid { grid-template-columns: 1fr !important; gap: 1.5rem; }
+  .co-bg-semicircle { width: 70px; height: 140px; left: -0.75rem; }
+  .co-hero-title { font-size: clamp(2.5rem, 9vw, 3.5rem); }
+  .co-middle-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .co-title-wrapper { padding-left: clamp(1.5rem, 6vw, 3rem); }
+  .co-quote-block { padding-left: 0.75rem; }
+  .co-stage-area { min-height: clamp(160px, 40vw, 250px); }
+  .co-performers-group { gap: 0.5rem; }
+  .co-stage-arch { width: clamp(60px, 15vw, 100px); height: clamp(100px, 22vw, 150px); }
+  .fig-dancer, .fig-singer, .fig-cellist { max-height: clamp(110px, 27vw, 155px); }
+  .co-info-aside { padding: 1.25rem; }
+  .co-hero-bottom-bar { flex-wrap: wrap; gap: 0.75rem; padding-top: 1rem; margin-top: 1.5rem; }
+
+  /* ── NEWS & NOTICES ─── */
+  .news-grid-inner { padding: 1.5rem 1rem; }
+  .notices-split-grid { grid-template-columns: 1fr !important; }
+  .news-tab-switcher { flex-wrap: wrap; gap: 0.4rem; }
+  .news-tab-btn { flex: 1 1 calc(50% - 0.4rem); font-size: 0.82rem; padding: 0.65rem; }
+  .notice-display-panel { grid-template-columns: 1fr !important; }
+
+  /* ── EVENTS ─── */
+  .events-grid-inner { padding: 1.5rem 1rem; }
+  .events-cards-grid { grid-template-columns: 1fr !important; }
+  .events-filter-bar { flex-wrap: wrap; gap: 0.4rem; }
+  .filter-pill-btn { flex: 1 1 calc(50% - 0.4rem); font-size: 0.82rem; padding: 0.55rem; }
+  .calendar-widget-box { grid-template-columns: 1fr !important; }
+  .calendar-tiles-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ── NEWSLETTERS ─── */
+  .newsletters-grid-inner { padding: 1.5rem 1rem; }
+  .newsletters-cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem; }
+
+  /* ── CONTACT ─── */
+  .contact-swiss-inner { padding: 1.5rem 1rem; }
+  .contact-swiss-cards-grid { grid-template-columns: 1fr !important; }
+
+  /* ── ABOUT US PAGE ─── */
+  .about-us-page-wrapper { overflow-x: hidden; }
+
+  /* ── STUDENT LIFE SHOWCASE (activities/sports content) ─── */
+  .activity-page-shell { padding: 0 0.75rem; }
+  .student-life-shell { padding: 0 0.75rem; }
+  .activity-entry { grid-template-columns: 1fr !important; }
+  .student-life-feature { grid-template-columns: 1fr !important; }
+
+  /* ── PAGE NAV TOP BAR ─── */
+  .page-nav-top-bar { padding: 1.5rem 1rem; }
+  .page-standalone-title { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+
+  /* ── INFRASTRUCTURE ─── */
+  .infra-shell { padding: 0 0.75rem; }
+  .infra-workspace { grid-template-columns: 1fr !important; }
+  .infra-feature { grid-template-columns: 1fr !important; }
+
+  /* ── PRINCIPAL / MANAGEMENT / RULES ─── */
+  .principal-section-inner,
+  .management-section-inner { padding: 1.5rem 1rem; }
+
+  /* ── DISCLOSURE ─── */
+  .disclosure-shell { padding: 0 0.75rem; }
+}
+
+/* ── PHONE (≤600px) ──────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+
+  /* ── LEARNING BEYOND BOOKS — Complete mobile redesign ─── */
+  /* Desktop uses absolute-positioned giant circles — completely broken on mobile */
+  /* On mobile, convert to a clean vertical scrollable grid layout */
+  .learning-beyond-section {
+    margin-top: 0;
+    padding: 3rem 1rem 3.5rem;
+    overflow: hidden;
+  }
+  .learning-beyond-stage {
+    position: relative;
+    min-height: auto !important;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  /* Show the copy text in normal flow */
+  .learning-copy {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    order: 1;
+    padding: 0 0.5rem;
+  }
+  .learning-copy h2 { font-size: clamp(2rem, 9vw, 2.8rem); margin-bottom: 1rem; }
+  .learning-copy p { font-size: 0.95rem; }
+
+  /* Show circles in a 2-column grid */
+  .learning-circles-mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    order: 2;
+  }
+  /* All circles: override absolute positioning */
+  .learning-circle {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: 0 !important;
+    padding-bottom: 100% !important;
+    border-radius: 50% !important;
+    z-index: 1 !important;
+  }
+  .learning-circle img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .learning-circle-large,
+  .learning-circle-medium,
+  .learning-circle-small { width: 100% !important; height: 0 !important; }
+  /* Hide decorative dots on mobile */
+  .learning-dot { display: none; }
+  /* Hide overlay text on mobile (too small) */
+  .learning-circle-overlay { display: none; }
+
+  /* ── HERO ─── */
+  .hero-showcase-copy h1 { font-size: clamp(1.9rem, 8.5vw, 2.8rem); }
+  .hero-showcase-media { height: clamp(200px, 55vw, 320px); }
+  .hero-showcase-media img { width: 160vw; }
+
+  /* ── POPUP ─── */
+  .popup-modal-content { padding: 1.25rem 1rem 1rem; border-radius: 14px 14px 0 0; }
+  .popup-header h2 { font-size: clamp(1.1rem, 5.5vw, 1.45rem); }
+  .popup-sub { display: none; }
+  .popup-image-container { margin-bottom: 0.75rem; }
+  .popup-body-copy { font-size: 0.85rem; }
+  .popup-link-item { padding: 0.65rem 0.75rem; }
+  .popup-link-item span { font-size: 0.82rem; }
+  .popup-cta-btn { padding: 0.8rem; font-size: 0.82rem; }
+
+  /* ── ABOUT PITTS ─── */
+  .about-pitts-section { padding: 2.5rem 0.85rem 3rem; }
+  .about-pitts-copy h2 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  .about-pitts-main-photo { height: 260px; }
+  .about-pitts-inset-photo { top: 185px; width: min(52vw, 185px); height: 115px; border-width: 5px; }
+
+  /* ── FACULTY ─── */
+  .faculty-cards-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+  .faculty-card-swiss .faculty-photo-wrap { height: 210px; }
+
+  /* ── GALLERY ─── */
+  .gallery-swiss-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.4rem; }
+  .gallery-photo-card { border-radius: 8px; }
+  .photo-filter-btn { font-size: 0.7rem; padding: 0.45rem 0.5rem; }
+  .gallery-mode-btn { padding: 0.55rem 0.6rem; font-size: 0.78rem; }
+
+  /* ── NEWSLETTERS ─── */
+  .newsletters-cards-grid { grid-template-columns: 1fr !important; }
+
+  /* ── RESULTS ─── */
+  .results-proud-heading h2 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  .results-proud-tabs { gap: 0.4rem; }
+  .results-tab { font-size: 0.78rem; padding: 0.55rem 0.85rem; }
+
+  /* ── SPORTS / CCA HERO ─── */
+  .sports-hero-title { font-size: clamp(2.1rem, 8vw, 3rem); }
+  .sports-kicker-text { font-size: 0.7rem; letter-spacing: 0.1em; }
+  .sports-fig-img { max-height: clamp(100px, 25vw, 145px); }
+  .co-hero-title { font-size: clamp(2.1rem, 8vw, 3rem); }
+  .co-kicker-text { font-size: 0.7rem; letter-spacing: 0.1em; }
+  .fig-dancer, .fig-singer, .fig-cellist { max-height: clamp(90px, 24vw, 130px); }
+  .co-stage-arch { width: clamp(50px, 12vw, 85px); height: clamp(80px, 18vw, 120px); }
+
+  /* ── FOOTER ─── */
+  .site-footer-brand p { font-size: 0.9rem; }
+  .site-footer-logo-link { align-items: flex-start; }
+  .site-footer-social a { width: 38px; height: 38px; }
+
+  /* ── SIDE MENU: always full-width pills ─── */
+  .quick-actions-grid { grid-template-columns: 1fr; }
+  .shortcut-card { grid-template-columns: repeat(2, 1fr); }
+
+  /* ── PAGE TITLES ─── */
+  .page-standalone-title { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+  .editorial-overline { font-size: 0.7rem; }
+
+  /* ── INFRA PAGE ─── */
+  .infra-shell { padding: 0 0.75rem 1.5rem; }
+}
+
+/* ── NATIVE PHONE (≤480px) ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+
+  /* ── HEADER: compact ─── */
+  .logo-img { height: 42px; }
+  .search-icon-btn { width: 38px; height: 38px; }
+  .doon-menu-btn {
+    width: 42px; height: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+  .doon-menu-btn span { display: none; }
+  .main-header-inner { padding: 0.5rem 0.75rem; }
+
+  /* ── ANNOUNCEMENT ─── */
+  .announcement-bar { height: 36px; }
+  .announcement-badge { font-size: 0.75rem; }
+  .marquee-item { font-size: 0.8rem; }
+
+  /* ── POPUP ─── */
+  .popup-link-item small { display: none; }
+  .popup-links-list { gap: 0.45rem; }
+  .popup-cta-btn { font-size: 0.8rem; border-radius: 9999px; }
+
+  /* ── HERO ─── */
+  .hero-showcase-inner { padding: 1.75rem 0.85rem 2.5rem; }
+  .hero-showcase-copy h1 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+  .hero-showcase-copy p { font-size: 0.88rem; line-height: 1.55; }
+  .hero-primary-action, .hero-secondary-action { min-height: 46px; font-size: 0.95rem; }
+  .hero-showcase-media { height: clamp(180px, 52vw, 290px); }
+  .hero-pillar { opacity: 0.06; width: 90px; }
+  .hero-values-band { font-size: 0.62rem; letter-spacing: 0.1em; }
+
+  /* ── RESULTS ─── */
+  .results-proud-section { padding: 2.5rem 0.85rem 3rem; }
+  .results-proud-tabs { flex-direction: column; gap: 0.4rem; }
+  .results-tab { width: 100%; text-align: center; }
+  .results-landmark-track { gap: 0.75rem; }
+
+  /* ── GALLERY ─── */
+  .gallery-swiss-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.3rem; }
+  .photo-filter-bar { gap: 0.3rem; }
+  .photo-filter-btn { font-size: 0.68rem; padding: 0.4rem 0.45rem; flex: 1 1 calc(33% - 0.3rem); }
+
+  /* ── FACULTY ─── */
+  .faculty-main-section { padding: 0 0.75rem 2rem; }
+  .wing-tab-btn { font-size: 0.78rem; padding: 0.55rem 0.85rem; }
+  .faculty-card-swiss .faculty-photo-wrap { height: 190px; }
+  .faculty-name { font-size: 0.9rem; }
+  .faculty-post-label { font-size: 0.72rem; }
+
+  /* ── ABOUT PITTS ─── */
+  .about-pitts-section { padding: 2rem 0.85rem 2.5rem; }
+  .about-pitts-copy h2 { font-size: clamp(1.7rem, 7.5vw, 2.3rem); }
+  .about-pitts-main-photo { height: 230px; }
+  .about-pitts-inset-photo { display: none; }
+
+  /* ── SPORTS / CO-CURRICULAR ─── */
+  .sports-illustrated-hero, .co-illustrated-hero { padding: 0 0.75rem; }
+  .sports-hero-title, .co-hero-title { font-size: clamp(1.85rem, 7.5vw, 2.6rem); }
+  .sports-illustrations-trio { gap: 0.4rem; }
+  .sports-fig-img { max-height: clamp(90px, 22vw, 125px); }
+  .sports-fig-backdrop { width: clamp(70px, 17vw, 110px); height: clamp(70px, 17vw, 110px); }
+  .fig-dancer, .fig-singer, .fig-cellist { max-height: clamp(80px, 22vw, 115px); }
+  .co-stage-arch { width: 50px; height: 80px; }
+  .sports-info-card, .co-info-aside { padding: 1rem; border-radius: 16px; }
+  .sports-card-p1, .sports-card-p2, .co-aside-intro { font-size: 0.88rem; }
+  .sports-hero-bottom-bar, .co-hero-bottom-bar { display: none; }
+
+  /* ── NEWS / NOTICES ─── */
+  .news-grid-inner { padding: 1.25rem 0.75rem; }
+  .news-tab-btn { font-size: 0.78rem; padding: 0.55rem; }
+
+  /* ── EVENTS ─── */
+  .events-grid-inner { padding: 1.25rem 0.75rem; }
+  .filter-pill-btn { font-size: 0.76rem; }
+  .calendar-tiles-grid { grid-template-columns: 1fr; }
+  .calendar-date-tile { min-height: 80px; }
+
+  /* ── FOOTER ─── */
+  .site-footer-inner { padding: 2rem 0.85rem 1.5rem; gap: 1.5rem; }
+  .site-footer-logo-link img { width: 50px; height: 50px; }
+  .site-footer-logo-link span { font-size: 1.1rem; }
+  .site-footer h2 { font-size: 0.82rem; }
+  .site-footer-links a { font-size: 0.88rem; }
+  .site-footer-bottom { padding: 0.75rem 0.85rem; font-size: 0.72rem; }
+
+  /* ── SIDE MENU ─── */
+  .side-menu-drawer { width: 100vw !important; }
+  .side-menu-body { padding: 2.75rem 1rem 1rem; }
+  .quick-action-title { font-size: 0.58rem; }
+  .main-navigation-link { font-size: 0.98rem; }
+
+  /* ── SEARCH MODAL ─── */
+  .search-modal-backdrop { padding: 1rem 0.75rem; padding-top: 10vh; }
+  .search-modal-box { padding: 1.1rem; }
+  .search-input { font-size: 1rem; }
+
+  /* ── PAGE TITLES ─── */
+  .page-standalone-title { font-size: clamp(1.3rem, 5.5vw, 2rem); }
+}
+
+/* ── VERY SMALL PHONE (≤390px) ─────────────────────────────────────── */
+@media (max-width: 390px) {
+  .logo-img { height: 38px; }
+  .hero-showcase-copy h1 { font-size: clamp(1.6rem, 7.5vw, 2.2rem); }
+  .hero-showcase-media { height: clamp(165px, 48vw, 265px); }
+  .about-pitts-copy h2 { font-size: clamp(1.6rem, 7vw, 2.1rem); }
+  .sports-hero-title, .co-hero-title { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+  .results-proud-heading h2 { font-size: clamp(1.7rem, 7.5vw, 2.3rem); }
+  .gallery-swiss-grid { grid-template-columns: 1fr 1fr !important; gap: 0.25rem; }
+  .photo-filter-btn { flex: 1 1 calc(50% - 0.3rem); font-size: 0.65rem; }
+  .sports-fig-img { max-height: clamp(75px, 19vw, 105px); }
+  .fig-dancer, .fig-singer, .fig-cellist { max-height: clamp(70px, 19vw, 100px); }
+  .sports-card-motto, .co-values-list { display: none; }
+  .site-footer-social a { width: 34px; height: 34px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   END COMPREHENSIVE MOBILE OPTIMIZATION LAYER
+   ══════════════════════════════════════════════════════════════════════════ */
