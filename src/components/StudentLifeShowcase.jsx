@@ -673,76 +673,257 @@ function GlyphTitle({ lines }) {
 
 function CulturalIllustratedHero() {
   const values = [
-    { title: 'Creativity', copy: 'Imagination in action.' },
-    { title: 'Confidence', copy: 'Believe. Perform. Shine.' },
-    { title: 'Teamwork', copy: 'Together, we achieve more.' },
-    { title: 'Presentation', copy: 'Speak. Show. Inspire.' },
-    { title: 'Expression', copy: 'Be you. Be heard.' }
+    { title: 'CREATIVITY', copy: 'Imagination in action.' },
+    { title: 'CONFIDENCE', copy: 'Believe. Perform. Shine.' },
+    { title: 'TEAMWORK', copy: 'Together, we achieve more.' },
+    { title: 'PRESENTATION', copy: 'Speak. Show. Inspire.' },
+    { title: 'EXPRESSION', copy: 'Be you. Be heard.' }
   ];
 
   return (
-    <header className="co-curricular-hero" aria-labelledby="co-curricular-title">
-      <div className="co-hero-kicker">
-        <span className="co-hero-badge">C</span>
-        <span>Discover. Develop. Express.</span>
-        <i aria-hidden="true" />
-      </div>
-
-      <div className="co-hero-copy">
-        <h1 className="co-hero-title" id="co-curricular-title">
-          <span>Co-</span>
-          <span>Curricular</span>
-          <span>Activities</span>
-        </h1>
-
-        <div className="co-hero-statement">
-          <span aria-hidden="true" />
-          <p>Beyond the classroom, talent comes alive.</p>
+    <header className="co-illustrated-hero" aria-labelledby="co-hero-title">
+      {/* TOP KICKER BAR */}
+      <div className="co-hero-top-bar">
+        <div className="co-hero-kicker-left">
+          <span className="co-badge">C</span>
+          <span className="co-kicker-text">DISCOVER. DEVELOP. EXPRESS.</span>
+          <span className="co-kicker-rule" aria-hidden="true" />
         </div>
       </div>
 
-      <div className="co-hero-stage" aria-hidden="true">
-        <span className="co-hero-orbit co-hero-orbit-one" />
-        <span className="co-hero-orbit co-hero-orbit-two" />
-        <span className="co-hero-arch" />
-        <span className="co-hero-dot-field" />
-        <img className="co-hero-figure co-hero-dancer" src="/image/dancer.png" alt="" />
-        <img className="co-hero-figure co-hero-cellist" src="/image/cellist.png" alt="" />
-        <img className="co-hero-figure co-hero-singer" src="/image/singer.png" alt="" />
+      {/* MAIN HERO GRID */}
+      <div className="co-hero-grid">
+        {/* LEFT COLUMN: TITLE + QUOTE + STAGE */}
+        <div className="co-hero-main-col">
+          {/* GIANT TITLE MATCHING SPORTS PAGE 2-LINE STRUCTURE */}
+          <div className="co-title-wrapper">
+            <span className="co-bg-semicircle" aria-hidden="true" />
+            <h1 className="co-hero-title" id="co-hero-title">
+              CO-CURRICULAR <span className="co-title-dot" aria-hidden="true" />
+              <br />
+              ACTIVITIES
+            </h1>
+          </div>
+
+          {/* MIDDLE ROW: QUOTE + STAGE WITH DANCER, SINGER, CELLIST */}
+          <div className="co-middle-row">
+            {/* LEFT QUOTE */}
+            <div className="co-quote-block">
+              <span className="co-quote-rule" aria-hidden="true" />
+              <blockquote className="co-serif-quote">
+                Beyond the classroom,<br />
+                talent comes alive.
+              </blockquote>
+              <div className="co-dot-grid" aria-hidden="true">
+                <span /><span /><span /><span />
+                <span /><span /><span /><span />
+                <span /><span /><span /><span />
+              </div>
+            </div>
+
+            {/* STAGE WITH PERFORMERS & STANDALONE REDUCED ARCH */}
+            <div className="co-stage-area">
+              <div className="co-performers-group">
+                <img
+                  src="/image/dancer.png"
+                  alt="Dancer Illustration"
+                  className="co-fig-img fig-dancer"
+                />
+                <img
+                  src="/image/singer.png"
+                  alt="Singer Illustration"
+                  className="co-fig-img fig-singer"
+                />
+                <div className="co-stage-arch" aria-hidden="true" />
+                <img
+                  src="/image/cellist.png"
+                  alt="Cellist Illustration"
+                  className="co-fig-img fig-cellist"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: RINGS + INTRO + VALUES */}
+        <div className="co-hero-right-col">
+          <aside className="co-info-aside">
+            {/* OVERLAPPING RINGS ICON */}
+            <div className="co-rings-icon" aria-hidden="true">
+              <span className="ring ring-white" />
+              <span className="ring ring-orange" />
+            </div>
+
+            <p className="co-aside-intro">
+              Our co-curricular programs nurture the whole student. Through dance, music,
+              theatre, art, debate, and cultural initiatives, learners discover their
+              passions and develop creativity, confidence, teamwork, presentation skills,
+              and self-expression.
+            </p>
+
+            <span className="co-aside-divider" aria-hidden="true" />
+
+            {/* 5 VALUES LIST (NO CIRCLE ICONS) */}
+            <ul className="co-values-list" aria-label="Co-curricular values">
+              {values.map((value) => (
+                <li key={value.title} className="co-value-item">
+                  <div className="co-value-text">
+                    <strong>{value.title}</strong>
+                    <small>{value.copy}</small>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
       </div>
 
-      <aside className="co-hero-aside">
-        <div className="co-hero-rings" aria-hidden="true">
-          <span />
-          <span />
+      {/* BOTTOM FOOTER BAR */}
+      <div className="co-hero-bottom-bar">
+        <div className="co-bottom-left">
+          <strong>01</strong>
+          <span>LEARN | GROW | LEAD</span>
+          <span className="co-bottom-rule" aria-hidden="true" />
         </div>
-        <p>
-          Our co-curricular programs nurture the whole student. Through dance, music,
-          theatre, art, debate, and cultural initiatives, learners discover their passions
-          and develop creativity, confidence, teamwork, presentation skills, and
-          self-expression.
-        </p>
-        <span className="co-hero-mini-rule" aria-hidden="true" />
-        <ul className="co-hero-values" aria-label="Co-curricular values">
-          {values.map((value, index) => (
-            <li key={value.title}>
-              <span className={`co-value-mark co-value-mark-${index + 1}`} aria-hidden="true" />
-              <span>
-                <strong>{value.title}</strong>
-                <small>{value.copy}</small>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      </div>
+    </header>
+  );
+}
 
-      <p className="co-hero-vertical">Activities today. Excellence tomorrow.</p>
+function SportsIllustratedHero() {
+  return (
+    <header className="sports-illustrated-hero" aria-labelledby="sports-hero-title">
+      {/* TOP KICKER BAR */}
+      <div className="sports-hero-top-bar">
+        <div className="sports-hero-kicker-left">
+          <span className="sports-badge">C</span>
+          <span className="sports-kicker-text">DISCOVER. DEVELOP. EXPRESS.</span>
+          <span className="sports-kicker-rule" aria-hidden="true" />
+        </div>
+        <div className="sports-top-dots" aria-hidden="true">
+          <span className="dot dot-navy" />
+          <span className="dot dot-blue" />
+          <span className="dot dot-light" />
+        </div>
+      </div>
 
-      <div className="co-hero-footer">
-        <strong>01</strong>
-        <span>Learn | Grow | Lead</span>
-        <i aria-hidden="true" />
-        <em aria-hidden="true" />
+      {/* MAIN HERO GRID */}
+      <div className="sports-hero-grid">
+        {/* LEFT COLUMN: TITLE + QUOTE + ILLUSTRATIONS */}
+        <div className="sports-hero-main-col">
+          {/* GIANT TITLE WITH BLUE SEMICIRCLE & DOT */}
+          <div className="sports-title-wrapper">
+            <span className="sports-bg-semicircle" aria-hidden="true" />
+            <h1 className="sports-hero-title" id="sports-hero-title">
+              SPORTS <span className="sports-title-dot" aria-hidden="true" />
+              <br />
+              ACTIVITIES
+            </h1>
+          </div>
+
+          {/* MIDDLE ROW: QUOTE + 3 ILLUSTRATIONS */}
+          <div className="sports-middle-row">
+            {/* LEFT QUOTE */}
+            <div className="sports-quote-block">
+              <span className="sports-quote-rule" aria-hidden="true" />
+              <blockquote className="sports-serif-quote">
+                Beyond the<br />
+                classroom,<br />
+                strength comes alive.
+              </blockquote>
+              <div className="sports-dot-grid" aria-hidden="true">
+                <span /><span /><span /><span />
+                <span /><span /><span /><span />
+                <span /><span /><span /><span />
+              </div>
+            </div>
+
+            {/* 3 SPORTS ILLUSTRATIONS */}
+            <div className="sports-illustrations-trio">
+              {/* FOOTBALL */}
+              <div className="sports-fig-card">
+                <div className="sports-fig-backdrop" />
+                <img
+                  src="/image/football.png"
+                  alt="Football Player Illustration"
+                  className="sports-fig-img fig-football"
+                />
+                <span className="sports-fig-baseline" aria-hidden="true" />
+              </div>
+
+              {/* BASKETBALL */}
+              <div className="sports-fig-card">
+                <div className="sports-fig-backdrop" />
+                <img
+                  src="/image/basketball.png"
+                  alt="Basketball Player Illustration"
+                  className="sports-fig-img fig-basketball"
+                />
+                <div className="sports-mini-dot-grid" aria-hidden="true">
+                  <span /><span /><span />
+                  <span /><span /><span />
+                  <span /><span /><span />
+                </div>
+                <span className="sports-fig-baseline" aria-hidden="true" />
+              </div>
+
+              {/* BADMINTON */}
+              <div className="sports-fig-card">
+                <div className="sports-fig-backdrop" />
+                <img
+                  src="/image/badminton.png"
+                  alt="Badminton Player Illustration"
+                  className="sports-fig-img fig-badminton"
+                />
+                <span className="sports-fig-baseline" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: CARD + VERTICAL MARGIN TEXT */}
+        <div className="sports-hero-right-col">
+          <aside className="sports-info-card">
+            <p className="sports-card-p1">
+              Our sports programs help students build discipline, improve fitness,
+              and develop confidence through teamwork and healthy competition.
+              From daily training to inter-school events, every activity inspires
+              students to push their limits, support others, and lead with pride.
+            </p>
+            <span className="sports-card-divider" aria-hidden="true" />
+            <p className="sports-card-p2">
+              We believe sports shape stronger minds, stronger bodies, and
+              stronger communities.
+            </p>
+            <span className="sports-card-divider" aria-hidden="true" />
+            <div className="sports-card-motto">
+              <p>Play. Grow. Lead.</p>
+              <p>Together.</p>
+            </div>
+          </aside>
+
+          {/* VERTICAL RIGHT MARGIN TEXT */}
+          <div className="sports-vertical-text">
+            <span>ACTIVITIES TODAY. EXCELLENCE TOMORROW.</span>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM FOOTER BAR */}
+      <div className="sports-hero-bottom-bar">
+        <div className="sports-bottom-left">
+          <strong>01</strong>
+          <span>LEARN | GROW | LEAD</span>
+          <span className="sports-bottom-rule" aria-hidden="true" />
+        </div>
+        <div className="sports-bottom-right" aria-hidden="true">
+          <div className="sports-bottom-dots">
+            <span className="dot dot-navy" />
+            <span className="dot dot-blue" />
+            <span className="dot dot-light" />
+          </div>
+          <span className="sports-bottom-solid-bar" />
+        </div>
       </div>
     </header>
   );
@@ -777,11 +958,7 @@ function ActivityIndexPage({ variant }) {
         {variant === 'cultural' ? (
           <CulturalIllustratedHero />
         ) : (
-          <header className="activity-page-hero">
-            <span className="activity-breadcrumb">{content.eyebrow}</span>
-            <GlyphTitle lines={content.splitTitle} />
-            <p>{content.intro}</p>
-          </header>
+          <SportsIllustratedHero />
         )}
 
         <div className="activity-list-heading">

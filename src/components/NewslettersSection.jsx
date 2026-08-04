@@ -5,6 +5,7 @@ import {
   Download,
   FileText
 } from 'lucide-react';
+import { normalizeAssetUrl, normalizeLinkUrl, useSiteContent } from '../context/siteContent';
 
 const newslettersData = [
   {
@@ -95,7 +96,21 @@ function SwissMotifInBody({ type, color = '#ffc72c', isHovered }) {
 }
 
 export default function NewslettersSection() {
+  const siteContent = useSiteContent();
   const [hoveredCardId, setHoveredCardId] = useState(null);
+  const newslettersSource = Array.isArray(siteContent.newsletters) ? siteContent.newsletters : newslettersData;
+  const newsletters = newslettersSource.map((item, index) => ({
+    id: item.id || `news-mag-${index + 1}`,
+    title: item.title || 'School newsletter',
+    date: item.date || 'Pitts Modern School',
+    coverImage: normalizeAssetUrl(item.coverImage || item.image, '/image/inv1.jpg'),
+    summary: item.summary || item.text || 'Stories of success, service, and the spirit of Pitts.',
+    href: normalizeLinkUrl(item.href, '/newsletters'),
+    bgColor: item.bgColor || ['#0B427E', '#009951', '#930018', '#ffb800'][index % 4],
+    textColor: item.textColor || (index % 4 === 3 ? '#0B427E' : '#ffffff'),
+    motifColor: item.motifColor || (index % 4 === 3 ? '#0B427E' : '#ffc72c'),
+    motifType: item.motifType || ((index % 4) + 1)
+  }));
 
   return (
     <div className="newsletters-page-wrapper">
@@ -121,7 +136,7 @@ export default function NewslettersSection() {
 
           {/* Newsletter Cards Grid */}
           <div className="newsletters-cards-grid">
-            {newslettersData.map((mag) => {
+            {newsletters.map((mag) => {
               const isHovered = hoveredCardId === mag.id;
 
               return (
@@ -159,7 +174,9 @@ export default function NewslettersSection() {
 
                     <div className="newsletter-actions">
                       <button
-                        onClick={() => alert(`Opening ${mag.title} newsletter view...`)}
+                        onClick={() => {
+                          window.location.href = mag.href;
+                        }}
                         className="read-pdf-btn"
                       >
                         <span>View Newsletter</span>

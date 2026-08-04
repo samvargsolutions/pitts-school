@@ -1,12 +1,12 @@
-import React from 'react';
-import Header from './components/Header';
-import HeroSlideshow from './components/HeroSlideshow';
+﻿import React from 'react';
+import Header from './components/HeaderLinked';
+import HeroSlideshow from './components/HeroSlideshowModular';
 import AboutPitts from './components/AboutPitts';
-import LatestHighlights from './components/LatestHighlights';
-import ResultsProud from './components/ResultsProud';
+import LatestHighlights from './components/LatestHighlightsModular';
+import ResultsProud from './components/ResultsProudModular';
 import ChildrenGrowStories from './components/ChildrenGrowStories';
 import LearningBeyondBooks from './components/LearningBeyondBooks';
-import Footer from './components/Footer';
+import Footer from './components/FooterLinked';
 import AboutUsSection from './components/AboutUsSection';
 import InfrastructureShowcase from './components/InfrastructureShowcase';
 import NewsAndNotices from './components/NewsAndNotices';
@@ -23,8 +23,9 @@ import PrincipalDeskSection from './components/PrincipalDeskSection';
 import SchoolRulesSection from './components/SchoolRulesSection';
 import ParentRulesSection from './components/ParentRulesSection';
 import ManagementSection from './components/ManagementSection';
-import AdmissionPopup from './components/AdmissionPopup';
+import AdmissionPopup from './components/AdmissionPopupModular';
 import { CulturalCoCurricularPage, SportsActivityPage } from './components/StudentLifeShowcase';
+import AdminPortal from './components/AdminPortal';
 import { Agentation } from "agentation";
 
 export default function App() {
@@ -32,14 +33,14 @@ export default function App() {
   const isOurStoryPage = pathname === '/our-story';
   const isAboutUsPage = pathname === '/about-us';
   const isInfrastructurePage = pathname === '/infrastructure';
-  const isNewsNoticesPage = pathname === '/news-and-notices' || pathname === '/news' || pathname === '/notices';
+  const isNewsNoticesPage = pathname === '/news-and-notices' || pathname === '/news' || pathname === '/notices' || pathname.startsWith('/news/') || pathname.startsWith('/notices/');
   const isEventsPage = pathname === '/events' || pathname === '/upcoming-events';
-  const isNewslettersPage = pathname === '/newsletters' || pathname === '/e-magazine';
+  const isNewslettersPage = pathname === '/newsletters' || pathname === '/newsletter' || pathname.startsWith('/newsletter/') || pathname === '/e-magazine';
   const isFacultyPage = pathname === '/faculty' || pathname === '/staff' || pathname === '/faculty-staff';
   const isCBSEResultPage = pathname === '/CBSEresult' || pathname === '/cbse-result' || pathname === '/results';
   const isAdmissionTestPage = pathname === '/AdmissionTestResult' || pathname === '/admission-test-result';
   const isOtherResultPage = pathname === '/OtherResult' || pathname === '/other-result';
-  const isContactPage = pathname === '/contact' || pathname === '/contact-us';
+  const isContactPage = pathname === '/contact' || pathname === '/contact-us' || pathname === '/online-pay' || pathname === '/erp-login' || pathname === '/privacy';
   const isGalleryPage = pathname === '/gallery';
   const isDisclosurePage = pathname === '/school-disclosure' || pathname === '/mandatory-public-disclosure' || pathname === '/mandatory-disclosure' || pathname === '/disclosure' || pathname.toLowerCase() === '/school_disclosure';
   const normalizedPath = pathname.toLowerCase();
@@ -50,7 +51,12 @@ export default function App() {
   const isRule2Page = normalizedPath === '/rule2' || normalizedPath === '/rule2.aspx' || normalizedPath === '/rules-for-parents' || normalizedPath === '/rule2.aspx' || normalizedPath === '/rules2';
   const isManagementPage = normalizedPath === '/management' || normalizedPath === '/our-management' || normalizedPath === '/management.aspx' || normalizedPath === '/our-management.aspx' || normalizedPath === '/managing-committee';
 
+  const isAdminPage = pathname === '/admin' || pathname === '/admin-login';
   const isHomePage = pathname === '/';
+
+  if (isAdminPage) {
+    return <AdminPortal />;
+  }
 
   return (
     <>
@@ -214,3 +220,4 @@ export default function App() {
     </>
   );
 }
+

@@ -16,6 +16,7 @@ import {
   ExternalLink,
   Share2
 } from 'lucide-react';
+import { normalizeAssetUrl, normalizeLinkUrl, useSiteContent } from '../context/siteContent';
 
 const sampleNewsData = [
   {
@@ -229,7 +230,64 @@ function SwissMotifInBody({ type, color = '#ffc72c', isHovered }) {
   );
 }
 
+const newsPalette = [
+  { bgColor: '#009951', textColor: '#ffffff', motifColor: '#ffc72c', motifType: 1 },
+  { bgColor: '#0B427E', textColor: '#ffffff', motifColor: '#ffc72c', motifType: 2 },
+  { bgColor: '#075cff', textColor: '#ffffff', motifColor: '#ffc72c', motifType: 4 },
+  { bgColor: '#ffb800', textColor: '#0B427E', motifColor: '#0B427E', motifType: 3 },
+  { bgColor: '#930018', textColor: '#ffffff', motifColor: '#ffc72c', motifType: 1 }
+];
+
+function mapAdminNews(item, index) {
+  const palette = newsPalette[index % newsPalette.length];
+  return {
+    id: item.id || `news-${index + 1}`,
+    title: item.title || 'School update',
+    date: item.date || 'Pitts Modern School',
+    dateRaw: item.dateRaw || '',
+    category: item.category || 'Campus News',
+    image: normalizeAssetUrl(item.image, '/image/IMG_2137.jpg'),
+    excerpt: item.excerpt || item.text || 'Latest update from Pitts Modern School, Gomia.',
+    tags: Array.isArray(item.tags) ? item.tags : ['Pitts Modern School'],
+    href: normalizeLinkUrl(item.href, '/news-and-notices'),
+    ...palette
+  };
+}
+
+function mapAdminNotice(item, index) {
+  return {
+    id: item.id || `notice-${index + 1}`,
+    title: item.title || 'School notice',
+    publishedDate: item.publishedDate || `${item.day || '--'} ${item.month || ''} 2026`,
+    dateBadgeDay: item.dateBadgeDay || item.day || '--',
+    dateBadgeMonth: item.dateBadgeMonth || item.month || 'PMS',
+    dateBadgeYear: item.dateBadgeYear || '2026',
+    category: item.category || item.label || 'Notice',
+    isPinned: item.isPinned ?? index < 2,
+    department: item.department || `${item.label || 'School'}. NOTICE`,
+    content: item.content || item.text || 'Click through for complete details from Pitts Modern School.',
+    attachmentName: item.attachmentName || item.document || item.href || 'Notice link',
+    fileSize: item.fileSize || ''
+  };
+}
+
+const emptyNotice = {
+  id: 'notice-empty',
+  title: 'No notices published',
+  publishedDate: 'Pitts Modern School',
+  dateBadgeDay: '--',
+  dateBadgeMonth: 'PMS',
+  dateBadgeYear: '',
+  category: 'Notice',
+  isPinned: false,
+  department: 'School. NOTICE',
+  content: 'No official notices are currently published from the admin portal.',
+  attachmentName: 'No attachment',
+  fileSize: ''
+};
+
 export default function NewsAndNotices() {
+  const siteContent = useSiteContent();
   const [activeTab, setActiveTab] = useState('all'); // 'all', 'news', 'notices'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -239,12 +297,17 @@ export default function NewsAndNotices() {
 
   // Selected Notice for Split Reader
   const [activeNoticeId, setActiveNoticeId] = useState(sampleNoticesData[0].id);
+  const newsSource = Array.isArray(siteContent.latestHighlights) ? siteContent.latestHighlights : sampleNewsData;
+  const noticesSource = Array.isArray(siteContent.notices) ? siteContent.notices : sampleNoticesData;
+  const newsData = newsSource.map(mapAdminNews);
+  const noticesData = noticesSource.map(mapAdminNotice);
+  const newsCategories = ['All', ...Array.from(new Set(newsData.map((item) => item.category)))];
 
   const activeNotice =
-    sampleNoticesData.find((n) => n.id === activeNoticeId) || sampleNoticesData[0];
+    noticesData.find((n) => n.id === activeNoticeId) || noticesData[0] || emptyNotice;
 
   // Filtered News items
-  const filteredNews = sampleNewsData.filter((item) => {
+  const filteredNews = newsData.filter((item) => {
     const matchesSearch =
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
@@ -271,14 +334,14 @@ export default function NewsAndNotices() {
               onClick={() => setActiveTab('notices')}
             >
               <Pin size={16} />
-              <span>Official Notices ({sampleNoticesData.length})</span>
+              <span>Official Notices ({noticesData.length})</span>
             </button>
             <button
               className={`news-tab-btn ${activeTab === 'news' ? 'active' : ''}`}
               onClick={() => setActiveTab('news')}
             >
               <Megaphone size={16} />
-              <span>Campus News ({sampleNewsData.length})</span>
+              <span>Campus News ({newsData.length})</span>
             </button>
           </div>
         </div>
@@ -294,7 +357,7 @@ export default function NewsAndNotices() {
                 <h2>Official Circulars &amp; Board Notices</h2>
               </div>
               <span className="notices-count-badge">
-                {sampleNoticesData.filter((n) => n.isPinned).length} Pinned Directives
+                {noticesData.filter((n) => n.isPinned).length} Pinned Directives
               </span>
             </div>
 
@@ -305,7 +368,7 @@ export default function NewsAndNotices() {
                 <div className="sidebar-label">📌 PINNED &amp; RECENT ANNOUNCEMENTS</div>
 
                 <div className="notices-list-stack">
-                  {sampleNoticesData.map((notice) => {
+                  {noticesData.map((notice) => {
                     const isSelected = notice.id === activeNoticeId;
                     return (
                       <div
@@ -427,12 +490,9 @@ export default function NewsAndNotices() {
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     className="select-input"
                   >
-                    <option value="All">All Categories</option>
-                    <option value="Academic Recognition">Academic Recognition</option>
-                    <option value="Faculty &amp; Staff">Faculty &amp; Staff</option>
-                    <option value="Music &amp; Arts">Music &amp; Arts</option>
-                    <option value="CBSE Board Notices">CBSE Board Notices</option>
-                    <option value="Events &amp; Sports">Events &amp; Sports</option>
+                    {newsCategories.map((category) => (
+                      <option key={category} value={category}>{category === 'All' ? 'All Categories' : category}</option>
+                    ))}
                   </select>
                 </div>
 

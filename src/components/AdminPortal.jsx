@@ -1,0 +1,616 @@
+﻿import React, { useMemo, useState } from 'react';
+import { Download, Eye, Image as ImageIcon, Link2, Lock, LogOut, Plus, RotateCcw, Save, ShieldCheck, Trash2, Upload, User } from 'lucide-react';
+import { defaultSiteContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent } from '../context/siteContent';
+
+const ADMIN_SESSION_KEY = 'pittsModernSchool.adminSession';
+const ADMIN_CONFIGURED_USER = import.meta.env.VITE_ADMIN_USER || '';
+const ADMIN_CONFIGURED_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || '';
+
+const modules = [
+  { id: 'hero', label: 'Hero', path: 'hero', type: 'object', fields: ['title', 'subtitle', 'body', 'primaryLabel', 'primaryHref', 'secondaryLabel', 'secondaryMeta', 'secondaryHref'] },
+  { id: 'popup', label: 'Popup', path: 'popup', type: 'object', fields: ['enabled', 'linksEnabled', 'title', 'subtitle', 'body', 'image', 'ctaLabel', 'ctaHref'] },
+  { id: 'popupLinks', label: 'Popup Link Items', path: 'popup.links', type: 'array', fields: ['label', 'note', 'href'] },
+  { id: 'announcements', label: 'Announcement Bar', path: 'header.announcements', type: 'array', fields: ['text', 'href'] },
+  { id: 'quickActions', label: 'Quick Actions', path: 'header.quickActions', type: 'array', fields: ['title', 'href'] },
+  { id: 'latestHighlights', label: 'Latest Highlights', path: 'latestHighlights', type: 'array', fields: ['title', 'image', 'href', 'imagePosition'] },
+  { id: 'upcomingEvents', label: 'Upcoming Events', path: 'upcomingEvents', type: 'array', fields: ['month', 'day', 'weekday', 'title', 'type', 'time', 'image', 'excerpt', 'href'] },
+  { id: 'notices', label: 'Notice Board', path: 'notices', type: 'array', fields: ['day', 'month', 'label', 'title', 'href'] },
+  { id: 'newsletters', label: 'Newsletters', path: 'newsletters', type: 'array', fields: ['title', 'image', 'href'] },
+  { id: 'toppers', label: 'Result Toppers', path: 'results.toppers', type: 'array', fields: ['rank', 'name', 'score', 'className', 'image', 'position', 'tone'] },
+  { id: 'landmarks', label: 'Landmark Moments', path: 'results.landmarkSlides', type: 'array', fields: ['image', 'tag', 'caption'] },
+  { id: 'faculty', label: 'Faculty Library', path: 'contentLibrary.faculty', type: 'array', fields: ['name', 'role', 'department', 'image', 'href'] },
+  { id: 'sports', label: 'Sports Library', path: 'contentLibrary.sports', type: 'array', fields: ['title', 'date', 'image', 'text', 'href'] },
+  { id: 'activities', label: 'Activity Library', path: 'contentLibrary.culturalActivities', type: 'array', fields: ['title', 'date', 'image', 'text', 'href'] },
+  { id: 'gallery', label: 'Gallery Library', path: 'contentLibrary.gallery', type: 'array', fields: ['title', 'category', 'image', 'caption'] },
+];
+
+const internalLinkOptions = [
+  ['Home', routeLinks.home],
+  ['About Us', routeLinks.about],
+  ['Our Story', routeLinks.story],
+  ['Management', routeLinks.management],
+  ["Principal's Desk", routeLinks.principal],
+  ['Infrastructure', routeLinks.infrastructure],
+  ['News & Notices', routeLinks.news],
+  ['Events Calendar', routeLinks.events],
+  ['Newsletters', routeLinks.newsletters],
+  ['Faculty', routeLinks.faculty],
+  ['CBSE Result', routeLinks.results],
+  ['Admission Test Result', routeLinks.admissionResults],
+  ['Other Result', routeLinks.otherResults],
+  ['Sports', routeLinks.sports],
+  ['Co-curricular Activities', routeLinks.cultural],
+  ['School Rules', routeLinks.rules],
+  ['Parent Rules', routeLinks.parentRules],
+  ['School Disclosure', routeLinks.disclosure],
+  ['Gallery', routeLinks.gallery],
+  ['Contact', routeLinks.contact],
+  ['Admin', routeLinks.admin],
+  ['Admission News', routeLinks.admissions],
+  ['Online Pay', routeLinks.payments],
+  ['ERP Login', routeLinks.erp],
+  ['Privacy', routeLinks.privacy],
+];
+
+function getAtPath(source, path) {
+  return path.split('.').reduce((value, key) => (value ? value[key] : undefined), source);
+}
+
+function setAtPath(source, path, nextValue) {
+  const keys = path.split('.');
+  const clone = structuredClone(source);
+  let cursor = clone;
+  keys.slice(0, -1).forEach((key) => {
+    cursor[key] = cursor[key] || {};
+    cursor = cursor[key];
+  });
+  cursor[keys[keys.length - 1]] = nextValue;
+  return clone;
+}
+
+function emptyItem(fields) {
+  return fields.reduce((item, field) => ({ ...item, [field]: field === 'enabled' ? true : '' }), {});
+}
+
+function humanLabel(field) {
+  return field.replace(/([A-Z])/g, ' $1').replace(/^./, (letter) => letter.toUpperCase());
+}
+
+function isAssetField(field) {
+  return /(image|photo|cover|file|document|pdf)/i.test(field);
+}
+
+function isLinkField(field) {
+  return /(href|link|url)/i.test(field);
+}
+
+const IMAGE_UPLOAD_LIMIT = 12 * 1024 * 1024;
+const DOCUMENT_UPLOAD_LIMIT = 900 * 1024;
+const TARGET_IMAGE_BYTES = 180 * 1024;
+const MAX_IMAGE_SIDE = 1400;
+
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function loadImageSource(source) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = source;
+  });
+}
+
+function canvasToBlob(canvas, type, quality) {
+  return new Promise((resolve) => canvas.toBlob(resolve, type, quality));
+}
+
+async function blobToDataUrl(blob) {
+  return fileToDataUrl(blob);
+}
+
+async function compressImageToWebp(source, options = {}) {
+  const maxSide = options.maxSide || MAX_IMAGE_SIDE;
+  const targetBytes = options.targetBytes || TARGET_IMAGE_BYTES;
+  const image = await loadImageSource(source);
+  const scale = Math.min(1, maxSide / Math.max(image.naturalWidth || image.width, image.naturalHeight || image.height));
+  const width = Math.max(1, Math.round((image.naturalWidth || image.width) * scale));
+  const height = Math.max(1, Math.round((image.naturalHeight || image.height) * scale));
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext('2d', { alpha: true });
+  context.drawImage(image, 0, 0, width, height);
+
+  let bestBlob = null;
+  for (const quality of [0.82, 0.72, 0.62, 0.52, 0.42]) {
+    const blob = await canvasToBlob(canvas, 'image/webp', quality);
+    if (!blob) continue;
+    bestBlob = blob;
+    if (blob.size <= targetBytes) break;
+  }
+
+  if (!bestBlob) return source;
+  return blobToDataUrl(bestBlob);
+}
+
+async function prepareUploadedFile(file) {
+  if (file.type.startsWith('image/')) {
+    if (file.size > IMAGE_UPLOAD_LIMIT) {
+      window.alert('This image is too large. Please choose an image under 12 MB.');
+      return '';
+    }
+    const originalDataUrl = await fileToDataUrl(file);
+    return compressImageToWebp(originalDataUrl);
+  }
+
+  if (file.size > DOCUMENT_UPLOAD_LIMIT) {
+    window.alert('This document is too large for browser local storage. Put it in the public folder and paste its path or URL here.');
+    return '';
+  }
+
+  return fileToDataUrl(file);
+}
+
+async function readDroppedFile(file, onChange) {
+  const prepared = await prepareUploadedFile(file);
+  if (prepared) onChange(prepared);
+}
+
+function rejectFileForLinkField() {
+  window.alert('This is a link field. Choose an internal page from the dropdown or type/paste an external URL. Upload images in an Image field.');
+}
+
+async function optimizeContentForStorage(value) {
+  if (typeof value === 'string') {
+    if (value.startsWith('data:image/') && value.length > TARGET_IMAGE_BYTES * 2) {
+      try {
+        return await compressImageToWebp(value);
+      } catch {
+        return value;
+      }
+    }
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return Promise.all(value.map((item) => optimizeContentForStorage(item)));
+  }
+
+  if (value && typeof value === 'object') {
+    const entries = await Promise.all(Object.entries(value).map(async ([key, item]) => [key, await optimizeContentForStorage(item)]));
+    return Object.fromEntries(entries);
+  }
+
+  return value;
+}
+
+function cleanInvalidLinkUploads(value, keyName = '') {
+  if (typeof value === 'string') {
+    if (isLinkField(keyName) && value.startsWith('data:')) return '';
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => cleanInvalidLinkUploads(item));
+  }
+
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, cleanInvalidLinkUploads(item, key)]));
+  }
+
+  return value;
+}
+
+function getStorageBytes(value) {
+  return new Blob([JSON.stringify(value)]).size;
+}
+
+function describeBytes(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function getQuotaMessage(error, content) {
+  const size = describeBytes(getStorageBytes(content));
+  if (error?.name === 'QuotaExceededError') return `Save failed: browser storage is full (${size}). Remove large documents or use public-folder links.`;
+  return `Save failed (${size}). Export JSON or remove large uploaded files.`;
+}
+
+function FieldInput({ field, value, onChange }) {
+  if (field === 'enabled') {
+    return (
+      <label className="admin-toggle-field">
+        <input type="checkbox" checked={Boolean(value)} onChange={(event) => onChange(event.target.checked)} />
+        <span>{Boolean(value) ? 'Enabled' : 'Disabled'}</span>
+      </label>
+    );
+  }
+
+  const isLong = ['body', 'subtitle', 'text', 'caption', 'excerpt', 'note'].includes(field);
+  const isImage = field.toLowerCase().includes('image');
+  const isLink = isLinkField(field);
+  const acceptsDrop = isAssetField(field) || isLink;
+  const acceptsFileUpload = isAssetField(field);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleDrop = async (event) => {
+    if (!acceptsDrop) return;
+    event.preventDefault();
+    const file = event.dataTransfer.files?.[0];
+    if (file && isLink) {
+      rejectFileForLinkField();
+      return;
+    }
+    if (file && isAssetField(field)) {
+      setIsUploading(true);
+      try {
+        await readDroppedFile(file, onChange);
+      } finally {
+        setIsUploading(false);
+      }
+      return;
+    }
+    const droppedText = event.dataTransfer.getData('text/uri-list') || event.dataTransfer.getData('text/plain');
+    if (droppedText) onChange(isLink ? normalizeLinkUrl(droppedText) : normalizeAssetUrl(droppedText, droppedText.trim()));
+  };
+
+  const handleTextChange = (event) => {
+    const nextValue = event.target.value;
+    if (isLink) {
+      onChange(normalizeLinkUrl(nextValue, nextValue));
+      return;
+    }
+    if (isAssetField(field)) {
+      onChange(normalizeAssetUrl(nextValue, nextValue));
+      return;
+    }
+    onChange(nextValue);
+  };
+
+  const handleFilePick = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setIsUploading(true);
+    try {
+      await readDroppedFile(file, onChange);
+      event.target.value = '';
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleInternalLinkPick = (event) => {
+    if (!event.target.value) return;
+    onChange(event.target.value);
+  };
+
+  const previewImage = normalizeAssetUrl(value);
+  const fileAccept = isImage ? 'image/*' : '*/*';
+  const selectedInternalValue = internalLinkOptions.some(([, href]) => href === value) ? value : '';
+
+  return (
+    <label
+      className={`admin-field ${acceptsDrop ? 'admin-field-droppable' : ''}`}
+      onDragOver={(event) => acceptsDrop && event.preventDefault()}
+      onDrop={handleDrop}
+    >
+      <span>{humanLabel(field)}</span>
+      {isLink && (
+        <select className="admin-internal-link-picker" value={selectedInternalValue} onChange={handleInternalLinkPick} aria-label={`Choose internal page for ${humanLabel(field)}`}>
+          <option value="">Choose internal page...</option>
+          {internalLinkOptions.map(([label, href]) => (
+            <option key={`${label}-${href}`} value={href}>{label} - {href}</option>
+          ))}
+        </select>
+      )}
+      <div className={`admin-input-wrap ${acceptsDrop || isImage || isLink ? '' : 'admin-input-plain'}`}>
+        {isImage && <ImageIcon size={15} />}
+        {isLink && <Link2 size={15} />}
+        {isLong ? (
+          <textarea value={value || ''} onChange={handleTextChange} rows={3} />
+        ) : (
+          <input value={value || ''} onChange={handleTextChange} />
+        )}
+        {acceptsFileUpload && (
+          <span className={`admin-file-picker ${isUploading ? 'is-uploading' : ''}`}>
+            <input type="file" accept={fileAccept} onChange={handleFilePick} aria-label={`Upload ${humanLabel(field)}`} disabled={isUploading} />
+            <Upload size={14} />
+            {isUploading ? 'Optimizing' : 'Upload'}
+          </span>
+        )}
+      </div>
+      {isImage && previewImage && <img className="admin-field-thumb" src={previewImage} alt="" />}
+      {acceptsDrop && <small className="admin-drop-hint">Drop a file, image, document or URL here.</small>}
+    </label>
+  );
+}
+
+function EventCalendarPreview({ events = [] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeEvent = events[activeIndex] || events[0] || {};
+
+  return (
+    <div className="admin-calendar-preview">
+      <div className="admin-calendar-preview-grid">
+        {events.slice(0, 9).map((event, index) => (
+          <button
+            key={`${event.month}-${event.day}-${index}`}
+            className={index === activeIndex ? 'active' : ''}
+            onClick={() => setActiveIndex(index)}
+            type="button"
+          >
+            <span>{event.month || 'MMM'}</span>
+            <strong>{event.day || '--'}</strong>
+          </button>
+        ))}
+      </div>
+      <aside className="admin-calendar-preview-detail">
+        <span>{activeEvent.weekday || 'Event'} {activeEvent.month || ''} {activeEvent.day || ''}</span>
+        <h3>{activeEvent.title || 'Add an event title'}</h3>
+        <p>{activeEvent.time || 'Add event timing'}</p>
+        {normalizeAssetUrl(activeEvent.image) && <img src={normalizeAssetUrl(activeEvent.image)} alt="" />}
+        <a href={normalizeLinkUrl(activeEvent.href, '/events')} target="_blank" rel="noreferrer">Preview event link</a>
+      </aside>
+    </div>
+  );
+}
+
+function LoginPanel({ onLogin }) {
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const [year, setYear] = useState('2026-27');
+  const [remember, setRemember] = useState(false);
+  const [error, setError] = useState('');
+
+  const submit = (event) => {
+    event.preventDefault();
+    if (!ADMIN_CONFIGURED_USER || !ADMIN_CONFIGURED_PASSWORD) {
+      setError('Admin login is not configured. Set VITE_ADMIN_USER and VITE_ADMIN_PASSWORD in your local .env file.');
+      return;
+    }
+    if (user.trim() === ADMIN_CONFIGURED_USER && password === ADMIN_CONFIGURED_PASSWORD) {
+      if (remember) window.localStorage.setItem(ADMIN_SESSION_KEY, 'true');
+      window.sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
+      onLogin();
+      return;
+    }
+    setError('Invalid admin login.');
+  };
+
+  return (
+    <main className="admin-login-page">
+      <div className="admin-login-panel">
+        <img src="/image/logo.png" alt="Pitts Modern School" />
+        <h1>Please Enter Login Information</h1>
+        {!ADMIN_CONFIGURED_USER && <p className="admin-login-config-note">Admin credentials are read from local environment variables.</p>}
+        <form onSubmit={submit}>
+          <label>
+            <User size={17} />
+            <input value={user} onChange={(event) => setUser(event.target.value)} placeholder="Please Enter User Id" />
+          </label>
+          <label>
+            <Lock size={17} />
+            <input value={password} onChange={(event) => setPassword(event.target.value)} type="password" placeholder="Please Enter Password" />
+          </label>
+          <select value={year} onChange={(event) => setYear(event.target.value)}>
+            <option>2026-27</option>
+            <option>2025-26</option>
+            <option>2024-25</option>
+          </select>
+          <div className="admin-login-row">
+            <label className="admin-remember"><input type="checkbox" checked={remember} onChange={(event) => setRemember(event.target.checked)} /> Remember Me</label>
+            <button type="submit">Submit</button>
+          </div>
+          {error && <p className="admin-login-error">{error}</p>}
+        </form>
+        <a href="/contact">I forgot my password <span aria-hidden="true">-&gt;</span></a>
+      </div>
+    </main>
+  );
+}
+
+export default function AdminPortal() {
+  const [isAuthed, setIsAuthed] = useState(() => window.sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true' || window.localStorage.getItem(ADMIN_SESSION_KEY) === 'true');
+  const [content, setContent] = useState(() => getSiteContent());
+  const [activeId, setActiveId] = useState('latestHighlights');
+  const [savedLabel, setSavedLabel] = useState('Saved locally');
+  const [saveState, setSaveState] = useState('saved');
+  const [isSaving, setIsSaving] = useState(false);
+  const activeModule = useMemo(() => modules.find((module) => module.id === activeId) || modules[0], [activeId]);
+  const activeValue = getAtPath(content, activeModule.path);
+
+  if (!isAuthed) return <LoginPanel onLogin={() => setIsAuthed(true)} />;
+
+  const updateContent = (updater) => {
+    setContent((current) => (typeof updater === 'function' ? updater(current) : updater));
+    setSaveState('dirty');
+    setSavedLabel('Unsaved changes');
+  };
+
+  const updateObjectField = (field, value) => {
+    updateContent((current) => setAtPath(current, activeModule.path, { ...getAtPath(current, activeModule.path), [field]: value }));
+  };
+
+  const updateItem = (index, field, value) => {
+    updateContent((current) => {
+      const currentItems = getAtPath(current, activeModule.path) || [];
+      const nextItems = [...currentItems];
+      nextItems[index] = { ...nextItems[index], [field]: value };
+      return setAtPath(current, activeModule.path, nextItems);
+    });
+  };
+
+  const addItem = () => updateContent((current) => setAtPath(current, activeModule.path, [...(getAtPath(current, activeModule.path) || []), emptyItem(activeModule.fields)]));
+  const removeItem = (index) => updateContent((current) => setAtPath(current, activeModule.path, (getAtPath(current, activeModule.path) || []).filter((_, itemIndex) => itemIndex !== index)));
+
+  const save = async () => {
+    setIsSaving(true);
+    setSaveState('dirty');
+    setSavedLabel('Optimizing uploads...');
+    try {
+      const cleanedContent = cleanInvalidLinkUploads(content);
+      const optimizedContent = await optimizeContentForStorage(cleanedContent);
+      saveSiteContent(optimizedContent);
+      const savedContent = getSiteContent();
+      setContent(savedContent);
+      setSaveState('saved');
+      setSavedLabel(`Changes saved at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (${describeBytes(getStorageBytes(savedContent))})`);
+    } catch (error) {
+      console.error('Could not save admin changes.', error);
+      setSaveState('error');
+      setSavedLabel(getQuotaMessage(error, content));
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const reset = () => {
+    const next = resetSiteContent();
+    updateContent(next);
+    setSaveState('saved');
+    setSavedLabel('Defaults restored');
+  };
+
+  const exportJson = () => {
+    const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'pitts-site-content.json';
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const importJson = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const next = JSON.parse(reader.result);
+        updateContent(next);
+        setSavedLabel('Imported. Review, then save.');
+      } catch {
+        setSaveState('error');
+        setSavedLabel('Import failed: invalid JSON');
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  const logout = () => {
+    window.sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    window.localStorage.removeItem(ADMIN_SESSION_KEY);
+    setIsAuthed(false);
+  };
+
+  const showPopupAgain = () => {
+    window.localStorage.removeItem('hideAdmissionPopup');
+    setSaveState('saved');
+    setSavedLabel('Popup will show again on the website after refresh');
+  };
+
+  return (
+    <main className="admin-portal-page">
+      <aside className="admin-sidebar">
+        <a className="admin-brand" href="/">
+          <img src="/image/logo.png" alt="" />
+          <span>Pitts Control<small>Website admin</small></span>
+        </a>
+        <nav aria-label="Admin modules">
+          {modules.map((module) => (
+            <button key={module.id} className={activeId === module.id ? 'active' : ''} onClick={() => setActiveId(module.id)}>
+              {module.label}
+            </button>
+          ))}
+        </nav>
+        <button className="admin-logout" onClick={logout}><LogOut size={16} /> Logout</button>
+      </aside>
+
+      <section className="admin-workspace">
+        <header className="admin-topbar">
+          <div>
+            <p><ShieldCheck size={16} /> Local safe draft</p>
+            <h1>{activeModule.label}</h1>
+          </div>
+          <div className="admin-actions">
+            <span className={`admin-save-status ${saveState}`}>{savedLabel}</span>
+            <button onClick={reset}><RotateCcw size={16} /> Reset</button>
+            {(activeModule.id === 'popup' || activeModule.id === 'popupLinks') && <button onClick={showPopupAgain}><Eye size={16} /> Show Popup Again</button>}
+            <button onClick={exportJson}><Download size={16} /> Export</button>
+            <label className="admin-import"><Upload size={16} /> Import<input type="file" accept="application/json" onChange={importJson} /></label>
+            <button className="admin-save" onClick={save} disabled={isSaving}><Save size={16} /> {isSaving ? 'Saving...' : 'Save Changes'}</button>
+          </div>
+        </header>
+
+        <div className="admin-edit-layout">
+          <section className="admin-editor-card">
+            <div className="admin-editor-head">
+              <div>
+                <h2>Edit module</h2>
+                <p>Changes are stored locally and appear on connected home sections after saving.</p>
+              </div>
+              {activeModule.type === 'array' && <button onClick={addItem}><Plus size={16} /> Add Item</button>}
+            </div>
+
+            {activeModule.type === 'object' ? (
+              <div className="admin-object-grid">
+                {activeModule.fields.map((field) => (
+                  <FieldInput key={field} field={field} value={activeValue?.[field]} onChange={(value) => updateObjectField(field, value)} />
+                ))}
+              </div>
+            ) : (
+              <div className="admin-row-list">
+                {(activeValue || []).map((item, index) => (
+                  <article className="admin-data-row" key={`${activeModule.id}-${index}`}>
+                    <div className="admin-data-row-head">
+                      <strong>{String(index + 1).padStart(2, '0')}</strong>
+                      <button onClick={() => removeItem(index)} aria-label="Remove item"><Trash2 size={16} /></button>
+                    </div>
+                    <div className="admin-data-fields">
+                      {activeModule.fields.map((field) => (
+                        <FieldInput key={field} field={field} value={item[field]} onChange={(value) => updateItem(index, field, value)} />
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+
+          <aside className="admin-preview-card">
+            <div className="admin-preview-head"><Eye size={16} /><span>Live preview</span></div>
+            {activeModule.id === 'upcomingEvents' ? (
+              <EventCalendarPreview events={activeValue || []} />
+            ) : (
+              <div className="admin-preview-list">
+                {activeModule.type === 'array' ? (activeValue || []).slice(0, 4).map((item, index) => (
+                  <article key={index}>
+                    {normalizeAssetUrl(item.image) && <img src={normalizeAssetUrl(item.image)} alt="" />}
+                    <strong>{item.title || item.name || item.text || item.caption || `Item ${index + 1}`}</strong>
+                    <small>{item.href || item.time || item.score || item.role || 'Ready to publish'}</small>
+                  </article>
+                )) : (
+                  <article>
+                  {normalizeAssetUrl(activeValue?.image) && <img src={normalizeAssetUrl(activeValue.image)} alt="" />}
+                    <strong>{activeValue?.title || activeValue?.primaryLabel}</strong>
+                    <small>{activeValue?.subtitle || activeValue?.body || activeValue?.ctaHref}</small>
+                  </article>
+                )}
+              </div>
+            )}
+            <a className="admin-site-link" href="/" target="_blank" rel="noreferrer">Open website preview</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+  );
+}

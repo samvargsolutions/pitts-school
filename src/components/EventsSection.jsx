@@ -18,6 +18,7 @@ import {
   X,
   Image as ImageIcon
 } from 'lucide-react';
+import { normalizeAssetUrl, normalizeLinkUrl, useSiteContent } from '../context/siteContent';
 
 const upcomingEventsData = [
   {
@@ -208,6 +209,68 @@ const calendarEventDetailsMap = {
   }
 };
 
+const fallbackEventImages = [
+  '/image/inv1.jpg',
+  '/image/IMG_2137.jpg',
+  '/image/inv2.jpg',
+  '/image/inv3.jpg',
+  '/image/IMG_2190.jpg'
+];
+
+const eventPalette = [
+  { bgColor: '#0B427E', textColor: '#ffffff', motifColor: '#ffc72c', motifType: 1 },
+  { bgColor: '#009951', textColor: '#ffffff', motifColor: '#ffc72c', motifType: 2 },
+  { bgColor: '#ffb800', textColor: '#0B427E', motifColor: '#0B427E', motifType: 3 },
+  { bgColor: '#075cff', textColor: '#ffffff', motifColor: '#ffc72c', motifType: 4 },
+  { bgColor: '#930018', textColor: '#ffffff', motifColor: '#ffc72c', motifType: 1 }
+];
+
+function titleCase(value = '') {
+  return value
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function eventDateKey(event) {
+  const month = (event.month || event.dateMonth || 'AUG').toString().slice(0, 3).toUpperCase();
+  const day = (event.day || event.dateDay || '01').toString().padStart(2, '0');
+  return `${month} ${day}`;
+}
+
+function ordinalDay(day) {
+  const number = Number.parseInt(day, 10);
+  if (!Number.isFinite(number)) return day;
+  const suffix = number % 10 === 1 && number % 100 !== 11 ? 'ST' : number % 10 === 2 && number % 100 !== 12 ? 'ND' : number % 10 === 3 && number % 100 !== 13 ? 'RD' : 'TH';
+  return `${String(number).padStart(2, '0')}${suffix}`;
+}
+
+function mapAdminEvent(event, index) {
+  const palette = eventPalette[index % eventPalette.length];
+  const dateDay = (event.day || event.dateDay || '01').toString().padStart(2, '0');
+  const dateMonth = (event.month || event.dateMonth || 'AUG').toString().slice(0, 3).toUpperCase();
+  const image = normalizeAssetUrl(event.image, fallbackEventImages[index % fallbackEventImages.length]);
+  const type = titleCase(event.type || event.category || 'Campus Event');
+
+  return {
+    id: event.id || `event-${index + 1}`,
+    title: event.title || 'Upcoming school event',
+    dateDay,
+    dateMonth,
+    dateYear: event.year || event.dateYear || '2026',
+    weekday: event.weekday || '',
+    category: type,
+    image,
+    excerpt: event.excerpt || event.text || 'A Pitts Modern School event shaped by learning, participation and community spirit.',
+    tags: Array.isArray(event.tags) ? event.tags : [type, event.time || 'School Calendar'],
+    galleryImages: Array.isArray(event.galleryImages) ? event.galleryImages.map((item) => normalizeAssetUrl(item, image)).filter(Boolean) : [image],
+    href: normalizeLinkUrl(event.href, '/events'),
+    time: event.time || 'Time to be announced',
+    ...palette
+  };
+}
+
 // Swiss Modular Geometric SVG Motifs
 function SwissMotifInBody({ type, color = '#ffc72c', isHovered }) {
   return (
@@ -320,16 +383,38 @@ function EventGalleryModal({ event, onClose }) {
 }
 
 export default function EventsSection() {
+  const siteContent = useSiteContent();
   const [hoveredCardId, setHoveredCardId] = useState(null);
   const [categoryFilter, setCategoryFilter] = useState('All');
   const [selectedCalendarDate, setSelectedCalendarDate] = useState('AUG 15');
   const [activeGalleryEvent, setActiveGalleryEvent] = useState(null);
 
-  const activeCalendarInfo = calendarEventDetailsMap[selectedCalendarDate] || calendarEventDetailsMap['AUG 15'];
+  const adminEvents = Array.isArray(siteContent.upcomingEvents) ? siteContent.upcomingEvents : upcomingEventsData;
+  const syncedEvents = adminEvents.map(mapAdminEvent);
+  const calendarGridTiles = syncedEvents.slice(0, 9).map((event) => {
+    const dateStr = eventDateKey(event);
+    return {
+      day: event.dateDay,
+      month: event.dateMonth,
+      dateStr,
+      fullDateStr: `${(event.weekday || 'EVENT').toUpperCase()} ${event.dateMonth} ${ordinalDay(event.dateDay)}`
+    };
+  });
+  const calendarEventDetailsMap = syncedEvents.reduce((details, event) => {
+    const key = eventDateKey(event);
+    const fullDateStr = `${(event.weekday || 'EVENT').toUpperCase()} ${event.dateMonth} ${ordinalDay(event.dateDay)}`;
+    const existing = details[key] || { fullDateStr, events: [] };
+    existing.events.push({ title: event.title, time: event.time });
+    details[key] = existing;
+    return details;
+  }, {});
+  const activeCalendarKey = calendarEventDetailsMap[selectedCalendarDate] ? selectedCalendarDate : calendarGridTiles[0]?.dateStr;
+  const activeCalendarInfo = calendarEventDetailsMap[activeCalendarKey] || { fullDateStr: 'UPCOMING EVENTS', events: [] };
 
-  const filteredEvents = upcomingEventsData.filter(
+  const filteredEvents = syncedEvents.filter(
     (e) => categoryFilter === 'All' || e.category === categoryFilter
   );
+  const filterCategories = ['All', ...Array.from(new Set(syncedEvents.map((event) => event.category)))];
 
   return (
     <div className="events-page-wrapper">
@@ -360,7 +445,7 @@ export default function EventsSection() {
               {/* Left Side: 3x3 Dynamic Light Date Grid */}
               <div className="calendar-tiles-grid">
                 {calendarGridTiles.map((tile) => {
-                  const isSelected = selectedCalendarDate === tile.dateStr;
+                  const isSelected = activeCalendarKey === tile.dateStr;
 
                   return (
                     <button
@@ -416,14 +501,7 @@ export default function EventsSection() {
           <div className="events-filter-bar">
             <span className="filter-title">Filter by Category:</span>
             <div className="filter-pills-row">
-              {[
-                'All',
-                'Cultural & National',
-                'Academic & Science',
-                'Campus Tradition',
-                'Sports & Athletics',
-                'Academic Counseling'
-              ].map((cat, idx) => (
+                {filterCategories.map((cat, idx) => (
                 <button
                   key={idx}
                   className={`filter-pill-btn ${categoryFilter === cat ? 'active' : ''}`}
