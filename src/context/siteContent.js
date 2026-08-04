@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const SITE_CONTENT_KEY = 'pittsModernSchool.siteContent.v1';
 export const SITE_CONTENT_EVENT = 'pitts-site-content-updated';
@@ -137,7 +137,8 @@ function repairPercentEncoding(value) {
 
 export function normalizeAssetUrl(value, fallback = '') {
   if (!value || typeof value !== 'string') return fallback;
-  const trimmed = repairPercentEncoding(value.trim().replace(/\\/g, '/'));
+  let trimmed = repairPercentEncoding(value.trim().replace(/\\/g, '/'));
+  if (trimmed.endsWith('.pn')) trimmed = `${trimmed}g`;
   if (/^(data:|blob:|https?:\/\/)/i.test(trimmed)) return trimmed;
   if (trimmed.startsWith('/')) return trimmed;
 

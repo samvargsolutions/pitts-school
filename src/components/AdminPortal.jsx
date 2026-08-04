@@ -1,4 +1,4 @@
-﻿import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Download, Eye, Image as ImageIcon, Link2, Lock, LogOut, Plus, RotateCcw, Save, ShieldCheck, Trash2, Upload, User } from 'lucide-react';
 import { defaultSiteContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent } from '../context/siteContent';
 
@@ -8,8 +8,7 @@ const ADMIN_CONFIGURED_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || '';
 
 const modules = [
   { id: 'hero', label: 'Hero', path: 'hero', type: 'object', fields: ['title', 'subtitle', 'body', 'primaryLabel', 'primaryHref', 'secondaryLabel', 'secondaryMeta', 'secondaryHref'] },
-  { id: 'popup', label: 'Popup', path: 'popup', type: 'object', fields: ['enabled', 'linksEnabled', 'title', 'subtitle', 'body', 'image', 'ctaLabel', 'ctaHref'] },
-  { id: 'popupLinks', label: 'Popup Link Items', path: 'popup.links', type: 'array', fields: ['label', 'note', 'href'] },
+  { id: 'popup', label: 'Popup', path: 'popup', type: 'object', fields: ['enabled', 'title', 'subtitle', 'body', 'image', 'ctaLabel', 'ctaHref'] },
   { id: 'announcements', label: 'Announcement Bar', path: 'header.announcements', type: 'array', fields: ['text', 'href'] },
   { id: 'quickActions', label: 'Quick Actions', path: 'header.quickActions', type: 'array', fields: ['title', 'href'] },
   { id: 'latestHighlights', label: 'Latest Highlights', path: 'latestHighlights', type: 'array', fields: ['title', 'image', 'href', 'imagePosition'] },
@@ -584,11 +583,84 @@ export default function AdminPortal() {
                 ))}
               </div>
             )}
+
+            {activeModule.id === 'popup' && (
+              <div className="admin-nested-section">
+                <div className="admin-editor-head" style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid #e2e8f0' }}>
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: '#0B427E' }}>Popup Link Items</h3>
+                    <p style={{ margin: '0.2rem 0 0', fontSize: '0.85rem', color: '#64748B' }}>Manage the list of important links shown inside the popup modal.</p>
+                  </div>
+                  <button onClick={() => updateContent((current) => setAtPath(current, 'popup.links', [...(current.popup?.links || []), { label: '', note: '', href: '' }]))}>
+                    <Plus size={16} /> Add Link Item
+                  </button>
+                </div>
+                <div className="admin-row-list" style={{ marginTop: '1rem' }}>
+                  {(content.popup?.links || []).map((item, index) => (
+                    <article className="admin-data-row" key={`popuplink-${index}`}>
+                      <div className="admin-data-row-head">
+                        <strong>{String(index + 1).padStart(2, '0')}</strong>
+                        <button
+                          onClick={() => updateContent((current) => setAtPath(current, 'popup.links', (current.popup?.links || []).filter((_, i) => i !== index)))}
+                          aria-label="Remove item"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                      <div className="admin-data-fields">
+                        {['label', 'note', 'href'].map((field) => (
+                          <FieldInput
+                            key={field}
+                            field={field}
+                            value={item[field]}
+                            onChange={(value) => updateContent((current) => {
+                              const nextLinks = [...(current.popup?.links || [])];
+                              nextLinks[index] = { ...nextLinks[index], [field]: value };
+                              return setAtPath(current, 'popup.links', nextLinks);
+                            })}
+                          />
+                        ))}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
 
           <aside className="admin-preview-card">
             <div className="admin-preview-head"><Eye size={16} /><span>Live preview</span></div>
-            {activeModule.id === 'upcomingEvents' ? (
+            {activeModule.id === 'popup' ? (
+              <div className="admin-preview-list" style={{ padding: '0.5rem' }}>
+                <article style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'center' }}>
+                  <strong style={{ fontSize: '1.1rem', color: '#0B427E' }}>{activeValue?.title || 'Admissions Open!'}</strong>
+                  {activeValue?.subtitle && <small style={{ color: '#475569', fontSize: '0.82rem' }}>{activeValue.subtitle}</small>}
+                  {(normalizeAssetUrl(activeValue?.image) || '/image/admission_popup.png') && (
+                    <img
+                      src={normalizeAssetUrl(activeValue?.image) || '/image/admission_popup.png'}
+                      alt=""
+                      style={{ width: '100%', borderRadius: '10px', maxHeight: '180px', objectFit: 'cover' }}
+                      onError={(e) => { e.currentTarget.src = '/image/admission_popup.png'; }}
+                    />
+                  )}
+                  {activeValue?.body && <p style={{ fontSize: '0.82rem', color: '#334155', margin: 0, textAlign: 'left' }}>{activeValue.body}</p>}
+                  {(content.popup?.links || []).length > 0 && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', margin: '0.4rem 0', textAlign: 'left' }}>
+                      {(content.popup?.links || []).slice(0, 3).map((lnk, i) => (
+                        <div key={i} style={{ padding: '0.4rem 0.6rem', border: '1px solid #e2e8f0', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 600, color: '#0B427E' }}>
+                          {lnk.label || `Link ${i + 1}`}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {activeValue?.ctaLabel && (
+                    <div style={{ background: '#10b981', color: '#fff', padding: '0.6rem', borderRadius: '999px', fontSize: '0.8rem', fontWeight: 800, textAlign: 'center' }}>
+                      {activeValue.ctaLabel}
+                    </div>
+                  )}
+                </article>
+              </div>
+            ) : activeModule.id === 'upcomingEvents' ? (
               <EventCalendarPreview events={activeValue || []} />
             ) : (
               <div className="admin-preview-list">
