@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { normalizeAssetUrl, normalizeLinkUrl, routeLinks, useSiteContent } from '../context/siteContent';
 
 const highlights = [
@@ -119,7 +119,7 @@ export default function LatestHighlights() {
 
     const timer = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % total);
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, [isPaused, total]);

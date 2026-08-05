@@ -1457,7 +1457,7 @@ button {
   width: 100%;
   background: linear-gradient(90deg, var(--latest-burgundy), var(--latest-gold));
   transform-origin: left center;
-  animation: latestProgress 2000ms linear infinite;
+  animation: latestProgress 1000ms linear infinite;
   pointer-events: none;
 }
 

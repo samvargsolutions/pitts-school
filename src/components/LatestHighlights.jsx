@@ -113,7 +113,7 @@ export default function LatestHighlights() {
 
     const timer = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % total);
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, [isPaused, total]);
