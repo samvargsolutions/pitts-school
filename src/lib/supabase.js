@@ -1,7 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const fallbackSupabaseUrl = 'https://plfkzaikrtxilpalpogd.supabase.co';
+const fallbackSupabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBsZmt6YWlrcnR4aWxwYWxwb2dkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU4NDU3MjQsImV4cCI6MjEwMTQyMTcyNH0.AYbytWSmyL2OnYdiumxbiC5jvgm6votdExNwVq68bhc';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || fallbackSupabaseUrl;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || fallbackSupabaseAnonKey;
 
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
 
@@ -55,9 +58,9 @@ export async function fetchSiteContentFromSupabase() {
       .from('site_content')
       .select('content')
       .eq('key', 'pitts_site_content')
-      .single();
+      .maybeSingle();
 
-    if (error && error.code !== 'PGRST116') {
+    if (error) {
       console.warn('Supabase fetch content error:', error.message);
       return null;
     }
@@ -89,13 +92,13 @@ export async function saveSiteContentToSupabase(content) {
 
     if (error) {
       console.warn('Supabase save content error:', error.message);
-      return false;
+      throw error;
     }
 
     return true;
   } catch (err) {
     console.warn('Error saving content to Supabase:', err);
-    return false;
+    throw err;
   }
 }
 
@@ -127,4 +130,3 @@ export function subscribeToSupabaseRealtime(onUpdate) {
     return () => {};
   }
 }
-

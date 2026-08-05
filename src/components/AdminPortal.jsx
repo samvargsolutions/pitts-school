@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Download, Eye, Image as ImageIcon, Link2, Lock, LogOut, Menu, Plus, RotateCcw, Save, ShieldCheck, Trash2, Upload, User, X } from 'lucide-react';
-import { defaultSiteContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent, useSiteContent } from '../context/siteContent';
+import { defaultSiteContent, fetchCloudContent, getSiteContent, normalizeAssetUrl, normalizeLinkUrl, resetSiteContent, routeLinks, saveSiteContent, useSiteContent } from '../context/siteContent';
 import { isSupabaseConfigured, uploadImageToSupabase } from '../lib/supabase';
 
 const ADMIN_SESSION_KEY = 'pittsModernSchool.adminSession';
@@ -8,6 +8,8 @@ const ADMIN_CONFIGURED_USER = import.meta.env.VITE_ADMIN_USER || 'pittsadmin';
 const ADMIN_CONFIGURED_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'pittspasswordmodularadmin2';
 
 const modules = [
+  { id: 'hero', label: 'Home Hero Copy', path: 'hero', type: 'object', fields: ['title', 'subtitle', 'body', 'primaryLabel', 'primaryHref', 'secondaryLabel', 'secondaryHref'] },
+  { id: 'heroSlides', label: 'Home Hero Slides', path: 'hero.slides', type: 'array', fields: ['image', 'mobile'] },
   { id: 'popup', label: 'Popup Announcement', path: 'popup', type: 'object', fields: ['enabled', 'title', 'subtitle', 'body', 'image', 'ctaLabel', 'ctaHref'] },
   { id: 'announcements', label: 'Announcement Bar', path: 'header.announcements', type: 'array', fields: ['text', 'href'] },
   { id: 'quickActions', label: 'Quick Actions', path: 'header.quickActions', type: 'array', fields: ['title', 'href'] },
@@ -227,6 +229,7 @@ function describeBytes(bytes) {
 function getQuotaMessage(error, content) {
   const size = describeBytes(getStorageBytes(content));
   if (error?.name === 'QuotaExceededError') return `Save failed: browser storage is full (${size}). Remove large documents or use public-folder links.`;
+  if (error?.message) return `Save failed: ${error.message} (${size}).`;
   return `Save failed (${size}). Export JSON or remove large uploaded files.`;
 }
 
@@ -451,12 +454,42 @@ export default function AdminPortal() {
   const [isAuthed, setIsAuthed] = useState(() => window.sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true' || window.localStorage.getItem(ADMIN_SESSION_KEY) === 'true');
   const [content, setContent] = useState(() => getSiteContent());
   const [activeId, setActiveId] = useState('latestHighlights');
-  const [savedLabel, setSavedLabel] = useState('Saved locally');
+  const [savedLabel, setSavedLabel] = useState(isSupabaseConfigured ? 'Loading Supabase content...' : 'Supabase not configured');
   const [saveState, setSaveState] = useState('saved');
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoadingCloud, setIsLoadingCloud] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const activeModule = useMemo(() => modules.find((module) => module.id === activeId) || modules[0], [activeId]);
   const activeValue = getAtPath(content, activeModule.path);
+
+  useEffect(() => {
+    if (!isAuthed || !isSupabaseConfigured) return undefined;
+    let isMounted = true;
+    setIsLoadingCloud(true);
+    fetchCloudContent()
+      .then((cloudContent) => {
+        if (!isMounted) return;
+        if (cloudContent) {
+          setContent(cloudContent);
+          setSavedLabel('Loaded from Supabase');
+        } else {
+          setSavedLabel('No Supabase content found yet. Save once to publish.');
+        }
+      })
+      .catch((error) => {
+        if (!isMounted) return;
+        console.error('Could not load Supabase content.', error);
+        setSaveState('error');
+        setSavedLabel('Could not load Supabase content');
+      })
+      .finally(() => {
+        if (isMounted) setIsLoadingCloud(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isAuthed]);
 
   if (!isAuthed) return <LoginPanel onLogin={() => setIsAuthed(true)} />;
 
@@ -489,10 +522,10 @@ export default function AdminPortal() {
     try {
       const cleanedContent = cleanInvalidLinkUploads(content);
       const optimizedContent = await optimizeContentForStorage(cleanedContent);
-      saveSiteContent(optimizedContent);
+      const publishedContent = await saveSiteContent(optimizedContent);
+      setContent(publishedContent);
       setSaveState('saved');
-      const syncNotice = isSupabaseConfigured ? 'Synced to Supabase' : 'Synced to Cloud';
-      setSavedLabel(`Saved & ${syncNotice} at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`);
+      setSavedLabel(`Published to Supabase at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`);
     } catch (error) {
       console.error('Could not save admin changes.', error);
       setSaveState('error');
@@ -502,11 +535,21 @@ export default function AdminPortal() {
     }
   };
 
-  const reset = () => {
-    const next = resetSiteContent();
-    updateContent(next);
-    setSaveState('saved');
-    setSavedLabel('Defaults restored & synced');
+  const reset = async () => {
+    setIsSaving(true);
+    setSavedLabel('Restoring defaults in Supabase...');
+    try {
+      const next = await resetSiteContent();
+      setContent(next);
+      setSaveState('saved');
+      setSavedLabel('Defaults restored in Supabase');
+    } catch (error) {
+      console.error('Could not reset admin content.', error);
+      setSaveState('error');
+      setSavedLabel(error?.message || 'Reset failed');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const exportJson = () => {
@@ -612,16 +655,16 @@ export default function AdminPortal() {
       <section className="admin-workspace">
         <header className="admin-topbar">
           <div>
-            <p><ShieldCheck size={16} /> Local safe draft</p>
+            <p><ShieldCheck size={16} /> Supabase-backed publishing</p>
             <h1>{activeModule.label}</h1>
           </div>
           <div className="admin-actions">
             <span className={`admin-save-status ${saveState}`}>{savedLabel}</span>
-            <button onClick={reset}><RotateCcw size={16} /> Reset</button>
+            <button onClick={reset} disabled={isSaving || isLoadingCloud}><RotateCcw size={16} /> Reset</button>
             {(activeModule.id === 'popup' || activeModule.id === 'popupLinks') && <button onClick={showPopupAgain}><Eye size={16} /> Show Popup Again</button>}
             <button onClick={exportJson}><Download size={16} /> Export</button>
             <label className="admin-import"><Upload size={16} /> Import<input type="file" accept="application/json" onChange={importJson} /></label>
-            <button className="admin-save" onClick={save} disabled={isSaving}><Save size={16} /> {isSaving ? 'Saving...' : 'Save Changes'}</button>
+            <button className="admin-save" onClick={save} disabled={isSaving || isLoadingCloud}><Save size={16} /> {isSaving ? 'Saving...' : 'Save Changes'}</button>
           </div>
         </header>
 
@@ -630,7 +673,7 @@ export default function AdminPortal() {
             <div className="admin-editor-head">
               <div>
                 <h2>Edit module</h2>
-                <p>Changes are stored locally and appear on connected home sections after saving.</p>
+                <p>Changes publish to Supabase and appear for everyone after saving.</p>
               </div>
               {activeModule.type === 'array' && <button onClick={addItem}><Plus size={16} /> Add Item</button>}
             </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { normalizeAssetUrl, useSiteContent } from '../context/siteContent';
 
 /* ─── 51 CULTURAL & CO-CURRICULAR ACTIVITIES DATA ───────────────── */
 const culturalActivities = [
@@ -930,7 +931,21 @@ function SportsIllustratedHero() {
 }
 
 function ActivityIndexPage({ variant }) {
-  const content = pageContent[variant];
+  const siteContent = useSiteContent();
+  const baseContent = pageContent[variant];
+  const adminItems = variant === 'cultural'
+    ? siteContent?.contentLibrary?.culturalActivities
+    : siteContent?.contentLibrary?.sports;
+  const syncedItems = Array.isArray(adminItems) && adminItems.length > 0
+    ? adminItems.map((item, index) => ({
+        id: item.id || `${variant}-${index + 1}`,
+        title: item.title || `${baseContent.title} item`,
+        meta: item.meta || item.date || '',
+        image: normalizeAssetUrl(item.image, baseContent.items[index % baseContent.items.length]?.image || '/image/aam1.webp'),
+        text: item.text || item.excerpt || item.summary || '',
+      }))
+    : baseContent.items;
+  const content = { ...baseContent, items: syncedItems };
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -982,7 +997,7 @@ function ActivityIndexPage({ variant }) {
                 </div>
 
                 <figure className="activity-entry-media">
-                  <img src={item.image} alt={item.title} loading={index > 2 ? 'lazy' : 'eager'} />
+                  <img src={normalizeAssetUrl(item.image)} alt={item.title} loading={index > 2 ? 'lazy' : 'eager'} />
                 </figure>
               </article>
             );

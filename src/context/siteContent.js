@@ -189,6 +189,16 @@ function mergeContent(defaults, saved, path) {
 
 let isSyncingCloud = false;
 
+function cacheSiteContent(content) {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(content));
+  } catch (e) {
+    console.warn('Could not cache site content locally.', e);
+  }
+  window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: content }));
+}
+
 export async function fetchCloudContent() {
   if (typeof window === 'undefined' || isSyncingCloud) return null;
   try {
@@ -198,12 +208,7 @@ export async function fetchCloudContent() {
       const supabaseContent = await fetchSiteContentFromSupabase();
       if (supabaseContent && typeof supabaseContent === 'object') {
         const merged = mergeContent(defaultSiteContent, supabaseContent);
-        try {
-          window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
-        } catch (e) {
-          // Quota safe fallback
-        }
-        window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
+        cacheSiteContent(merged);
         return merged;
       }
     }
@@ -229,27 +234,23 @@ export function getSiteContent() {
 export async function saveSiteContent(content) {
   if (typeof window === 'undefined') return;
   const merged = mergeContent(defaultSiteContent, content);
-  
-  try {
-    window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
-  } catch (e) {
-    console.warn('LocalStorage full, relying on cloud storage', e);
+
+  if (!isSupabaseConfigured) {
+    throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY before saving admin changes.');
   }
 
-  window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
-
-  if (isSupabaseConfigured) {
-    await saveSiteContentToSupabase(merged);
-  }
+  await saveSiteContentToSupabase(merged);
+  cacheSiteContent(merged);
+  return merged;
 }
 
-export function resetSiteContent() {
+export async function resetSiteContent() {
   if (typeof window === 'undefined') return defaultSiteContent;
-  window.localStorage.removeItem(SITE_CONTENT_KEY);
-  window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: defaultSiteContent }));
-  if (isSupabaseConfigured) {
-    saveSiteContentToSupabase(defaultSiteContent);
+  if (!isSupabaseConfigured) {
+    throw new Error('Supabase is not configured. Cannot reset shared content.');
   }
+  await saveSiteContentToSupabase(defaultSiteContent);
+  cacheSiteContent(defaultSiteContent);
   return defaultSiteContent;
 }
 
@@ -305,12 +306,7 @@ export function useSiteContent() {
     // Subscribe to Supabase Realtime for instant live updates across devices
     const unsubscribeRealtime = subscribeToSupabaseRealtime((newContent) => {
       const merged = mergeContent(defaultSiteContent, newContent);
-      try {
-        window.localStorage.setItem(SITE_CONTENT_KEY, JSON.stringify(merged));
-      } catch (e) {
-        // Quota safe
-      }
-      window.dispatchEvent(new CustomEvent(SITE_CONTENT_EVENT, { detail: merged }));
+      cacheSiteContent(merged);
     });
 
     // Periodic cloud poll every 10 seconds for cross-device updates
